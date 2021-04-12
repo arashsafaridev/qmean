@@ -99,7 +99,7 @@ class QMean
 			wp_enqueue_script('qmean-script', QMean_URL. 'assets/js/qmean.js', array('jquery'), QMean_PLUGIN_VERSION);
 
 			$settings = get_option('qmean_options');
-			$input_selector = empty($settings['input_selector']) ? '#search-form-1' : $settings['input_selector'];
+			$input_selector = empty($settings['input_selector']) ? '.qmean-shortcode-search-field, #search-form-1' : '.qmean-shortcode-search-field, '.$settings['input_selector'];
 			$posx = !isset($settings['suggestion_posx']) ? '-' : $settings['suggestion_posx'];
 			$posy = !isset($settings['suggestion_posy']) ? '-' : $settings['suggestion_posy'];
 			$width = !isset($settings['suggestion_width']) ? '-' : $settings['suggestion_width'];
@@ -119,7 +119,7 @@ class QMean
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
 				'homeurl' => get_home_url(),
 				'_nonce'   => wp_create_nonce( $this->_nonce ),
-				'selector' => $settings['input_selector'],
+				'selector' => '.qmean-shortcode-search-field, '.$settings['input_selector'],
 				'posx' => $posx,
 				'posy' => $posy,
 				'width' => $width,

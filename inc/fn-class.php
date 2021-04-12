@@ -92,6 +92,27 @@ class QMeanFN
 							}
 							$matches = [];
 						}
+					} else if('terms' == $area){
+						$table = $wpdb->prefix.'terms';
+						$sql = "SELECT name FROM $table WHERE LOWER(name) REGEXP %s";
+						$results = $wpdb->get_results(
+							$wpdb->prepare($sql,$patterns['sql'])
+						);
+						if($results){
+							foreach ($results as $k => $result) {
+								if($mode == 'word_by_word'){
+									preg_match('/'.$patterns['php'].'/u',$result->name,$matches);
+									if($matches){
+										foreach ($matches as $key => $match) {
+											$suggestions[] = $match;
+										}
+									}
+								} else {
+									$suggestions[] = $result->name;
+								}
+							}
+							$matches = [];
+						}
 					} else if('posts_excerpt' == $area){
 						$table = $wpdb->prefix.'posts';
 						$sql = "SELECT post_excerpt FROM $table WHERE post_status = 'publish' AND LOWER(post_excerpt) REGEXP %s".$post_types_q;

@@ -8,8 +8,10 @@
       <?php _e('You need to define your search field selector first, so for better search suggestion please visit settings page','qmean');?>
       <a href="<?php echo admin_url('admin.php?page=qmean-settings');?>"><?php _e('Go to Settings page','qmean');?></a>
     </div>
+    <a class="button button-primary button-hero" href="<?php echo admin_url('admin.php?page=qmean-settings');?>"><?php _e('Go to Settings page','qmean');?></a>
   <?php } ?>
   <p><?php _e('Query Analytics will be here soon.','qmean');?></p>
+  <p><?php _e('If you have any issues, please let me know, don\'t keep me blind to them! I will fix them if I knew them though :)','qmean');?></p>
   <div class="update-nag notice notice-info inline">
     <?php _e('Need more support? please visit:','qmean');?>
     <br />

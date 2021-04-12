@@ -3,7 +3,7 @@ Contributors: arashsafari
 Tags: search,suggestion,optimization,better search
 Requires at least: 4.0
 Tested up to: 5.7
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 Requires PHP: 7.0+
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -60,6 +60,13 @@ By default live suggestions won't work if it doesn't know the selector of the in
 
 == Frequently Asked Questions ==
 
+= What is the shortcode? =
+[qmean icon="yes" placeholder="Type to search" button_bg="#1a1a1a" button_height="40px" button_width="40px" form_class="" input_class="form-control" button_class=""  form_style="padding:0 0 15px 0" input_style="" button_style=""]
+Best practices are
+1- Use specific named attribute if you don't know how to use CSS like button_height, button_bg and ...
+2- Use in set! Either use style attributes for all of them or use class attribute for all of them like form_class, input_class, button_class OR form_style, input_style and ...
+* You can use all of them but it won't make sense in general and it is confusing :)
+
 = What is difference of Phrase mode or Word by Word mode? =
 Word by word will look for most related keyword on each word, for example if you are looking for "Hoodie With Logo" it will complete the phrase by looking for every word separately; First for hoodie, then for with, and finally for logo
 But Phrase mode will look for related keywords on the whole phrase; For example when your finishing "Hoodie With Logo" It will provide the suggestions on completion to the whole phrase.
@@ -80,10 +87,15 @@ Both of them are useful, it depends on your need. Phrase mode can have solid res
 = 1.0 =
 * First Launch
 
-= 1.1. =
+= 1.1 =
 * Limit number of suggested keywords
 * Smarter suggestions! Most related and matched keywords first
 * Styling the suggestion wrapper
+
+= 1.2 =
+* Search Field Shortcode Added
+* Now QMean Can Search Terms Too
+* Settings Field Arranged & Documented
 
 == Upgrade Notice ==
 

@@ -2,7 +2,7 @@
 /**
  * Plugin Name:      QMean
  * Description:      Ajax smart keyword suggestions and fix typos for better results by showing "Did You Mean", Google style!
- * Version:            1.1.0
+ * Version:            1.2.0
  * Author:             Arash Safari
  * Author URI:       https://github.com/arashsafaridev
  * Text Domain:     qmean
@@ -51,7 +51,7 @@ function qmean_do_on_activation()
 		$options = array(
 			'search_mode' => 'phrase',
 			'sensitivity' => 3,
-			'search_area' => array('posts_title','posts_content','posts_excerpt'),
+			'search_area' => array('posts_title','posts_content','posts_excerpt','terms'),
 			'post_types' => array('post','page'),
 			'input_selector' => $input_selector,
 			'suggestion_posx' => $posx,
@@ -77,11 +77,8 @@ function qmean_do_on_uninstallation()
 }
 
 
- // Inject a Div before the search form in search page
-add_action( 'get_search_form', 'qmean_typo_suggestion');
 
-// this will hook did you mean box. You just need to use do_action('qmean_suggestion') anywhere you want in your theme
-add_action( 'qmean_suggestion', 'qmean_typo_suggestion');
+
 function qmean_typo_suggestion()
 {
 
@@ -110,4 +107,56 @@ function qmean_typo_suggestion()
 		if(!empty($query) && mb_strtolower($query) != mb_strtolower($qmean_query)){
 			echo '<div class="qmean-typo-suggestion">'.__('Did you mean','qmean').': <a class="qmean-typo-suggestion-link" href="'.get_search_link($qmean_query).'">'.$qmean_query.'</a></div>';
 		}
+}
+
+function qmean_shortcode( $atts ) {
+    $atts = shortcode_atts( array(
+        'form_class' => '',
+        'input_class' => '',
+        'button_class' => '',
+				'form_style' => '',
+				'input_style' => '',
+				'button_style' => '',
+        'placeholder' => __('Type to search','qmean'),
+        'button_height' => '40px',
+        'button_width' => '40px',
+        'button_bg' => '#1a1a1a',
+				'icon' => 'yes'
+    ), $atts, 'qmean' );
+
+		if($atts['button_width'] == '40px'){
+			$atts['button_width'] = $atts['icon'] == 'yes' ? $atts['button_width'] : '100px';
+		}
+
+		$form_class = empty($atts['form_class']) ? ' class="qmean-shortcode-search-form"' : ' class="qmean-shortcode-search-form '.$atts['form_class'].'"';
+		$input_class = empty($atts['input_class']) ? ' class="qmean-shortcode-search-field"' : ' class="qmean-shortcode-search-field '.$atts['input_class'].'"';
+		$button_class = empty($atts['button_class']) ? ' class="qmean-shortcode-submit-button"' : ' class="qmean-shortcode-submit-button '.$atts['button_class'].'"';
+
+		$form_style = empty($atts['form_style']) ? '' : ' style="'.$atts['form_style'].'"';
+		$button_style = empty($atts['button_style']) ? ' style="height:'.$atts['button_height'].';width:'.$atts['button_width'].';background-color:'.$atts['button_bg'].'"' : ' style="'.$atts['button_style'].'"';
+		$input_style = empty($atts['input_style']) ? ' style="height:'.$atts['button_height'].'"' : ' style="'.$atts['input_style'].'""';
+
+		$out = '<form'.$form_class.$form_style.' method="get" action="'.get_home_url().'">';
+		$out .='<input type="text" name="s" autocomplete="off" id="qmean-shortcode-search-field"'.$input_class.$input_style.' placeholder="'.$atts['placeholder'].'" value="'.get_search_query().'">';
+		if($atts['icon'] == 'yes'){
+			$out .='<button'.$button_style.$button_class.' type="submit"><svg width="25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="-255 347 100 100" style="enable-background:new -255 347 100 100;" xml:space="preserve"><path fill="#fff"  d="M-215.8,357c-17.5,0-31.8,14.3-31.8,31.8c0,17.5,14.3,31.8,31.8,31.8c8,0,15.3-3,20.9-7.8c2-1.8,3.8-3.8,5.3-6	c3.5-5.1,5.6-11.3,5.6-17.9C-184,371.3-198.3,357-215.8,357z M-215.8,412.6c-13.1,0-23.8-10.7-23.8-23.8c0-13.1,10.7-23.8,23.8-23.8	s23.8,10.7,23.8,23.8C-192,401.9-202.7,412.6-215.8,412.6z"/><path fill="#fff"  d="M-169.6,433.7L-169.6,433.7c-1.6,1.5-4.1,1.4-5.7-0.2l-19.7-20.8c2-1.8,3.8-3.8,5.3-6l20.2,21.3	C-167.9,429.7-168,432.2-169.6,433.7z"/><path fill="#fff"  d="M-189.6,406.7c-1.5,2.2-3.3,4.2-5.3,6L-189.6,406.7z"/></svg></button>';
+
+		} else {
+			$out .='<button'.$button_style.$button_class.' type="submit">'.__('Search','qmean').'</button>';
+		}
+		$out .='</form>';
+
+    return $out;
+}
+
+
+add_action('init','qmean_init');
+
+function qmean_init(){
+	// Inject a Div before the search form in search page
+	add_action( 'get_search_form', 'qmean_typo_suggestion');
+	// this will hook did you mean box. You just need to use do_action('qmean_suggestion') anywhere you want in your theme
+	add_action( 'qmean_suggestion', 'qmean_typo_suggestion');
+	// adds qmean shortcode
+	add_shortcode( 'qmean', 'qmean_shortcode' );
 }

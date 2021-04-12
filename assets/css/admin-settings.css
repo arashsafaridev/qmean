@@ -9,4 +9,6 @@
 .qmean-positioning input{max-width: 100px}
 .qmean-settings-back{margin-left: .5rem !important}
 .qmean-settings-back,.qmean-settings-save{margin-top: .5rem !important}
-p.info{background: #deeaf3;border-radius: .25rem;padding: 1rem}
+table .info{background: #deeaf3;border-radius: .25rem;padding: 1rem;margin-top: 15px}
+.qmean-hint-toggle-wrapper{display: none;}
+.qmean-hint-toggler{margin: 0;cursor: pointer;}

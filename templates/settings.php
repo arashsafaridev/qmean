@@ -18,6 +18,57 @@
 
             <table class="form-table">
               <tr valign="top">
+                <th scope="row"><?php _e('Search input selector','qmean');?></th>
+                <td>
+                  <input type="text" name="qmean_input_selector" value="<?php echo esc_attr( $settings['input_selector'] ); ?>" />
+                  <p><?php _e('This is the field which will show the suggestions by typing 3 letters. Use CSS selector in full. Like <code>.selector-class</code> OR <code>#selector-id</code>. This is <strong>THE BEST & EASIEST WAY</strong> to hook QMean to any field you already have on your theme! :)','qmean');?></p>
+                    <div class="info">
+                      <h3 class="qmean-hint-toggler"><?php _e('How to find the selector fast?','qmean');?></h3>
+                      <div class="qmean-hint-toggle-wrapper">
+                        <p><?php _e('To find the selector, on Chrome or Firefox, right click on your search input field, then click Inspect Element, then you will see the class or the id value for the field. If id exists choose it, if not you need to use CSS. ','qmean');?></p>
+                        <p><?php _e('The field might have multiple classes, sperated with spaces; One is enough then add a dot <code>.</code> at the beginning. It should be like <code>.oneOfThem</code> or you can concatenate them by dot to be sure that is unique like <code>.first.second.third.fourth</code>.','qmean');?></p>
+                      </div>
+                    </div>
+                </td>
+              </tr>
+              <tr valign="top">
+                <th scope="row"><?php _e('QMean shortcode','qmean');?></th>
+                <td>
+                  <code>
+                    [qmean icon="yes" placeholder="Type to search" button_bg="#1a1a1a" button_height="40px" button_width="40px" form_class="" input_class="" button_class=""  form_style="" input_style="" button_style=""]
+                  </code>
+                  <p><?php _e('Instead of selector (above solution) you can use the shortcode.','qmean');?></p>
+                  <div class="info">
+                    <h3 class="qmean-hint-toggler"><?php _e('How to use, what are the options? and best practices','qmean');?></h3>
+                    <div class="qmean-hint-toggle-wrapper">
+                      <ul class="">
+                        <li><?php _e('Use just use <code>[qmean]</code> anywhere you want; Post/Page contents, Widgets and ...','qmean');?></li>
+                        <li><?php _e('You can use these options to customize:','qmean');?></li>
+                        <li>
+                          <pre>
+      icon: yes, no
+      placeholder: any text you want
+      button_bg: CSS color like #1a1a1a
+      button_height: number with unit like 40px, 3rem, 20% or ...
+      button_width: number with unit like 40px, 3rem, 20% or ...
+      form_class: any class, sperate with spaces like "form-wrapper form-contact"
+      input_class: any class, sperate with spaces like "form-control form-control-sm"
+      button_class: any class, sperate with spaces like "btn btn-sm"
+      form_style: CSS stlye like "padding: 0 0 15px 0; background-color:#1a1a1a"
+      input_style: CSS stlye like "padding: 0 0 15px 0; background-color:#1a1a1a"
+      button_style: CSS stlye like "padding: 0 0 15px 0; background-color:#1a1a1a"
+                          </pre>
+                        </li>
+                        <li><h4><?php _e('Best practices:','qmean');?></h4></li>
+                        <li><?php _e('Use specific named attribute if you don\'t know how to use CSS; like button_height, button_bg and ...','qmean');?></li>
+                        <li><?php _e('Use in set! Either use style attributes for all of them or use class attribute for all of them; like form_class, input_class, button_class OR form_style, input_style and button_style!','qmean');?></li>
+                        <li><?php _e('* You can use all of them but it won\'t make sense in general and it might get confusing :)','qmean');?></li>
+                      </ul>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+              <tr valign="top">
                 <th scope="row"><?php _e('Search Mode','qmean');?></th>
                 <td>
                   <select name="qmean_search_mode">
@@ -70,6 +121,10 @@
                       <?php _e('Posts content','qmean');?>
                       <input id="qmean_search_area_content" type="checkbox"<?php echo in_array('posts_content',$search_areas) ? ' checked="checked" ' : '';?> value="posts_content" name="qmean_search_area[]" />
                     </label>
+                    <label for="qmean_search_area_terms">
+                      <?php _e('Term Taxonomies','qmean');?>
+                      <input id="qmean_search_area_terms" type="checkbox"<?php echo in_array('terms',$search_areas) ? ' checked="checked" ' : '';?> value="terms" name="qmean_search_area[]" />
+                    </label>
                     <label for="qmean_search_area_metas">
                       <?php _e('Posts Metas','qmean');?>
                       <input id="qmean_search_area_metas" type="checkbox"<?php echo in_array('posts_metas',$search_areas) ? ' checked="checked" ' : '';?> value="posts_metas" name="qmean_search_area[]" />
@@ -98,16 +153,6 @@
                     </div>
                   </div>
                 </td>
-                </tr>
-
-                <tr valign="top">
-                  <th scope="row"><?php _e('Search input selector','qmean');?></th>
-                  <td>
-                    <input type="text" name="qmean_input_selector" value="<?php echo esc_attr( $settings['input_selector'] ); ?>" />
-                    <p><?php _e('Use CSS selector in full. If it is a class it needs . if its an id it needs # and make sure you have only one element with this id! unless you have a corrupted HTML code in general :)','qmean');?></p>
-                    <p class="info"><?php _e('To find the selector, on Chrome or Firefox, right click on your search input field, then click Inspect Element, then you will see the class or the id value for the field.','qmean');?></p>
-                    <p class="info"><?php _e('The field might have multiple classes, one is enough. You can use it like input.ONE-OF-THE-CLASSES.','qmean');?></p>
-                  </td>
                 </tr>
 
                 <tr valign="top">
