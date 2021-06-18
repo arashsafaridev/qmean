@@ -108,26 +108,26 @@
                 <tr valign="top">
                 <th scope="row"><?php _e('Search in','qmean');?></th>
                 <td>
-                  <div class="form-group">
+                  <div class="form-group block">
                     <label for="qmean_search_area_title">
-                      <?php _e('Posts titles','qmean');?>
                       <input id="qmean_search_area_title" type="checkbox"<?php echo in_array('posts_title',$search_areas) ? ' checked="checked" ' : '';?> value="posts_title" name="qmean_search_area[]" />
+                      <?php _e('Posts titles','qmean');?>
                     </label>
                     <label for="qmean_search_area_excerpt">
-                      <?php _e('Posts excerpt','qmean');?>
                       <input id="qmean_search_area_excerpt" type="checkbox"<?php echo in_array('posts_excerpt',$search_areas) ? ' checked="checked" ' : '';?> value="posts_excerpt" name="qmean_search_area[]" />
+                      <?php _e('Posts excerpt','qmean');?>
                     </label>
                     <label for="qmean_search_area_content">
-                      <?php _e('Posts content','qmean');?>
                       <input id="qmean_search_area_content" type="checkbox"<?php echo in_array('posts_content',$search_areas) ? ' checked="checked" ' : '';?> value="posts_content" name="qmean_search_area[]" />
+                      <?php _e('Posts content','qmean');?>
                     </label>
                     <label for="qmean_search_area_terms">
-                      <?php _e('Term Taxonomies','qmean');?>
                       <input id="qmean_search_area_terms" type="checkbox"<?php echo in_array('terms',$search_areas) ? ' checked="checked" ' : '';?> value="terms" name="qmean_search_area[]" />
+                      <?php _e('Term Taxonomies','qmean');?>
                     </label>
                     <label for="qmean_search_area_metas">
-                      <?php _e('Posts Metas','qmean');?>
                       <input id="qmean_search_area_metas" type="checkbox"<?php echo in_array('posts_metas',$search_areas) ? ' checked="checked" ' : '';?> value="posts_metas" name="qmean_search_area[]" />
+                      <?php _e('Posts Metas','qmean');?>
                     </label>
                   </div>
                   <p><?php _e('Hidden keys (internal values like order metas and such) which start with underscore are not included. On large databases PostMetas may slow down the suggestions. Be sure or check your load time first.','qmean');?></p>
@@ -136,21 +136,21 @@
                 <tr valign="top">
                 <th scope="row"><?php _e('Include post types','qmean');?></th>
                 <td>
-                  <div class="form-group">
-                    <?php $pts = get_post_types();?>
-                    <div class="form-group">
-
-                      <?php if(!empty($pts)) {
-                        foreach ($pts as $key => $pt) {
-                          ?>
+                  <div class="form-group block">
+                    <?php 
+                    $pts = get_post_types();
+                    if(!empty($pts)) {
+                      foreach ($pts as $key => $pt) {
+                    ?>
                           <label for="qmean_post_types-<?php echo $key;?>">
-                            <?php echo $pt;?>
                             <input id="qmean_post_types-<?php echo $key;?>" type="checkbox"<?php echo in_array($pt,$post_types) ? ' checked="checked" ' : '';?> value="<?php echo $pt;?>" name="qmean_post_types[]" />
+                            <?php echo $pt;?>
                           </label>
-                      <?php }
-                      } ?>
-                      <p><?php _e('Uncheck uneccessary post types for better performance','qmean');?></p>
-                    </div>
+                    <?php 
+                      }
+                    } 
+                    ?>
+                    <p><?php _e('Uncheck uneccessary post types for better performance','qmean');?></p>
                   </div>
                 </td>
                 </tr>
@@ -171,6 +171,8 @@
                 <tr valign="top">
                   <th scope="row"><?php _e('Suggestion Result Positioning','qmean');?></th>
                   <td class="qmean-positioning">
+                    <label for="qmean_suggestion_zindex"><?php _e('CSS z-index','qmean');?></label>
+                    <input type="text" id="qmean_suggestion_zindex" name="qmean_suggestion_zindex" value="<?php echo esc_attr( $settings['suggestion_zindex'] ); ?>"/>
                     <label for="qmean_suggestion_posx"><?php _e('CSS left','qmean');?></label>
                     <input type="text" id="qmean_suggestion_posx" name="qmean_suggestion_posx" value="<?php echo esc_attr( $settings['suggestion_posx'] ); ?>"/>
                     <label for="qmean_suggestion_posy"><?php _e('CSS Top','qmean');?></label>

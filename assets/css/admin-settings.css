@@ -1,14 +1,57 @@
 /* Settings */
-.qmean-settings-logo{position: absolute;right: 1rem;top: 0.7rem;}
-.qmean-settings-notification{display: none;padding: 1em;background: #e6eca1;border: 1px solid #CDDC39;margin-bottom: 1em;border-radius: 2px;}
-.qmean-settings-notification.show{display: block;}
-.qmean-settings-notification.loading{display: block;background: #f9f9f9;border: 1px solid #eee;}
-#qmean-settings{}
-#qmean-settings .postbox{padding: 1em 2em}
-#qmean-settings .form-table td p{color: #555;font-size: 13px}
-.qmean-positioning input{max-width: 100px}
-.qmean-settings-back{margin-left: .5rem !important}
-.qmean-settings-back,.qmean-settings-save{margin-top: .5rem !important}
-table .info{background: #deeaf3;border-radius: .25rem;padding: 1rem;margin-top: 15px}
-.qmean-hint-toggle-wrapper{display: none;}
-.qmean-hint-toggler{margin: 0;cursor: pointer;}
+.qmean-settings-logo {
+	position: absolute;
+	right: 1rem;
+	top: 0.7rem;
+}
+.qmean-settings-notification {
+	display: none;
+	padding: 1em;
+	background: #e6eca1;
+	border: 1px solid #cddc39;
+	margin-bottom: 1em;
+	border-radius: 2px;
+}
+.qmean-settings-notification.show {
+	display: block;
+}
+.qmean-settings-notification.loading {
+	display: block;
+	background: #f9f9f9;
+	border: 1px solid #eee;
+}
+#qmean-settings .block label {
+	display: inline-block;
+	margin-bottom: 3px;
+	width: 30%;
+}
+#qmean-settings .postbox {
+	padding: 1em 2em;
+}
+#qmean-settings .form-table td p {
+	color: #555;
+	font-size: 13px;
+}
+.qmean-positioning input {
+	max-width: 100px;
+}
+.qmean-settings-back {
+	margin-left: 0.5rem !important;
+}
+.qmean-settings-back,
+.qmean-settings-save {
+	margin-top: 0.5rem !important;
+}
+table .info {
+	background: #deeaf3;
+	border-radius: 0.25rem;
+	padding: 1rem;
+	margin-top: 15px;
+}
+.qmean-hint-toggle-wrapper {
+	display: none;
+}
+.qmean-hint-toggler {
+	margin: 0;
+	cursor: pointer;
+}

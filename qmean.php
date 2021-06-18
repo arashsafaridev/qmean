@@ -43,6 +43,7 @@ function qmean_do_on_activation()
 		update_option('_qmean_version',QMean_PLUGIN_VERSION);
 		// set defaults
 		$input_selector = '#search-form-1';
+		$zindex = '0';
 		$posx = '0';
 		$posy = '-';
 		$width = '-';
@@ -54,6 +55,7 @@ function qmean_do_on_activation()
 			'search_area' => array('posts_title','posts_content','posts_excerpt','terms'),
 			'post_types' => array('post','page'),
 			'input_selector' => $input_selector,
+			'suggestion_zindex' => $zindex,
 			'suggestion_posx' => $posx,
 			'suggestion_posy' => $posy,
 			'suggestion_width' => $width,
