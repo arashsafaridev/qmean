@@ -100,6 +100,7 @@ class QMean
 
 			$settings = get_option('qmean_options');
 			$input_selector = empty($settings['input_selector']) ? '.qmean-shortcode-search-field, #search-form-1' : '.qmean-shortcode-search-field, '.$settings['input_selector'];
+			$zindex = !isset($settings['suggestion_zindex']) ? '0' : $settings['suggestion_zindex'];
 			$posx = !isset($settings['suggestion_posx']) ? '-' : $settings['suggestion_posx'];
 			$posy = !isset($settings['suggestion_posy']) ? '-' : $settings['suggestion_posy'];
 			$width = !isset($settings['suggestion_width']) ? '-' : $settings['suggestion_width'];
@@ -120,6 +121,7 @@ class QMean
 				'homeurl' => get_home_url(),
 				'_nonce'   => wp_create_nonce( $this->_nonce ),
 				'selector' => '.qmean-shortcode-search-field, '.$settings['input_selector'],
+				'zindex' => $zindex,
 				'posx' => $posx,
 				'posy' => $posy,
 				'width' => $width,
