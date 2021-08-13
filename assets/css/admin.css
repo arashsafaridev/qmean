@@ -1,0 +1,8 @@
+.qmean-notice{display: flex;align-items: center}
+.qmean-notice a{margin: 0 .5rem}
+.qmean-notice a.button{margin-left: .5rem !important}
+.qmean-dashboard h2{margin: 0}
+.qmean-dashboard-report .page-numbers{display: flex;align-items: center; justify-content: start;}
+.qmean-dashboard-report .page-numbers li{padding: .25rem}
+.qmean-dashboard-report .page-numbers span.page-numbers{padding: .25rem .5rem;}
+.qmean-dashboard-report .page-numbers a.page-numbers{padding: .25rem .5rem;background: #fff;text-decoration: none;border-radius: .25rem;border:1px solid #c3c4c7}

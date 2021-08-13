@@ -83,11 +83,11 @@ class QMeanFN
 									preg_match('/'.$patterns['php'].'/u',$result->post_title,$matches);
 									if($matches){
 										foreach ($matches as $key => $match) {
-											$suggestions[] = $match;
+											$suggestions[] = mb_strtolower($match);
 										}
 									}
 								} else {
-									$suggestions[] = $result->post_title;
+									$suggestions[] = mb_strtolower($result->post_title);
 								}
 							}
 							$matches = [];
@@ -104,11 +104,11 @@ class QMeanFN
 									preg_match('/'.$patterns['php'].'/u',$result->name,$matches);
 									if($matches){
 										foreach ($matches as $key => $match) {
-											$suggestions[] = $match;
+											$suggestions[] = mb_strtolower($match);
 										}
 									}
 								} else {
-									$suggestions[] = $result->name;
+									$suggestions[] = mb_strtolower($result->name);
 								}
 							}
 							$matches = [];
@@ -125,11 +125,11 @@ class QMeanFN
 									preg_match('/'.$patterns['php'].'/u',$result->post_excerpt,$matches);
 									if($matches){
 										foreach ($matches as $key => $match) {
-											$suggestions[] = $match;
+											$suggestions[] = mb_strtolower($match);
 										}
 									}
 								} else {
-									$suggestions[] = $result->post_excerpt;
+									$suggestions[] = mb_strtolower($result->post_excerpt);
 								}
 							}
 							$matches = [];
@@ -146,12 +146,12 @@ class QMeanFN
 										preg_match('/'.$patterns['php'].'/u',$result->post_content,$matches);
 										if($matches){
 											foreach ($matches as $key => $match) {
-												$suggestions[] = $match;
+												$suggestions[] = mb_strtolower($match);
 											}
 										}
 									} else {
 										$phrase = $this->find_the_phrase($result->post_content,$query);
-										if($phrase) $suggestions[] = $phrase;
+										if($phrase) $suggestions[] = mb_strtolower($phrase);
 									}
 								}
 								$matches = [];
@@ -169,11 +169,11 @@ class QMeanFN
 											preg_match('/'.$patterns['php'].'/u',$result->meta_value,$matches);
 											if($matches){
 												foreach ($matches as $key => $match) {
-													$suggestions[] = $match;
+													$suggestions[] = mb_strtolower($match);
 												}
 											}
 										} else {
-											if($result->meta_value) $suggestions[] = $result->meta_value;
+											if($result->meta_value) $suggestions[] = mb_strtolower($result->meta_value);
 										}
 									}
 									$matches = [];
@@ -199,7 +199,7 @@ class QMeanFN
 			}
 
 			// make sure of sending array instead of an object
-			// cut the phrase if it longer than settings limit
+			// cut the phrase if it's longer than settings limit
 			$suggestions_arr = [];
 			foreach ($suggestion_rated as $key => $suggestion) {
 				if($suggestion['l'] < $cut_phrase_limit){

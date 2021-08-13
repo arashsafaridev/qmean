@@ -13,9 +13,7 @@
             <div class="postbox">
               <img class="qmean-settings-logo" width="200" src="<?php echo QMean_URL;?>assets/images/qmean-logo.svg"/>
               <h1><?php _e('Settings','qmean');?></h1>
-
               <hr/>
-
             <table class="form-table">
               <tr valign="top">
                 <th scope="row"><?php _e('Search input selector','qmean');?></th>
@@ -27,6 +25,7 @@
                       <div class="qmean-hint-toggle-wrapper">
                         <p><?php _e('To find the selector, on Chrome or Firefox, right click on your search input field, then click Inspect Element, then you will see the class or the id value for the field. If id exists choose it, if not you need to use CSS. ','qmean');?></p>
                         <p><?php _e('The field might have multiple classes, sperated with spaces; One is enough then add a dot <code>.</code> at the beginning. It should be like <code>.oneOfThem</code> or you can concatenate them by dot to be sure that is unique like <code>.first.second.third.fourth</code>.','qmean');?></p>
+                        <p><?php _e('Sometimes the parent element has unique id or class like &lt;form&gt; or &lt;div&gt; then you can use it like <code>#formId input</code> or <code>#firmId .inputClass</code>.','qmean');?></p>
                       </div>
                     </div>
                 </td>
@@ -42,7 +41,7 @@
                     <h3 class="qmean-hint-toggler"><?php _e('How to use, what are the options? and best practices','qmean');?></h3>
                     <div class="qmean-hint-toggle-wrapper">
                       <ul class="">
-                        <li><?php _e('Use just use <code>[qmean]</code> anywhere you want; Post/Page contents, Widgets and ...','qmean');?></li>
+                        <li><?php _e('Use just <code>[qmean]</code> anywhere you want; Post/Page contents, Widgets and ...','qmean');?></li>
                         <li><?php _e('You can use these options to customize:','qmean');?></li>
                         <li>
                           <pre>
@@ -88,7 +87,15 @@
                     <option<?php echo ($settings['sensitivity'] == 4) ? ' selected="selected"' : '';?> value="4"><?php _e('High','qmean');?></option>
                     <option<?php echo ($settings['sensitivity'] == 5) ? ' selected="selected"' : '';?> value="5"><?php _e('Extrem','qmean');?></option>
                   </select>
-                  <p><?php _e('More sensitive means more relevent result','qmean');?></p>
+                  <p><?php _e('More sensitive means more relevent result. In fact the combination of characters in a row will define sensativity!','qmean');?></p>
+                  <div class="info">
+                    <h3 class="qmean-hint-toggler"><?php _e('Learn more by example','qmean');?></h3>
+                    <div class="qmean-hint-toggle-wrapper">
+                      <p><?php _e('Relative to your sensivity option, lowest in this case, if the user searches for "wor", QMean will get all the words containing these characters no matter of their order and rank them higher like: <code>world, otherwise,flower, worst, WordPress, words</code>','qmean');?></p>
+                      <p><?php _e('Relative to your sensivity option, high in this case, if the user searches for "wor", QMean will get all the words containing these characters in a row and rank them higher like: <code>world, worst, WordPress, words, otherwise,flower, wrong</code>','qmean');?></p>
+                      <p><?php _e('<strong>In general sensitivity can manipulate number of results suggested! You can test to choose which one suits you best.</strong>','qmean');?></p>
+                    </div>
+                  </div>
                 </td>
               </tr>
               <tr valign="top">
@@ -102,7 +109,7 @@
                 <th scope="row"><?php _e('Shortten phrase limit','qmean');?></th>
                 <td>
                   <input type="text" name="qmean_cut_phrase_limit" value="<?php echo esc_attr( $settings['cut_phrase_limit'] ); ?>" />
-                  <p><?php _e('If phrase mode is selected, this will shortten phrases with length bigger than this number. Default is 50 characters. It will show 3 words starting with the query instead ','qmean');?></p>
+                  <p><?php _e('Rank higher and match the phrases lower than this number for length. Default is 50 characters. Then it will show 3 words starting with the query','qmean');?></p>
                 </td>
               </tr>
                 <tr valign="top">
@@ -137,7 +144,7 @@
                 <th scope="row"><?php _e('Include post types','qmean');?></th>
                 <td>
                   <div class="form-group block">
-                    <?php 
+                    <?php
                     $pts = get_post_types();
                     if(!empty($pts)) {
                       foreach ($pts as $key => $pt) {
@@ -146,9 +153,9 @@
                             <input id="qmean_post_types-<?php echo $key;?>" type="checkbox"<?php echo in_array($pt,$post_types) ? ' checked="checked" ' : '';?> value="<?php echo $pt;?>" name="qmean_post_types[]" />
                             <?php echo $pt;?>
                           </label>
-                    <?php 
+                    <?php
                       }
-                    } 
+                    }
                     ?>
                     <p><?php _e('Uncheck uneccessary post types for better performance','qmean');?></p>
                   </div>
@@ -182,7 +189,7 @@
                     <label for="qmean_suggestion_height"><?php _e('Height','qmean');?></label>
                     <input type="text" id="qmean_suggestion_height" name="qmean_suggestion_height" value="<?php echo esc_attr( $settings['suggestion_height'] ); ?>"/>
                     <p><?php _e('Use units too like 50px, 5%, 5rem or any CSS standard unit; Please make sure that the parent of the input has a position of relative or absolute. Use - (dash) to automate each value','qmean');?></p>
-                    <p class="info"><?php _e('You can also use #qmean-suggestion-results selector for suggestion wrapper and .qmean-suggestion-item for suggestion item in your CSS file for better styling. Use .qmean-typo-suggestion for DidYouMean box after the search.','qmean');?></p>
+                    <p class="info"><?php _e('You can also use <code>#qmean-suggestion-results</code> selector for suggestion wrapper and <code>.qmean-suggestion-item</code> for suggestion item in your CSS file for better styling. Use <code>.qmean-typo-suggestion</code> for DidYouMean box after the search.','qmean');?></p>
                   </td>
                 </tr>
                 <tr valign="top">
@@ -211,8 +218,8 @@
                   <th scope="row"><?php _e('Custom Action Hook','qmean');?></th>
                   <td>
                     <input type="text" name="qmean_custom_hook" value="<?php echo esc_attr( $settings['custom_hook'] ); ?>" />
-                    <p><?php _e('If you need to use different action hook instead of get_search_form, enter the action name here. It will be usefull if you are using a custom theme. You can also add the code below anywhere you want it to be shown','qmean');?></p>
-                    <pre><?php echo wp_specialchars("<?php do_action('qmean_suggestion');?>");?></pre>
+                    <p><?php _e('If you need to use different action hook instead of <code>get_search_form</code>, enter the action name here. It will be usefull if you are using a custom theme. You can also add the code below anywhere you want it to be shown','qmean');?></p>
+                    <pre><code><?php echo wp_specialchars("<?php do_action('qmean_suggestion');?>");?></code></pre>
                   </td>
                 </tr>
 

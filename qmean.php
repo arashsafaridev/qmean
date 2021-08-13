@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin Name:      QMean
- * Description:      Ajax smart keyword suggestions and fix typos for better results by showing "Did You Mean", Google style!
- * Version:            1.2.0
+ * Description:      Ajax smart keyword suggestions and fix typos for better results by showing "Did You Mean", Google style! Simple, Minimal and Fast. Plus an analytics dashboard for searched queries
+ * Version:            1.4.0
  * Author:             Arash Safari
  * Author URI:       https://github.com/arashsafaridev
  * Text Domain:     qmean
@@ -19,7 +19,7 @@
 // Crawler Detect
 
 if(!defined('QMean_PLUGIN_VERSION'))
-	define('QMean_PLUGIN_VERSION', '1.1.0');
+	define('QMean_PLUGIN_VERSION', '1.4.0');
 if(!defined('QMean_URL'))
 	define('QMean_URL', plugin_dir_url( __FILE__ ));
 if(!defined('QMean_PATH'))
@@ -28,6 +28,7 @@ if(!defined('QMean_PATH'))
 require_once(QMean_PATH.'/inc/qmean-class.php');
 require_once(QMean_PATH.'/inc/fn-class.php');
 require_once(QMean_PATH.'/inc/ajax-class.php');
+require_once(QMean_PATH.'/inc/report-class.php');
 
 require_once( ABSPATH . '/wp-admin/includes/upgrade.php' );
 
@@ -39,7 +40,6 @@ register_activation_hook( __FILE__, 'qmean_do_on_activation');
 register_uninstall_hook( __FILE__, 'qmean_do_on_uninstallation' );
 function qmean_do_on_activation()
 {
-
 		update_option('_qmean_version',QMean_PLUGIN_VERSION);
 		// set defaults
 		$input_selector = '#search-form-1';
@@ -68,22 +68,61 @@ function qmean_do_on_activation()
 			'rtl_support' => 'no',
 			'parent_position' => ''
 		);
-
 		update_option('qmean_options',$options);
+
+		// create report db
+		$keyword_table_status = get_option('_qmean_keyword_table','no');
+		if($keyword_table_status != 'created'){
+			global $wpdb;
+			$keyword_table_name = $wpdb->prefix . "qmean_keyword";
+			$charset_collate = $wpdb->get_charset_collate();
+			$sql = "CREATE TABLE $keyword_table_name (
+				id bigint(20) NOT NULL AUTO_INCREMENT,
+				keyword varchar(1000) NULL,
+				hit int(20) NOT NULL DEFAULT '0',
+				found_posts int(20) NOT NULL DEFAULT '0',
+				created bigint(20) NOT NULL DEFAULT '0',
+				PRIMARY KEY  (id)
+			) $charset_collate;
+			";
+			maybe_create_table($keyword_table_name,$sql);
+			update_option('_qmean_keyword_table','created');
+		}
 }
 
 function qmean_do_on_uninstallation()
 {
 	delete_option('_qmean_version');
+	delete_option('_qmean_keyword_table');
 	delete_option('qmean_options');
+	global $wpdb;
+	$keyword_table_name = $wpdb->prefix . "qmean_keyword";
+	$sql = "DROP TABLE  $keyword_table_name";
+	$wpdb->query($sql);
 }
 
-
+function qmean_update_plugin(){
+	$keyword_table_status = get_option('_qmean_keyword_table','no');
+	if($keyword_table_status != 'created'){
+		global $wpdb;
+		$keyword_table_name = $wpdb->prefix . "qmean_keyword";
+		$charset_collate = $wpdb->get_charset_collate();
+		$sql = "CREATE TABLE $keyword_table_name (
+			id bigint(20) NOT NULL AUTO_INCREMENT,
+			keyword varchar(1000) NULL,
+			hit int(20) NOT NULL DEFAULT '0',
+			found_posts int(20) NOT NULL DEFAULT '0',
+			created bigint(20) NOT NULL DEFAULT '0',
+			PRIMARY KEY  (id)
+		) $charset_collate;
+		";
+		maybe_create_table($keyword_table_name,$sql);
+	}
+}
 
 
 function qmean_typo_suggestion()
 {
-
 			$qmean_fn = new QMeanFN();
 			$query = sanitize_text_field(get_query_var('s'));
 
@@ -103,11 +142,11 @@ function qmean_typo_suggestion()
 					}
 			}
 
-    $qmean_query = implode(" ",$keywords);
+    $qmean_keyword = implode(" ",$keywords);
 
 		// if the queries are not he same as correct one
-		if(!empty($query) && mb_strtolower($query) != mb_strtolower($qmean_query)){
-			echo '<div class="qmean-typo-suggestion">'.__('Did you mean','qmean').': <a class="qmean-typo-suggestion-link" href="'.get_search_link($qmean_query).'">'.$qmean_query.'</a></div>';
+		if(!empty($query) && mb_strtolower($query) != mb_strtolower($qmean_keyword)){
+			echo '<div class="qmean-typo-suggestion">'.__('Did you mean','qmean').': <a class="qmean-typo-suggestion-link" href="'.get_search_link($qmean_keyword).'">'.$qmean_keyword.'</a></div>';
 		}
 }
 
@@ -151,8 +190,20 @@ function qmean_shortcode( $atts ) {
     return $out;
 }
 
+// record every query searched
+function qmean_analytics(){
+	$query = get_query_var('s');
+	if($query){
+		global $wp_query;
+		try {
+			$qmreport = new QMeanReport();
+			$qmreport->save($query,$wp_query->found_posts);
+		} catch (Exception $e) {
 
-add_action('init','qmean_init');
+		}
+	}
+}
+
 
 function qmean_init(){
 	// Inject a Div before the search form in search page
@@ -161,4 +212,11 @@ function qmean_init(){
 	add_action( 'qmean_suggestion', 'qmean_typo_suggestion');
 	// adds qmean shortcode
 	add_shortcode( 'qmean', 'qmean_shortcode' );
+	// For analtics of queries on next version
+	add_action('wp_footer','qmean_analytics');
 }
+
+// check update compatibility
+add_action( 'plugins_loaded', 'qmean_update_plugin');
+// init functions
+add_action('init','qmean_init');

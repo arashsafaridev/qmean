@@ -4,10 +4,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: QMean\n"
 "Report-Msgid-Bugs-To: https://wedevs.com/account/tickets/\n"
-"POT-Creation-Date: 2021-04-06 16:03+0330\n"
-"PO-Revision-Date: 2021-04-06 16:03+0330\n"
+"POT-Creation-Date: 2021-08-13 16:29+0430\n"
+"PO-Revision-Date: 2021-08-13 16:29+0430\n"
 "Last-Translator: \n"
-"Language-Team:  <qmean@gmail.com>\n"
+"Language-Team: <qmean@gmail.com>\n"
 "Language: en_US\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,7 +19,7 @@ msgstr ""
 "esc_html_x:1,2c\n"
 "X-Poedit-Basepath: .\n"
 "X-Textdomain-Support: yes\n"
-"X-Generator: Poedit 1.7.1\n"
+"X-Generator: Poedit 2.4.3\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPath-1: ..\n"
 
@@ -27,66 +27,193 @@ msgstr ""
 msgid "Settings saved successfully!"
 msgstr ""
 
-#: ../inc/qmean-class.php:137
+#: ../inc/qmean-class.php:141
 msgid "Back"
 msgstr ""
 
-#: ../inc/qmean-class.php:149 ../inc/qmean-class.php:150
+#: ../inc/qmean-class.php:153 ../inc/qmean-class.php:154
 msgid "QMean"
 msgstr ""
 
-#: ../inc/qmean-class.php:160 ../inc/qmean-class.php:161
+#: ../inc/qmean-class.php:164 ../inc/qmean-class.php:165
 #: ../templates/settings.php:15
 msgid "Settings"
 msgstr ""
 
-#: ../qmean.php:111
+#: ../qmean.php:149
 msgid "Did you mean"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:5
+#: ../qmean.php:161
+msgid "Type to search"
+msgstr ""
+
+#: ../qmean.php:186
+msgid "Search"
+msgstr ""
+
+#: ../templates/dashboard/dashboard.php:6
 msgid "Welcome to QMean Dashboard"
 msgstr ""
 
 #: ../templates/dashboard/dashboard.php:8
+msgid "Need more support? please visit:"
+msgstr ""
+
+#: ../templates/dashboard/dashboard.php:9
+msgid "WordPress Support"
+msgstr ""
+
+#: ../templates/dashboard/dashboard.php:11
+msgid "GitHub Issues"
+msgstr ""
+
+#: ../templates/dashboard/dashboard.php:15
 msgid ""
 "You need to define your search field selector first, so for better search "
 "suggestion please visit settings page"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:9
+#: ../templates/dashboard/dashboard.php:16
 msgid "Go to Settings page"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:12
-msgid "Query Analytics will be here soon."
+#: ../templates/dashboard/dashboard.php:19
+msgid "Global Reports"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:14
-msgid "Need more support? please visit:"
+#: ../templates/dashboard/dashboard.php:20
+msgid ""
+"You can see all the searched queries here. <strong>Found posts</strong> is "
+"helpful if you are using <strong>word by word</strong> mode."
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:16
-msgid "WordPress Support"
+#: ../templates/dashboard/dashboard.php:25
+#, fuzzy
+#| msgid "Meta Keywords :"
+msgid "Keyword"
+msgstr "کلیدواژه های متا"
+
+#: ../templates/dashboard/dashboard.php:26
+msgid "Hit"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:18
-msgid "GitHub Issues"
+#: ../templates/dashboard/dashboard.php:27
+msgid "Found Posts"
 msgstr ""
 
-#: ../templates/settings.php:21
-msgid "Search Mode"
+#: ../templates/dashboard/dashboard.php:28
+msgid "Time"
+msgstr ""
+
+#: ../templates/dashboard/dashboard.php:42
+msgid "Nothing is recorded yet!"
+msgstr ""
+
+#: ../templates/dashboard/dashboard.php:53
+msgid "«"
+msgstr ""
+
+#: ../templates/dashboard/dashboard.php:54
+msgid "»"
+msgstr ""
+
+#: ../templates/settings.php:19
+msgid "Search input selector"
+msgstr ""
+
+#: ../templates/settings.php:22
+msgid ""
+"This is the field which will show the suggestions by typing 3 letters. Use "
+"CSS selector in full. Like <code>.selector-class</code> OR <code>#selector-"
+"id</code>. This is <strong>THE BEST & EASIEST WAY</strong> to hook QMean to "
+"any field you already have on your theme! :)"
 msgstr ""
 
 #: ../templates/settings.php:24
-msgid "Word By Word"
+msgid "How to find the selector fast?"
 msgstr ""
 
-#: ../templates/settings.php:25
-msgid "Phrase"
+#: ../templates/settings.php:26
+msgid ""
+"To find the selector, on Chrome or Firefox, right click on your search input "
+"field, then click Inspect Element, then you will see the class or the id "
+"value for the field. If id exists choose it, if not you need to use CSS. "
 msgstr ""
 
 #: ../templates/settings.php:27
+msgid ""
+"The field might have multiple classes, sperated with spaces; One is enough "
+"then add a dot <code>.</code> at the beginning. It should be like <code>."
+"oneOfThem</code> or you can concatenate them by dot to be sure that is "
+"unique like <code>.first.second.third.fourth</code>."
+msgstr ""
+
+#: ../templates/settings.php:28
+msgid ""
+"Sometimes the parent element has unique id or class like &lt;form&gt; or &lt;"
+"div&gt; then you can use it like <code>#formId input</code> or "
+"<code>#firmId .inputClass</code>."
+msgstr ""
+
+#: ../templates/settings.php:34
+msgid "QMean shortcode"
+msgstr ""
+
+#: ../templates/settings.php:39
+msgid "Instead of selector (above solution) you can use the shortcode."
+msgstr ""
+
+#: ../templates/settings.php:41
+msgid "How to use, what are the options? and best practices"
+msgstr ""
+
+#: ../templates/settings.php:44
+msgid ""
+"Use just <code>[qmean]</code> anywhere you want; Post/Page contents, Widgets "
+"and ..."
+msgstr ""
+
+#: ../templates/settings.php:45
+msgid "You can use these options to customize:"
+msgstr ""
+
+#: ../templates/settings.php:61
+msgid "Best practices:"
+msgstr ""
+
+#: ../templates/settings.php:62
+msgid ""
+"Use specific named attribute if you don't know how to use CSS; like "
+"button_height, button_bg and ..."
+msgstr ""
+
+#: ../templates/settings.php:63
+msgid ""
+"Use in set! Either use style attributes for all of them or use class "
+"attribute for all of them; like form_class, input_class, button_class OR "
+"form_style, input_style and button_style!"
+msgstr ""
+
+#: ../templates/settings.php:64
+msgid ""
+"* You can use all of them but it won't make sense in general and it might "
+"get confusing :)"
+msgstr ""
+
+#: ../templates/settings.php:71
+msgid "Search Mode"
+msgstr ""
+
+#: ../templates/settings.php:74
+msgid "Word By Word"
+msgstr ""
+
+#: ../templates/settings.php:75
+msgid "Phrase"
+msgstr ""
+
+#: ../templates/settings.php:77
 msgid ""
 "Word by word will compelete the search query on every word, individually, "
 "but phrase mode will get the phrase containing the word. Word by word may "
@@ -94,230 +221,243 @@ msgid ""
 "SEO by reproducing them"
 msgstr ""
 
-#: ../templates/settings.php:31
+#: ../templates/settings.php:81
 msgid "Sensitivity"
 msgstr ""
 
-#: ../templates/settings.php:34
+#: ../templates/settings.php:84
 msgid "Lowest"
 msgstr ""
 
-#: ../templates/settings.php:35
+#: ../templates/settings.php:85
 msgid "Low"
 msgstr ""
 
-#: ../templates/settings.php:36
+#: ../templates/settings.php:86
 msgid "Medium"
 msgstr ""
 
-#: ../templates/settings.php:37
+#: ../templates/settings.php:87
 msgid "High"
 msgstr ""
 
-#: ../templates/settings.php:38
+#: ../templates/settings.php:88
 msgid "Extrem"
 msgstr ""
 
-#: ../templates/settings.php:40
-msgid "More sensitive means more relevent result"
+#: ../templates/settings.php:90
+msgid ""
+"More sensitive means more relevent result. In fact the combination of "
+"characters in a row will define sensativity!"
 msgstr ""
 
-#: ../templates/settings.php:44
+#: ../templates/settings.php:92
+msgid "Learn more by example"
+msgstr ""
+
+#: ../templates/settings.php:94
+msgid ""
+"Relative to your sensivity option, lowest in this case, if the user searches "
+"for \"wor\", QMean will get all the words containing these characters no "
+"matter of their order and rank them higher like: <code>world, otherwise,"
+"flower, worst, WordPress, words</code>"
+msgstr ""
+
+#: ../templates/settings.php:95
+msgid ""
+"Relative to your sensivity option, high in this case, if the user searches "
+"for \"wor\", QMean will get all the words containing these characters in a "
+"row and rank them higher like: <code>world, worst, WordPress, words, "
+"otherwise,flower, wrong</code>"
+msgstr ""
+
+#: ../templates/settings.php:96
+msgid ""
+"<strong>In general sensitivity can manipulate number of results suggested! "
+"You can test to choose which one suits you best.</strong>"
+msgstr ""
+
+#: ../templates/settings.php:102
 msgid "Limit results"
 msgstr ""
 
-#: ../templates/settings.php:47
+#: ../templates/settings.php:105
 msgid ""
 "Number of results to show. Your search may have a lot of matched keywords. "
 "This number will limit them."
 msgstr ""
 
-#: ../templates/settings.php:51
+#: ../templates/settings.php:109
 msgid "Shortten phrase limit"
 msgstr ""
 
-#: ../templates/settings.php:54
+#: ../templates/settings.php:112
 msgid ""
-"If phrase mode is selected, this will shortten phrases with length bigger "
-"than this number. Default is 50 characters. It will show 3 words starting "
-"with the query instead "
+"Rank higher and match the phrases lower than this number for length. Default "
+"is 50 characters. Then it will show 3 words starting with the query"
 msgstr ""
 
-#: ../templates/settings.php:58
+#: ../templates/settings.php:116
 msgid "Search in"
 msgstr ""
 
-#: ../templates/settings.php:62
+#: ../templates/settings.php:121
 msgid "Posts titles"
 msgstr ""
 
-#: ../templates/settings.php:66
+#: ../templates/settings.php:125
 msgid "Posts excerpt"
 msgstr ""
 
-#: ../templates/settings.php:70
+#: ../templates/settings.php:129
 msgid "Posts content"
 msgstr ""
 
-#: ../templates/settings.php:74
+#: ../templates/settings.php:133
+msgid "Term Taxonomies"
+msgstr ""
+
+#: ../templates/settings.php:137
 msgid "Posts Metas"
 msgstr ""
 
-#: ../templates/settings.php:78
+#: ../templates/settings.php:140
 msgid ""
 "Hidden keys (internal values like order metas and such) which start with "
 "underscore are not included. On large databases PostMetas may slow down the "
 "suggestions. Be sure or check your load time first."
 msgstr ""
 
-#: ../templates/settings.php:82
+#: ../templates/settings.php:144
 msgid "Include post types"
 msgstr ""
 
-#: ../templates/settings.php:97
+#: ../templates/settings.php:160
 msgid "Uncheck uneccessary post types for better performance"
 msgstr ""
 
-#: ../templates/settings.php:104
-msgid "Search input selector"
-msgstr ""
-
-#: ../templates/settings.php:107
-msgid ""
-"Use CSS selector in full. If it is a class it needs . if its an id it needs "
-"# and make sure you have only one element with this id! unless you have a "
-"corrupted HTML code in general :)"
-msgstr ""
-
-#: ../templates/settings.php:108
-msgid ""
-"To find the selector, on Chrome or Firefox, right click on your search input "
-"field, then click Inspect Element, then you will see the class or the id "
-"value for the field."
-msgstr ""
-
-#: ../templates/settings.php:109
-msgid ""
-"The field might have multiple classes, one is enough. You can use it like "
-"input.ONE-OF-THE-CLASSES."
-msgstr ""
-
-#: ../templates/settings.php:114
+#: ../templates/settings.php:166
 msgid "Auto Set Parent Position"
 msgstr ""
 
-#: ../templates/settings.php:117
+#: ../templates/settings.php:169
 msgid "Do Nothing!"
 msgstr ""
 
-#: ../templates/settings.php:118
+#: ../templates/settings.php:170
 msgid "Relative"
 msgstr ""
 
-#: ../templates/settings.php:119
+#: ../templates/settings.php:171
 msgid "Absolute"
 msgstr ""
 
-#: ../templates/settings.php:120
+#: ../templates/settings.php:172
 msgid "Fixed"
 msgstr ""
 
-#: ../templates/settings.php:122
+#: ../templates/settings.php:174
 msgid ""
 "Input parent's postion needs to be set for suggestion wrapper to appear "
 "correctly. If the parent doesn't have any position this can automatically "
 "add it. Relative is common and won't harm"
 msgstr ""
 
-#: ../templates/settings.php:127
+#: ../templates/settings.php:179
 msgid "Suggestion Result Positioning"
 msgstr ""
 
-#: ../templates/settings.php:129
+#: ../templates/settings.php:181
+msgid "CSS z-index"
+msgstr ""
+
+#: ../templates/settings.php:183
 msgid "CSS left"
 msgstr ""
 
-#: ../templates/settings.php:131
+#: ../templates/settings.php:185
 msgid "CSS Top"
 msgstr ""
 
-#: ../templates/settings.php:133
+#: ../templates/settings.php:187
 msgid "Width"
 msgstr ""
 
-#: ../templates/settings.php:135
+#: ../templates/settings.php:189
 msgid "Height"
 msgstr ""
 
-#: ../templates/settings.php:137
+#: ../templates/settings.php:191
 msgid ""
 "Use units too like 50px, 5%, 5rem or any CSS standard unit; Please make sure "
 "that the parent of the input has a position of relative or absolute. Use - "
 "(dash) to automate each value"
 msgstr ""
 
-#: ../templates/settings.php:138
+#: ../templates/settings.php:192
 msgid ""
-"You can also use #qmean-suggestion-results selector for suggestion wrapper "
-"and .qmean-suggestion-item for suggestion item in your CSS file for better "
-"styling. Use .qmean-typo-suggestion for DidYouMean box after the search."
+"You can also use <code>#qmean-suggestion-results</code> selector for "
+"suggestion wrapper and <code>.qmean-suggestion-item</code> for suggestion "
+"item in your CSS file for better styling. Use <code>.qmean-typo-suggestion</"
+"code> for DidYouMean box after the search."
 msgstr ""
 
-#: ../templates/settings.php:142
+#: ../templates/settings.php:196
 msgid "Suggestion Wrapper Styling"
 msgstr ""
 
-#: ../templates/settings.php:144
+#: ../templates/settings.php:198
 msgid "Background Color"
 msgstr ""
 
-#: ../templates/settings.php:146
+#: ../templates/settings.php:200
 msgid "Border Radius"
 msgstr ""
 
-#: ../templates/settings.php:148
+#: ../templates/settings.php:202
 msgid "Padding"
 msgstr ""
 
-#: ../templates/settings.php:150
+#: ../templates/settings.php:204
 msgid ""
 "Enter standard CSS values like color #ffffff, border radius 0px 0px 0px 0px, "
 "padding 0px 0px 0px 0px. Any standard CSS unit is allowed like em, rem, % "
 "and  ... . order of values is: top right bottom left"
 msgstr ""
 
-#: ../templates/settings.php:154
+#: ../templates/settings.php:208
 msgid "RTL Support"
 msgstr ""
 
-#: ../templates/settings.php:157
+#: ../templates/settings.php:211
 msgid "No"
 msgstr ""
 
-#: ../templates/settings.php:158
+#: ../templates/settings.php:212
 msgid "Yes"
 msgstr ""
 
-#: ../templates/settings.php:160
+#: ../templates/settings.php:214
 msgid "Instead of using left for positioning it will use right instead"
 msgstr ""
 
-#: ../templates/settings.php:164
+#: ../templates/settings.php:218
 msgid "Custom Action Hook"
 msgstr ""
 
-#: ../templates/settings.php:167
+#: ../templates/settings.php:221
 msgid ""
-"If you need to use different action hook instead of get_search_form, enter "
-"the action name here. It will be usefull if you are using a custom theme. "
-"You can also add the code below anywhere you want it to be shown"
+"If you need to use different action hook instead of <code>get_search_form</"
+"code>, enter the action name here. It will be usefull if you are using a "
+"custom theme. You can also add the code below anywhere you want it to be "
+"shown"
 msgstr ""
 
-#: ../templates/settings.php:178
+#: ../templates/settings.php:232
 msgid "Save Settings"
 msgstr ""
 
-#: ../templates/settings.php:179
+#: ../templates/settings.php:233
 msgid "Back to Dashboard"
 msgstr ""
 
@@ -1145,9 +1285,6 @@ msgstr ""
 #~ "این متن عموما به عنوان متن توضیحات جستجو در زیر لینک شما در گوگل قرار "
 #~ "میگیرد. برای اینکه این متا تگ کار کند، می بایست کلیدواژه هایی مرتبط با "
 #~ "فروشگاه شما را دربرداشته باشد به گونه ای که از 156 کاراکتر تجاوز نکند."
-
-#~ msgid "Meta Keywords :"
-#~ msgstr "کلیدواژه های متا"
 
 #~ msgid ""
 #~ "Insert some comma separated keywords for better ranking of your store "

@@ -78,7 +78,9 @@ class QMean
 			wp_enqueue_script( 'jquery' );
 			$screen = get_current_screen();
 
-			if(strpos($screen->id,'qmean-settings')){
+			if(strpos($screen->id,'qmean')){
+				wp_enqueue_style('qmean-settings', QMean_URL. 'assets/css/admin.css', false, QMean_PLUGIN_VERSION);
+			} else if(strpos($screen->id,'qmean-settings')){
 				wp_enqueue_style('qmean-settings', QMean_URL. 'assets/css/admin-settings.css', false, QMean_PLUGIN_VERSION);
 				wp_enqueue_script('qmean-settings', QMean_URL. 'assets/js/admin-settings.js', array('jquery'), QMean_PLUGIN_VERSION);
 			}
@@ -178,6 +180,22 @@ class QMean
 	 // Outputs the Admin Dashboard layout containing the form with all its options
    public function dashboard_layout()
    {
+		 $qmreport = new QMeanReport();
+		 $total = $qmreport->get_keywords_total();
+		 $page = (int)$_GET['qmp'] ? (int)$_GET['qmp'] : 1;
+		 $number = 10;
+		 $sort = sanitize_text_field($_GET['qmsort']);
+		 $orderby = sanitize_text_field($_GET['qmorder']);
+		 $orderby = empty($orderby) ? 'desc' : $orderby;
+		 $order_map = array( 'kw' => 'keyword', 'ht' => 'hit', 'fp' => 'found_posts', 'time' => 'created');
+		 if(empty($sort)){
+			 $sortby = 'created';
+		 } else {
+			 $sortby = $order_map[$sort];
+			 $sortby = empty($sortby) ? 'created' : $sortby;
+		 }
+
+		 $keywords = $qmreport->get_keywords(array('page' => $page, 'number' => $number, 'sort' => $sortby, 'orderby' => $orderby));
      require_once(QMean_PATH.'/templates/dashboard/dashboard.php');
    }
 
