@@ -109,6 +109,10 @@ Both of them are useful, it depends on your need. Phrase mode can have solid res
 = 1.4 =
 * new files commit
 
+= 1.5 =
+* Features: added Auto Field Recognizer on front-end
+
+
 == Upgrade Notice ==
 
 = before 1.0.9 =

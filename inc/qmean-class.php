@@ -87,7 +87,7 @@ class QMean
 
 			$admin_options = array(
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
-				'_nonce'   => wp_create_nonce( $this->_nonce ),
+				'_nonce'   => wp_create_nonce( $this->_nonce )
 			);
 
 			wp_localize_script('qmean-settings', 'qmean', $admin_options);
@@ -97,6 +97,9 @@ class QMean
 	// Adds Front-End Scripts for the Ajax call and Styles
 	public function add_scripts()
     {
+			if(current_user_can('manage_options') && isset($_GET['qmean_field_recognizer'])){
+				wp_enqueue_script('qmean-recognizer-script', QMean_URL. 'assets/js/qmean-recognizer.js', array('jquery'), QMean_PLUGIN_VERSION);
+			}
 			wp_enqueue_style('qmean-style', QMean_URL. 'assets/css/qmean.css', false, QMean_PLUGIN_VERSION);
 			wp_enqueue_script('qmean-script', QMean_URL. 'assets/js/qmean.js', array('jquery'), QMean_PLUGIN_VERSION);
 
@@ -138,7 +141,11 @@ class QMean
 				'wrapper_padding' => $wrapper_padding,
 				'rtl_support' => $rtl_support,
 				'labels'   => array(
-					'back' => __('Back','qmean')
+					'back' => __('Back','qmean'),
+					'pleaseChooseAnInputType' => __('Please choose a field which is an input like input or textarea','qmean'),
+					'isNotValid' => __('is not valid!','qmean'),
+					'saveSelector' => __('Save Selector','qmean'),
+					'yourSelectorIs' => __('Your selector is','qmean')
 				),
 			);
 

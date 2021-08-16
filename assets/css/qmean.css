@@ -23,7 +23,15 @@
 .qmean-shortcode-search-form{position: relative;}
 .qmean-shortcode-submit-button{position: absolute;right: 0;top: 0;padding: 0;display: flex;align-items: center; justify-content: center;}
 .rtl .qmean-shortcode-submit-button{position: absolute;right: auto;top: 0;left:0}
+/* RECOGNIZER */
+.qmean-field-recognizer-header-tooltip{position: fixed;padding: .5rem 1rem;background: #000;box-shadow: 0 0 20px -3px rgb(0 0 0 / 40%);color:#fff;left:0;top:0;width: 100%;z-index: 999999;text-align: center;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-size: 13px;}
+.qmean-field-recognizer-tooltip{position: absolute;padding: .5rem 1rem;border-radius: .25rem;background: #fff;box-shadow: 0 0 20px -3px rgb(0 0 0 / 40%);font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-size: 13px;}
+.qmean-field-recognizer-tooltip .error{display: flex;color:#fff;padding: .5rem 1rem;border-radius: .25rem;background: #cf2e2e;font-size: 13px}
+.qmean-field-recognizer-tooltip .error strong{margin-right: 1rem}
+.qmean-field-recognizer-tooltip .success{display: flex;color:#fff;padding: .5rem 1rem;border-radius: .25rem;background: #4c9800;font-size: 13px}
+#qmean-finalize-recognized-selector{position: fixed; bottom: 0; background: #ebeced;box-shadow: 0 0 20px -3px rgb(0 0 0 / 40%);left:0;width: 100%;padding: 1rem;display: flex;align-items: center;justify-content: space-between;transition: opacity 1s,background-color 1s;z-index: 9999;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-size: 13px;}
+#qmean-finalize-recognized-selector.loading{opacity: .1;pointer-events: none;background: #000}
+#qmean-finalize-recognized-selector button{padding: 15px 30px; background: #4c9800 !important; color: #fff; border-radius: .5rem;font-size: 24px}
+#qmean-finalize-recognized-selector span{padding: 15px 30px;}
 
-@media only screen and (max-width: 768px) {
-
-}
+@media only screen and (max-width: 768px) {}

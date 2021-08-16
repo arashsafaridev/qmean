@@ -50,7 +50,7 @@ function qmean_do_on_activation()
 		$height = '200px';
 
 		$options = array(
-			'search_mode' => 'phrase',
+			'search_mode' => 'word_by_word',
 			'sensitivity' => 3,
 			'search_area' => array('posts_title','posts_content','posts_excerpt','terms'),
 			'post_types' => array('post','page'),
@@ -202,6 +202,11 @@ function qmean_analytics(){
 
 		}
 	}
+	// field auto reconginizer
+	if(current_user_can('manage_options') && isset($_GET['qmean_field_recognizer'])){ ?>
+		<div class="qmean-field-recognizer-header-tooltip"><?php _e('Please move you mouse and choose your search input field','oodev');?></div>
+		<div class="qmean-field-recognizer-tooltip"><?php _e('Please choose your field','oodev');?></div>
+	<?php }
 }
 
 

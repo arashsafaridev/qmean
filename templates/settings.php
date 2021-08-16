@@ -19,7 +19,9 @@
                 <th scope="row"><?php _e('Search input selector','qmean');?></th>
                 <td>
                   <input type="text" name="qmean_input_selector" value="<?php echo esc_attr( $settings['input_selector'] ); ?>" />
-                  <p><?php _e('This is the field which will show the suggestions by typing 3 letters. Use CSS selector in full. Like <code>.selector-class</code> OR <code>#selector-id</code>. This is <strong>THE BEST & EASIEST WAY</strong> to hook QMean to any field you already have on your theme! :)','qmean');?></p>
+                  or <a href="<?php echo get_home_url();?>?qmean_field_recognizer" target="_blank" class="button button-primary"><?php _e('Use QMean\'s auto recognizer on front-end','qmean');?></a>
+                  <p><?php _e('This is the field which will show the suggestions by typing 3 letters. Use CSS selector in full. Like <code>.selector-class</code> OR <code>#selector-id</code>. This is <strong>THE BEST & EASIEST WAY</strong> to hook QMean to any field you already have on your theme!','qmean');?></p>
+                  <p><?php _e('<strong>NOTE: </strong>Just add <code>?qmean_field_recognizer</code> at the end of any URL to activate recognizer like: http://example.com/filter?qmean_field_recognizer','qmean');?></p>
                     <div class="info">
                       <h3 class="qmean-hint-toggler"><?php _e('How to find the selector fast?','qmean');?></h3>
                       <div class="qmean-hint-toggle-wrapper">
