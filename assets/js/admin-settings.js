@@ -22,5 +22,6 @@ jQuery(document).ready(function($){
    } );
    $('.qmean-hint-toggler').click(function(e){
      $(this).parent().find('.qmean-hint-toggle-wrapper').toggle(500);
+     $(this).toggleClass('opened');
    })
 });

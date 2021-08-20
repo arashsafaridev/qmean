@@ -50,6 +50,7 @@ class QMeanFN
 		$limit_results = empty($settings['limit_results']) ? 10 : $settings['limit_results'];
 		$sensitivity = empty($settings['sensitivity']) ? 3 : $settings['sensitivity'];
 		$cut_phrase_limit =	empty($settings['cut_phrase_limit']) ? 50 : $settings['cut_phrase_limit'];
+		$merge_previous_searched =	empty($settings['merge_previous_searched']) ? 'yes' : $settings['merge_previous_searched'];
 		$suggestions = [];
 		if(empty($override_mode)){
 			$mode = empty($settings['search_mode']) ? 'word_by_word' : $settings['search_mode'];
@@ -67,6 +68,37 @@ class QMeanFN
 		global $wpdb;
 		$matches = [];
 
+		// if count analytics results too
+		if($merge_previous_searched == 'yes'){
+			$analytics_suggestions = [];
+			for ($char_count = $sensitivity; $char_count >= 1; $char_count--) {
+				$patterns = $this->create_regex_pattern($query,$char_count);
+				$qmean_table = $wpdb->prefix.'qmean_keyword';
+				$sql = "SELECT keyword FROM $qmean_table WHERE found_posts > 0 AND LOWER(keyword) REGEXP %s ORDER BY hit DESC, found_posts DESC";
+				$results = $wpdb->get_results(
+					$wpdb->prepare($sql,$patterns['sql'])
+				);
+				if($results){
+					foreach ($results as $k => $result) {
+						if($mode == 'word_by_word'){
+							preg_match('/'.$patterns['php'].'/u',$result->keyword,$matches);
+							if($matches){
+								foreach ($matches as $key => $match) {
+									$analytics_suggestions[] = trim(preg_replace('~[\r\n]+~', '', mb_strtolower($match)));
+								}
+							}
+						} else {
+							$analytics_suggestions[] = trim(preg_replace('~[\r\n]+~', '', mb_strtolower($result->keyword))," ");
+						}
+					}
+					$matches = [];
+				}
+				$analytics_suggestions = array_unique($analytics_suggestions,SORT_REGULAR);
+				if(count($analytics_suggestions) >= $limit_results) break;
+			}
+		}
+
+		// print_r($suggestions);
 		for ($char_count = $sensitivity; $char_count >= 1; $char_count--) {
 			$patterns = $this->create_regex_pattern($query,$char_count);
 			if($areas){
@@ -83,11 +115,11 @@ class QMeanFN
 									preg_match('/'.$patterns['php'].'/u',$result->post_title,$matches);
 									if($matches){
 										foreach ($matches as $key => $match) {
-											$suggestions[] = mb_strtolower($match);
+											$suggestions[] = trim(preg_replace('~[\r\n]+~', '', mb_strtolower($match)));
 										}
 									}
 								} else {
-									$suggestions[] = mb_strtolower($result->post_title);
+									$suggestions[] = trim(preg_replace('~[\r\n]+~', '', mb_strtolower($result->post_title))," ");
 								}
 							}
 							$matches = [];
@@ -104,11 +136,11 @@ class QMeanFN
 									preg_match('/'.$patterns['php'].'/u',$result->name,$matches);
 									if($matches){
 										foreach ($matches as $key => $match) {
-											$suggestions[] = mb_strtolower($match);
+											$suggestions[] = trim(preg_replace('~[\r\n]+~', '', mb_strtolower($match)));
 										}
 									}
 								} else {
-									$suggestions[] = mb_strtolower($result->name);
+									$suggestions[] = trim(preg_replace('~[\r\n]+~', '', mb_strtolower($result->name))," ");
 								}
 							}
 							$matches = [];
@@ -125,11 +157,11 @@ class QMeanFN
 									preg_match('/'.$patterns['php'].'/u',$result->post_excerpt,$matches);
 									if($matches){
 										foreach ($matches as $key => $match) {
-											$suggestions[] = mb_strtolower($match);
+											$suggestions[] = trim(preg_replace('~[\r\n]+~', '', mb_strtolower($match)));
 										}
 									}
 								} else {
-									$suggestions[] = mb_strtolower($result->post_excerpt);
+									$suggestions[] = trim(preg_replace('~[\r\n]+~', '', mb_strtolower($result->post_excerpt))," ");
 								}
 							}
 							$matches = [];
@@ -146,12 +178,12 @@ class QMeanFN
 										preg_match('/'.$patterns['php'].'/u',$result->post_content,$matches);
 										if($matches){
 											foreach ($matches as $key => $match) {
-												$suggestions[] = mb_strtolower($match);
+												$suggestions[] = trim(preg_replace('~[\r\n]+~', '', mb_strtolower($match)));
 											}
 										}
 									} else {
 										$phrase = $this->find_the_phrase($result->post_content,$query);
-										if($phrase) $suggestions[] = mb_strtolower($phrase);
+										if($phrase) $suggestions[] = trim(preg_replace('~[\r\n]+~', '', mb_strtolower($phrase))," ");
 									}
 								}
 								$matches = [];
@@ -169,11 +201,11 @@ class QMeanFN
 											preg_match('/'.$patterns['php'].'/u',$result->meta_value,$matches);
 											if($matches){
 												foreach ($matches as $key => $match) {
-													$suggestions[] = mb_strtolower($match);
+													$suggestions[] = trim(preg_replace('~[\r\n]+~', '', mb_strtolower($match)));
 												}
 											}
 										} else {
-											if($result->meta_value) $suggestions[] = mb_strtolower($result->meta_value);
+											if($result->meta_value) $suggestions[] = trim(preg_replace('~[\r\n]+~', '', mb_strtolower($result->meta_value))," ");
 										}
 									}
 									$matches = [];
@@ -184,10 +216,15 @@ class QMeanFN
 				$suggestions = array_unique($suggestions,SORT_REGULAR);
 				if(count($suggestions) >= $limit_results) break;
 		}
-
 			// find efficiency
 			$suggestion_rated = [];
-			foreach ($suggestions as $key => $suggestion) {
+			// merged is set to yes
+			if($merge_previous_searched == 'yes'){
+				$db_suggestions = array_diff($suggestions,$analytics_suggestions);
+			} else {
+				$db_suggestions = $suggestions;
+			}
+			foreach ($db_suggestions as $key => $suggestion) {
 				$suggestion_len = mb_strlen($suggestion, 'UTF-8');
 				$efficiency = (int)(100 * ($query_len / $suggestion_len));
 				$suggestion_rated[] = array('q' => $suggestion, 'e' => $efficiency, 'l' => $suggestion_len);
@@ -196,6 +233,14 @@ class QMeanFN
 			// sort by efficiency
 			if($mode != 'word_by_word'){
 				usort($suggestion_rated, function ($a, $b) { return $b['e'] - $a['e']; });
+			}
+
+			if($merge_previous_searched == 'yes'){
+				foreach (array_reverse($analytics_suggestions) as $key => $suggestion) {
+					$suggestion_len = mb_strlen($suggestion, 'UTF-8');
+					$efficiency = 100;
+					array_unshift($suggestion_rated, array('q' => $suggestion, 'e' => $efficiency, 'l' => $suggestion_len));
+				}
 			}
 
 			// make sure of sending array instead of an object
@@ -243,11 +288,13 @@ class QMeanFN
 		if($matches){
 			$the_word = $matches[0];
 			// get the second word
-			preg_match('/(?<=('.$the_word.'))(\s\w*)/u',$clean_content,$next_matches);
+			// preg_match('/(?<=('.$the_word.'))(\s\w*)/u',$clean_content,$next_matches);
+			preg_match('/(?<=('.$the_word.'))(\b\s\w{3,}+\b)/u',$clean_content,$next_matches);
 			$next_word = trim($next_matches[0]," ");
 			$phrase = $the_word.' '.$next_word;
 			// get the third word
-			preg_match('/(?<=('.$phrase.'))(\s\w*)/u',$clean_content,$second_next_matches);
+			// preg_match('/(?<=('.$phrase.'))(\s\w*)/u',$clean_content,$second_next_matches);
+			preg_match('/(?<=('.$phrase.'))(\b\s\w{3,}+\b){1}/u',$clean_content,$second_next_matches);
 			$second_next_word = trim($second_next_matches[0]," ");
 			$final_phrase = $phrase.' '.$second_next_word;
 		}

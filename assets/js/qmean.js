@@ -20,6 +20,9 @@ function qmean_hook_close_suggestions() {
 
 jQuery(document).ready(function ($) {
 	var qmean_selector;
+	var qmean_result_li;
+	var qmean_li_selected;
+
 	if (qmean.selector != "" && typeof qmean.selector !== "undefined") {
 		qmean_selector = $(qmean.selector);
 		if (
@@ -30,6 +33,10 @@ jQuery(document).ready(function ($) {
 				qmean_selector.parent().css("position", qmean.parent_position);
 			var queries = [];
 			$(document).delegate(qmean.selector, "keyup", function (e) {
+
+				if(e.which === 40 || e.which === 38){
+					return false;
+				}
 				var t = $(this);
 
 				// to position automatically
@@ -78,7 +85,7 @@ jQuery(document).ready(function ($) {
 								}
 
 								t.parent().append(
-									'<div id="qmean-suggestion-results"></div>'
+									'<div id="qmean-suggestion-results"><div class="qmean-suggestion-loading">'+qmean.labels.loading+'</div></div>'
 								);
 								suggestion_elm = $("#qmean-suggestion-results");
 								suggestion_elm.css({
@@ -141,12 +148,49 @@ jQuery(document).ready(function ($) {
 									}
 
 									suggestion_elm.html(suggestion_html);
+									qmean_result_li = suggestion_elm.find('.qmean-suggestion-item');
+									qmean_li_selected = 0;
 								} else {
+									suggestion_elm.html('<div class="qmean-suggestion-notfound">'+qmean.labels.notFound+'</div>');
 								}
 							},
 						});
 					}, 500);
 				}
+			});
+
+			$(window).keydown(function(e) {
+			    if(e.which === 40) {
+			        if(qmean_li_selected) {
+			            qmean_li_selected.removeClass('selected');
+			            next = qmean_li_selected.next();
+			            if(next.length > 0) {
+			                qmean_li_selected = next.addClass('selected');
+											$(qmean.selector).val(next.attr('data-query'));
+			            } else {
+			                qmean_li_selected = qmean_result_li.eq(0).addClass('selected');
+											$(qmean.selector).val(qmean_result_li.eq(0).attr('data-query'));
+			            }
+			        } else {
+			            qmean_li_selected = qmean_result_li.eq(0).addClass('selected');
+									$(qmean.selector).val(qmean_result_li.eq(0).attr('data-query'));
+			        }
+			    } else if(e.which === 38) {
+			        if(qmean_li_selected) {
+			            qmean_li_selected.removeClass('selected');
+			            next = qmean_li_selected.prev();
+			            if(next.length > 0) {
+			                qmean_li_selected = next.addClass('selected');
+											$(qmean.selector).val(next.attr('data-query'));
+			            } else {
+			                qmean_li_selected = qmean_result_li.last().addClass('selected');
+											$(qmean.selector).val(qmean_result_li.last().attr('data-query'));
+			            }
+			        } else {
+			            qmean_li_selected = qmean_result_li.last().addClass('selected');
+									$(qmean.selector).val(qmean_result_li.last().attr('data-query'));
+			        }
+			    }
 			});
 
 			$(document).delegate(
@@ -155,6 +199,9 @@ jQuery(document).ready(function ($) {
 				function (e) {
 					var t = $(this);
 					$(qmean_selector).val(t.attr("data-query"));
+					if(qmean.submit_after_click == 'yes'){
+						$(qmean.selector).parents('form').submit();
+					}
 				}
 			);
 		}

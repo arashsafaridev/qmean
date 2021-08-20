@@ -47,7 +47,7 @@ class QMeanReport
 		$args = [];
 		$args['keyword'] = $query;
 		if($keyword){
-			$this->update($query,array('hit' => $keyword->hit + 1));
+			$this->update($query,array('hit' => $keyword->hit + 1, 'found_posts' => $found_posts));
 			return true;
 		} else {
 			$args['hit'] = 1;

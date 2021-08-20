@@ -115,6 +115,7 @@ class QMean
 			$limit_results = empty($settings['limit_results']) ? 10 : $settings['limit_results'];
 			$search_mode = empty($settings['search_mode']) ? '' : $settings['search_mode'];
 			$sensitivity = empty($settings['sensitivity']) ? 3 : $settings['sensitivity'];
+			$merge_previous_searched = empty($settings['merge_previous_searched']) ? 'yes' : $settings['merge_previous_searched'];
 			$wrapper_background = empty($settings['wrapper_background']) ? '#f5f5f5' : $settings['wrapper_background'];
 			$wrapper_border_radius = empty($settings['wrapper_border_radius']) ? '0px 0px 0px 0px' : $settings['wrapper_border_radius'];
 			$wrapper_padding = empty($settings['wrapper_padding']) ? '0px 0px 0px 0px' : $settings['wrapper_padding'];
@@ -126,6 +127,7 @@ class QMean
 				'homeurl' => get_home_url(),
 				'_nonce'   => wp_create_nonce( $this->_nonce ),
 				'selector' => '.qmean-shortcode-search-field, '.$settings['input_selector'],
+				'submit_after_click' =>$settings['submit_after_click'],
 				'zindex' => $zindex,
 				'posx' => $posx,
 				'posy' => $posy,
@@ -136,12 +138,15 @@ class QMean
 				'parent_position' => $parent_position,
 				'search_mode' => $search_mode,
 				'sensitivity' => $sensitivity,
+				'merge_previous_searched' => $merge_previous_searched,
 				'wrapper_background' => $wrapper_background,
 				'wrapper_border_radius' => $wrapper_border_radius,
 				'wrapper_padding' => $wrapper_padding,
 				'rtl_support' => $rtl_support,
 				'labels'   => array(
+					'loading' => __('Loading ...','qmean'),
 					'back' => __('Back','qmean'),
+					'notFound' => __('Not Found!','qmean'),
 					'pleaseChooseAnInputType' => __('Please choose a field which is an input like input or textarea','qmean'),
 					'isNotValid' => __('is not valid!','qmean'),
 					'saveSelector' => __('Save Selector','qmean'),

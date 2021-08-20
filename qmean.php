@@ -2,7 +2,7 @@
 /**
  * Plugin Name:      QMean
  * Description:      Ajax smart keyword suggestions and fix typos for better results by showing "Did You Mean", Google style! Simple, Minimal and Fast. Plus an analytics dashboard for searched queries
- * Version:            1.4.0
+ * Version:            1.5.0
  * Author:             Arash Safari
  * Author URI:       https://github.com/arashsafaridev
  * Text Domain:     qmean
@@ -19,7 +19,7 @@
 // Crawler Detect
 
 if(!defined('QMean_PLUGIN_VERSION'))
-	define('QMean_PLUGIN_VERSION', '1.4.0');
+	define('QMean_PLUGIN_VERSION', '1.5.0');
 if(!defined('QMean_URL'))
 	define('QMean_URL', plugin_dir_url( __FILE__ ));
 if(!defined('QMean_PATH'))
@@ -43,18 +43,21 @@ function qmean_do_on_activation()
 		update_option('_qmean_version',QMean_PLUGIN_VERSION);
 		// set defaults
 		$input_selector = '#search-form-1';
-		$zindex = '0';
+		$submit_after_click = 'no';
+		$zindex = '1000';
 		$posx = '0';
 		$posy = '-';
 		$width = '-';
-		$height = '200px';
+		$height = '300px';
 
 		$options = array(
-			'search_mode' => 'word_by_word',
+			'search_mode' => 'phrase',
 			'sensitivity' => 3,
+			'merge_previous_searched' => 'yes',
 			'search_area' => array('posts_title','posts_content','posts_excerpt','terms'),
 			'post_types' => array('post','page'),
 			'input_selector' => $input_selector,
+			'submit_after_click' => $submit_after_click,
 			'suggestion_zindex' => $zindex,
 			'suggestion_posx' => $posx,
 			'suggestion_posy' => $posy,
@@ -204,8 +207,8 @@ function qmean_analytics(){
 	}
 	// field auto reconginizer
 	if(current_user_can('manage_options') && isset($_GET['qmean_field_recognizer'])){ ?>
-		<div class="qmean-field-recognizer-header-tooltip"><?php _e('Please move you mouse and choose your search input field','oodev');?></div>
-		<div class="qmean-field-recognizer-tooltip"><?php _e('Please choose your field','oodev');?></div>
+		<div class="qmean-field-recognizer-header-tooltip"><?php _e('Please move your mouse and click on your search input field','oodev');?></div>
+		<div class="qmean-field-recognizer-tooltip"><?php _e('Please click on your field','oodev');?></div>
 	<?php }
 }
 

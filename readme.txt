@@ -2,8 +2,8 @@
 Contributors: arashsafari
 Tags: search,suggestion,optimization,better search
 Requires at least: 4.0
-Tested up to: 5.8
-Stable tag: 1.4.0
+Tested up to: 5.9
+Stable tag: 1.5.0
 Requires PHP: 7.0+
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -110,8 +110,14 @@ Both of them are useful, it depends on your need. Phrase mode can have solid res
 * new files commit
 
 = 1.5 =
-* Features: added Auto Field Recognizer on front-end
-
+* Feature: added Auto Field Recognizer on front-end
+* Feature: keyboard arrow selection for results
+* Feature: merge previous searched queries higher than db queries by hit and found_post values
+* Fixed: duplicate queries
+* Fixed: more relevant queries by characters length
+* Fixed: show loading... before suggestions appear
+* Option: submit search after selection [UX]
+* Option: disable/enable merging previous searched queries
 
 == Upgrade Notice ==
 

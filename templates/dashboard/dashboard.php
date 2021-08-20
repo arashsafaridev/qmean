@@ -3,12 +3,20 @@
   $orderby = $orderby == 'asc' ? 'desc' : 'asc';
 ?>
 <div class="wrap qmean-dashboard">
-  <h1><?php _e('Welcome to QMean Dashboard','qmean');?></h1>
-  <div class="qmean-notice update-nag notice notice-info inline">
-    <?php _e('Need more support? please visit:','qmean');?>
+  <h1><?php _e('QMean Dashboard','qmean');?><img class="qmean-settings-logo" width="100" src="<?php echo QMean_URL;?>assets/images/qmean-logo.svg"/></h1>
+  <hr />
+  <p><?php _e('You can see all user\'s searched queries here. <strong>Found posts</strong> is more helpful if you are using <strong>word by word</strong> mode.','qmean');?></p>
+  <div class="qmean-notice between update-nag notice notice-info inline">
+    <div>
+    <span><?php _e('Need more support? please visit:','qmean');?></span>
     <a href="https://wordpress.org/support/plugin/qmean/" target="_blank"> <?php _e('WordPress Support','qmean');?></a>
-      Or
+      or
      <a href="https://github.com/arashsafaridev/qmean/issues" target="_blank"><?php _e('GitHub Issues','qmean');?></a>
+   </div>
+   <div class="qmean-d-flex between">
+     <span><?php _e('Liked the plugin?','qmean');?></span>
+     <a href="https://wordpress.org/plugins/qmean/#reviews" class="button button-primary" target="_blank"><?php _e('Write a review','qmean');?></a>
+   </div>
   </div>
   <?php if($options['saved_by_user'] != 1){ ?>
     <div class="qmean-notice update-nag notice notice-error inline">
@@ -16,8 +24,6 @@
       <a class="button button-primary" href="<?php echo admin_url('admin.php?page=qmean-settings');?>"><?php _e('Go to Settings page','qmean');?></a>
     </div>
   <?php } ?>
-  <h2><?php _e('Global Reports','qmean');?></h2>
-  <p><?php _e('You can see all the searched queries here. <strong>Found posts</strong> is helpful if you are using <strong>word by word</strong> mode.','qmean');?></p>
   <div class="qmean-dashboard-report">
     <table class="wp-list-table widefat fixed striped table-view-list posts">
       <thead>
@@ -45,7 +51,7 @@
     </table>
     <?php
       echo paginate_links( array(
-          'base'       => admin_url('admin.php?page=qmean&qmsort=kw&qmorder='.$orderby).'&qmp=%#%',
+          'base'       => admin_url('admin.php?page=qmean').'&qmp=%#%',
           'format'     => 'qmp=%#%',
           'current'    => max( 1, $page ),
           'total'      => (int)(($number + $total)/$number),
