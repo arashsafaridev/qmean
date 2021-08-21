@@ -80,6 +80,7 @@ class QMean
 
 			if(strpos($screen->id,'qmean')){
 				wp_enqueue_style('qmean-settings', QMean_URL. 'assets/css/admin.css', false, QMean_PLUGIN_VERSION);
+				wp_enqueue_script('qmean-admin', QMean_URL. 'assets/js/admin.js', array('jquery'), QMean_PLUGIN_VERSION);
 			} else if(strpos($screen->id,'qmean-settings')){
 				wp_enqueue_style('qmean-settings', QMean_URL. 'assets/css/admin-settings.css', false, QMean_PLUGIN_VERSION);
 				wp_enqueue_script('qmean-settings', QMean_URL. 'assets/js/admin-settings.js', array('jquery'), QMean_PLUGIN_VERSION);
@@ -91,6 +92,7 @@ class QMean
 			);
 
 			wp_localize_script('qmean-settings', 'qmean', $admin_options);
+			wp_localize_script('qmean-admin', 'qmean', $admin_options);
 
 	}
 

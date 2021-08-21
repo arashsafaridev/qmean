@@ -32,6 +32,7 @@
           <td><a href="<?php echo admin_url('admin.php?page=qmean&qmsort=ht&qmorder='.$orderby);?>"><?php _e('Hit','qmean');?></a></td>
           <td><a href="<?php echo admin_url('admin.php?page=qmean&qmsort=fp&qmorder='.$orderby);?>"><?php _e('Found Posts','qmean');?></a></td>
           <td><a href="<?php echo admin_url('admin.php?page=qmean&qmsort=time&qmorder='.$orderby);?>"><?php _e('Time','qmean');?></a></td>
+          <td><?php _e('Actions','qmean');?></td>
         </tr>
       </thead>
       <?php if($keywords){?>
@@ -41,6 +42,7 @@
             <td><?php echo $keyword->hit;?></td>
             <td><?php echo $keyword->found_posts;?></td>
             <td><?php echo human_time_diff(time(),$keyword->created);?></td>
+            <td><a href="#" class="qmean-remove-keyword" data-id="<?php echo $keyword->id;?>"><?php _e('Remove','qmean');?></a></td>
           </tr>
         <?php } ?>
       <?php } else { ?>

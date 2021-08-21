@@ -79,4 +79,11 @@ class QMeanReport
 		$total = $wpdb->get_var($sql);
 		return $total;
 	}
+
+	public function remove_keyword($id){
+		global $wpdb;
+		$table = $wpdb->prefix . "qmean_keyword";
+		$result = $wpdb->delete($table,array('id' => $id));
+		return $result;
+	}
 }

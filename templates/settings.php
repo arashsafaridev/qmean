@@ -42,7 +42,7 @@
                         <option<?php echo ($settings['parent_position'] == 'absolute') ? ' selected="selected"' : '';?> value="absolute"><?php _e('Absolute','qmean');?></option>
                         <option<?php echo ($settings['parent_position'] == 'fixed') ? ' selected="selected"' : '';?> value="fixed"><?php _e('Fixed','qmean');?></option>
                       </select>
-                      <p><?php _e('Input parent\'s postion needs to be set for suggestion wrapper to appear correctly. If the parent doesn\'t have any position this can automatically add it. Relative is common and won\'t harm','qmean');?></p>
+                      <p><?php _e('<strong>IMPORTANT!</strong> Input parent\'s postion needs to be set for suggestion wrapper to appear correctly. If the parent doesn\'t have any position this can automatically add it. Relative is common and won\'t harm','qmean');?></p>
                     </td>
                   </tr>
                   <tr valign="top">

@@ -5,6 +5,7 @@
 .qmean-notice a.button{margin-left: .5rem !important}
 .qmean-dashboard h1{display: flex;align-items: center;justify-content: space-between;}
 .qmean-dashboard h2{margin: 0}
+.qmean-dashboard-report tr.loading{opacity: .3;background: #ff6060}
 .qmean-dashboard-report .page-numbers{display: flex;align-items: center; justify-content: start;}
 .qmean-dashboard-report .page-numbers li{padding: .25rem}
 .qmean-dashboard-report .page-numbers span.page-numbers{padding: .25rem .5rem;}

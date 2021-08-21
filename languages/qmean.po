@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: QMean\n"
 "Report-Msgid-Bugs-To: https://wedevs.com/account/tickets/\n"
-"POT-Creation-Date: 2021-08-21 01:08+0430\n"
-"PO-Revision-Date: 2021-08-21 01:08+0430\n"
+"POT-Creation-Date: 2021-08-21 01:36+0430\n"
+"PO-Revision-Date: 2021-08-21 01:36+0430\n"
 "Last-Translator: \n"
 "Language-Team: <arashsafari.dev@gmail.com>\n"
 "Language: en_US\n"
@@ -95,47 +95,43 @@ msgid "Please click on your field"
 msgstr ""
 
 #: ../templates/dashboard/dashboard.php:6
-msgid "Welcome to QMean Dashboard"
+msgid "QMean Dashboard"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:9
+#: ../templates/dashboard/dashboard.php:8
+msgid ""
+"You can see all user's searched queries here. <strong>Found posts</strong> "
+"is more helpful if you are using <strong>word by word</strong> mode."
+msgstr ""
+
+#: ../templates/dashboard/dashboard.php:11
 msgid "Need more support? please visit:"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:10
+#: ../templates/dashboard/dashboard.php:12
 msgid "WordPress Support"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:12
+#: ../templates/dashboard/dashboard.php:14
 msgid "GitHub Issues"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:15
+#: ../templates/dashboard/dashboard.php:17
 msgid "Liked the plugin?"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:16
+#: ../templates/dashboard/dashboard.php:18
 msgid "Write a review"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:21
+#: ../templates/dashboard/dashboard.php:23
 msgid ""
 "You need to define your search field selector first, so for better search "
 "suggestion please visit settings page"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:22
+#: ../templates/dashboard/dashboard.php:24
 msgid "Go to Settings page"
-msgstr ""
-
-#: ../templates/dashboard/dashboard.php:25
-msgid "Global Reports"
-msgstr ""
-
-#: ../templates/dashboard/dashboard.php:26
-msgid ""
-"You can see all the searched queries here. <strong>Found posts</strong> is "
-"helpful if you are using <strong>word by word</strong> mode."
 msgstr ""
 
 #: ../templates/dashboard/dashboard.php:31
@@ -173,7 +169,7 @@ msgid "Essential Setup"
 msgstr ""
 
 #: ../templates/settings.php:20
-msgid "Search input selector"
+msgid "Search Input Selector"
 msgstr ""
 
 #: ../templates/settings.php:23
@@ -243,9 +239,9 @@ msgstr ""
 
 #: ../templates/settings.php:45
 msgid ""
-"Input parent's postion needs to be set for suggestion wrapper to appear "
-"correctly. If the parent doesn't have any position this can automatically "
-"add it. Relative is common and won't harm"
+"<strong>IMPORTANT!</strong> Input parent's postion needs to be set for "
+"suggestion wrapper to appear correctly. If the parent doesn't have any "
+"position this can automatically add it. Relative is common and won't harm"
 msgstr ""
 
 #: ../templates/settings.php:49
@@ -329,11 +325,11 @@ msgid "Instead of using left for positioning it will use right instead"
 msgstr ""
 
 #: ../templates/settings.php:88
-msgid "Submit after click"
+msgid "Submit After Click"
 msgstr ""
 
 #: ../templates/settings.php:94
-msgid "Submit the form after click"
+msgid "Submit the form after clicking on suggestion item"
 msgstr ""
 
 #: ../templates/settings.php:99
@@ -341,7 +337,7 @@ msgid "Shortcode"
 msgstr ""
 
 #: ../templates/settings.php:102
-msgid "QMean shortcode"
+msgid "QMean Shortcode"
 msgstr ""
 
 #: ../templates/settings.php:107
@@ -466,7 +462,7 @@ msgid ""
 msgstr ""
 
 #: ../templates/settings.php:174
-msgid "Merge previous searched queries"
+msgid "Merge Searched Queries"
 msgstr ""
 
 #: ../templates/settings.php:180
@@ -476,7 +472,7 @@ msgid ""
 msgstr ""
 
 #: ../templates/settings.php:184
-msgid "Limit results"
+msgid "Limit Results"
 msgstr ""
 
 #: ../templates/settings.php:187
@@ -486,7 +482,7 @@ msgid ""
 msgstr ""
 
 #: ../templates/settings.php:191
-msgid "Shortten phrase limit"
+msgid "Shortten Phrase Limit"
 msgstr ""
 
 #: ../templates/settings.php:194
@@ -527,7 +523,7 @@ msgid ""
 msgstr ""
 
 #: ../templates/settings.php:226
-msgid "Include post types"
+msgid "Include Post Types"
 msgstr ""
 
 #: ../templates/settings.php:242
