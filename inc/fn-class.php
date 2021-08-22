@@ -73,6 +73,9 @@ class QMeanFN
 			$analytics_suggestions = [];
 			for ($char_count = $sensitivity; $char_count >= 1; $char_count--) {
 				$patterns = $this->create_regex_pattern($query,$char_count);
+				if($patterns['sql'] == '[[:<:]]()'){
+					return [];
+				}
 				$qmean_table = $wpdb->prefix.'qmean_keyword';
 				$sql = "SELECT keyword FROM $qmean_table WHERE found_posts > 0 AND LOWER(keyword) REGEXP %s ORDER BY hit DESC, found_posts DESC";
 				$results = $wpdb->get_results(
@@ -101,6 +104,9 @@ class QMeanFN
 		// print_r($suggestions);
 		for ($char_count = $sensitivity; $char_count >= 1; $char_count--) {
 			$patterns = $this->create_regex_pattern($query,$char_count);
+			if($patterns['sql'] == '[[:<:]]()'){
+				return [];
+			}
 			if($areas){
 				foreach ($areas as $area_key => $area) {
 					if('posts_title' == $area){

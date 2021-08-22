@@ -1,6 +1,7 @@
 <?php
   $options = get_option('qmean_options');
   $orderby = $orderby == 'asc' ? 'desc' : 'asc';
+  $saved_by_user = isset($options['saved_by_user']) ? $options['saved_by_user'] : 0;
 ?>
 <div class="wrap qmean-dashboard">
   <h1><?php _e('QMean Dashboard','qmean');?><img class="qmean-settings-logo" width="100" src="<?php echo QMean_URL;?>assets/images/qmean-logo.svg"/></h1>
@@ -18,7 +19,7 @@
      <a href="https://wordpress.org/plugins/qmean/#reviews" class="button button-primary" target="_blank"><?php _e('Write a review','qmean');?></a>
    </div>
   </div>
-  <?php if($options['saved_by_user'] != 1){ ?>
+  <?php if($saved_by_user != 1){ ?>
     <div class="qmean-notice update-nag notice notice-error inline">
       <?php _e('You need to define your search field selector first, so for better search suggestion please visit settings page','qmean');?>
       <a class="button button-primary" href="<?php echo admin_url('admin.php?page=qmean-settings');?>"><?php _e('Go to Settings page','qmean');?></a>

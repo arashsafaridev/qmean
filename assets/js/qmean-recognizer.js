@@ -42,7 +42,7 @@ jQuery(document).ready(function ($) {
 			if( elm_id !== undefined && elm_id != '' ){
 				selector = '#'+elm_id;
 			} else if( elm_class !== undefined && elm_class != ''){
-				selector = elm_class.trim().split(" ").join(".");
+				selector = '.'+elm_class.trim().split(" ").join(".");
 				if(parent_id !== undefined && parent_id != ''){
 					selector = '#'+parent_id+' .'+selector;
 				} else if(parent_class !== undefined && parent_class != ''){

@@ -52,10 +52,3 @@ class QMeanAjax
 			wp_send_json( array('status'=> (int)$result > 0 ? 'success' : 'danger','message' => __('Something went wrong!','qmean') ) );
 		}
 }
-
-$ajax = new QMeanAjax();
-
-add_action( 'wp_ajax_qmean_search', array( $ajax, 'search' ) );
-add_action( 'wp_ajax_nopriv_qmean_search', array( $ajax, 'search' ) );
-add_action( 'wp_ajax_qmean_save_from_recognizer', array( $ajax, 'save_from_recognizer' ) );
-add_action( 'wp_ajax_qmean_remove_keyword', array( $ajax, 'remove_keyword' ) );

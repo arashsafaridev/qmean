@@ -119,8 +119,10 @@ Both of them are useful, it depends on your need. Phrase mode can have solid res
 * Option: submit search after selection [UX]
 * Option: disable/enable merging previous searched queries
 
-= 1.6 =
-* Feature: remove keywords from report to clean the merged suggestions
+= 1.5.1 =
+* Feature: remove button to remove keywords from report to clean the merged suggestions
+* Fixed: Auto Recognizer class selector on single class name
+* Fixed: PHP MySQL errors, PHP notices and warnings
 
 == Upgrade Notice ==
 

@@ -2,6 +2,7 @@
   $settings = get_option('qmean_options');
   $post_types = empty($settings['post_types']) ? [] : $settings['post_types'];
   $search_areas = empty($settings['search_area']) ? [] : $settings['search_area'];
+  $custom_hook = isset($settings['custom_hook']) ? $settings['custom_hook'] : '';
 ?>
 <div class="wrap">
   <div id="qmean-settings">
@@ -249,9 +250,9 @@
                     <tr valign="top">
                       <th scope="row"><?php _e('Custom Action Hook','qmean');?></th>
                       <td>
-                        <input type="text" name="qmean_custom_hook" value="<?php echo esc_attr( $settings['custom_hook'] ); ?>" />
+                        <input type="text" name="qmean_custom_hook" value="<?php echo esc_attr( $custom_hook ); ?>" />
                         <p><?php _e('If you need to use different action hook instead of <code>get_search_form</code>, enter the action name here. It will be usefull if you are using a custom theme. You can also add the code below anywhere you want it to be shown','qmean');?></p>
-                        <pre><code><?php echo wp_specialchars("<?php do_action('qmean_suggestion');?>");?></code></pre>
+                        <pre><code><?php echo esc_html("<?php do_action('qmean_suggestion');?>");?></code></pre>
                       </td>
                     </tr>
 
