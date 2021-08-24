@@ -39,11 +39,14 @@
       <?php if($keywords){?>
         <?php foreach ($keywords as $key => $keyword) { ?>
           <tr>
-            <td><?php echo $keyword->keyword;?></td>
+            <td><a href="#<?php echo $keyword->keyword;?>" class="qmean-open-modal minimal" data-type="user-eye" data-keyword="<?php echo $keyword->keyword;?>"><?php echo $keyword->keyword;?></a></td>
             <td><?php echo $keyword->hit;?></td>
             <td><?php echo $keyword->found_posts;?></td>
             <td><?php echo human_time_diff(time(),$keyword->created);?></td>
-            <td><a href="#" class="qmean-remove-keyword" data-id="<?php echo $keyword->id;?>"><?php _e('Remove','qmean');?></a></td>
+            <td class="dash-table-actions">
+              <a href="#<?php echo $keyword->keyword;?>" class="qmean-open-modal minimal" data-type="user-eye" data-keyword="<?php echo $keyword->keyword;?>"><?php _e('User Eye','qmean');?></a>
+              <a href="#" class="qmean-remove-keyword" data-id="<?php echo $keyword->id;?>"><?php _e('Remove','qmean');?></a>
+            </td>
           </tr>
         <?php } ?>
       <?php } else { ?>

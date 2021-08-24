@@ -13,6 +13,27 @@ class QMeanAjax
 			}
 		}
 
+		public function get_modal(){
+			// Checks if the request is valid
+			$this->check_nonce();
+			$type = isset($_POST['type']) ? sanitize_text_field($_POST['type']) : '';
+			$keyword = isset($_POST['keyword']) ? sanitize_text_field($_POST['keyword']) : '';
+			ob_start();
+			if($type == 'user-eye'){
+				$dyn_fn = new QMeanFN();
+				$settings = get_option($this->option_name);
+				$mode = $settings['search_mode'];
+				if($mode == 'word_by_word'){
+					$suggestions = $dyn_fn->suggestion_tree($keyword);
+				} else {
+					$suggestions = $dyn_fn->query_suggestions($keyword);
+				}
+				require_once(QMean_PATH.'/templates/dashboard/modals/user-eye.php');
+			}
+			$html = ob_get_clean();
+			wp_send_json( array('status'=> 'success', 'html' => $html ) );
+		}
+
 		public function search(){
 			// Checks if the request is valid
 			$this->check_nonce();
@@ -33,7 +54,7 @@ class QMeanAjax
 			if(empty($selector)){
 				wp_send_json( array( 'status'=> 'danger','message' => __('Please select an element','qmean') ) );
 			}
-			$settings = get_option('qmean_options');
+			$settings = get_option($this->option_name);
 			$settings['input_selector'] = $selector;
 			update_option('qmean_options',$settings);
 			wp_send_json( array('status'=> 'success','message' => __('Saved successfully! Please refresh the page to check the selector by typing three characters which you know it will lead to results','qmean') ) );

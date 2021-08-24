@@ -115,6 +115,7 @@ class QMean
 
 	public function qmean_update_plugin(){
 		$keyword_table_status = get_option('_qmean_keyword_table','no');
+		$mode_column = get_option('_qmean_mode_column','no');
 		if($keyword_table_status != 'created'){
 			global $wpdb;
 			$keyword_table_name = $wpdb->prefix . "qmean_keyword";
@@ -129,9 +130,9 @@ class QMean
 			) $charset_collate;
 			";
 			maybe_create_table($keyword_table_name,$sql);
+			update_option('_qmean_keyword_table','created');
 		}
 	}
-
 
 	// Returns the saved options data as an array
 	public function get_data()
@@ -218,11 +219,13 @@ class QMean
 			$width = !isset($settings['suggestion_width']) ? '-' : $settings['suggestion_width'];
 			$height = !isset($settings['suggestion_height']) ? '-' : $settings['suggestion_height'];
 			$parent_position = empty($settings['parent_position']) ? '' : $settings['parent_position'];
-			$cut_phrase_limit = empty($settings['cut_phrase_limit']) ? 50 : $settings['cut_phrase_limit'];
+			$word_count = empty($settings['word_count']) ? 5 : $settings['word_count'];
 			$limit_results = empty($settings['limit_results']) ? 10 : $settings['limit_results'];
 			$search_mode = empty($settings['search_mode']) ? '' : $settings['search_mode'];
 			$sensitivity = empty($settings['sensitivity']) ? 3 : $settings['sensitivity'];
 			$merge_previous_searched = empty($settings['merge_previous_searched']) ? 'yes' : $settings['merge_previous_searched'];
+			$keyword_efficiency = empty($settings['keyword_efficiency']) ? 'on' : $settings['keyword_efficiency'];
+			$ignore_shortcodes = empty($settings['ignore_shortcodes']) ? 'no' : $settings['ignore_shortcodes'];
 			$wrapper_background = empty($settings['wrapper_background']) ? '#f5f5f5' : $settings['wrapper_background'];
 			$wrapper_border_radius = empty($settings['wrapper_border_radius']) ? '0px 0px 0px 0px' : $settings['wrapper_border_radius'];
 			$wrapper_padding = empty($settings['wrapper_padding']) ? '0px 0px 0px 0px' : $settings['wrapper_padding'];
@@ -240,12 +243,14 @@ class QMean
 				'posy' => $posy,
 				'width' => $width,
 				'height' => $height,
-				'cut_phrase_limit' => $cut_phrase_limit,
+				'word_count' => $word_count,
 				'limit_results' => $limit_results,
 				'parent_position' => $parent_position,
 				'search_mode' => $search_mode,
 				'sensitivity' => $sensitivity,
 				'merge_previous_searched' => $merge_previous_searched,
+				'keyword_efficiency' => $keyword_efficiency,
+				'ignore_shortcodes' => $ignore_shortcodes,
 				'wrapper_background' => $wrapper_background,
 				'wrapper_border_radius' => $wrapper_border_radius,
 				'wrapper_padding' => $wrapper_padding,
@@ -253,7 +258,7 @@ class QMean
 				'labels'   => array(
 					'loading' => __('Loading ...','qmean'),
 					'back' => __('Back','qmean'),
-					'notFound' => __('Not Found!','qmean'),
+					'notFound' => __('Nothing to suggest! Click to see all the results.','qmean'),
 					'pleaseChooseAnInputType' => __('Please choose a field which is an input like input or textarea','qmean'),
 					'isNotValid' => __('is not valid!','qmean'),
 					'saveSelector' => __('Save Selector','qmean'),
@@ -302,7 +307,7 @@ class QMean
 		 $qmreport = new QMeanReport();
 		 $total = $qmreport->get_keywords_total();
 		 $page = isset($_GET['qmp']) ? (int)$_GET['qmp'] : 1;
-		 $number = 10;
+		 $number = 25;
 		 $sort = isset($_GET['qmsort']) ? sanitize_text_field($_GET['qmsort']) : '';
 		 $orderby = isset($_GET['qmorder']) ? sanitize_text_field($_GET['qmorder']) : '';
 		 $orderby = empty($orderby) ? 'desc' : $orderby;

@@ -182,6 +182,26 @@
                     </td>
                   </tr>
                   <tr valign="top">
+                    <th scope="row"><?php _e('Keyword Efficiency','qmean');?></th>
+                    <td>
+                      <select name="qmean_keyword_efficiency">
+                        <option<?php echo ($settings['keyword_efficiency'] == 'on') ? ' selected="selected"' : '';?> value="on"><?php _e('On','qmean');?></option>
+                        <option<?php echo ($settings['keyword_efficiency'] == 'off') ? ' selected="selected"' : '';?> value="off"><?php _e('Off','qmean');?></option>
+                      </select>
+                      <p><?php _e('If on it will count ration of matched characters and total phrase length. Turn it off if your content is optimized with keywords in a row.','qmean');?></p>
+                    </td>
+                  </tr>
+                  <tr valign="top">
+                    <th scope="row"><?php _e('Ignore Shortcodes','qmean');?></th>
+                    <td>
+                      <select name="qmean_ignore_shortcodes">
+                        <option<?php echo ($settings['ignore_shortcodes'] == 'no') ? ' selected="selected"' : '';?> value="no"><?php _e('No','qmean');?></option>
+                        <option<?php echo ($settings['ignore_shortcodes'] == 'yes') ? ' selected="selected"' : '';?> value="yes"><?php _e('Yes','qmean');?></option>
+                      </select>
+                      <p><?php _e('If yes, shorcodes and their content will be ignored','qmean');?></p>
+                    </td>
+                  </tr>
+                  <tr valign="top">
                     <th scope="row"><?php _e('Limit Results','qmean');?></th>
                     <td>
                       <input type="text" name="qmean_limit_results" value="<?php echo esc_attr( $settings['limit_results'] ); ?>" />
@@ -189,10 +209,10 @@
                     </td>
                   </tr>
                   <tr valign="top">
-                    <th scope="row"><?php _e('Shortten Phrase Limit','qmean');?></th>
+                    <th scope="row"><?php _e('Phrase Word Count','qmean');?></th>
                     <td>
-                      <input type="text" name="qmean_cut_phrase_limit" value="<?php echo esc_attr( $settings['cut_phrase_limit'] ); ?>" />
-                      <p><?php _e('Rank higher and match the phrases lower than this number for length. Default is 50 characters. Then it will show 3 words starting with the query','qmean');?></p>
+                      <input type="text" name="qmean_word_count" value="<?php echo esc_attr( $settings['word_count'] ); ?>" />
+                      <p><?php _e('Trim the phrase to by words to this number','qmean');?></p>
                     </td>
                   </tr>
                     <tr valign="top">

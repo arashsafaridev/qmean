@@ -2,7 +2,7 @@
 /**
  * Plugin Name:      QMean
  * Description:      Ajax smart keyword suggestions and fix typos for better results by showing "Did You Mean", Google style! Simple, Minimal and Fast. Plus an analytics dashboard for searched queries
- * Version:            1.5.0
+ * Version:            1.6.0
  * Author:             Arash Safari
  * Author URI:       https://github.com/arashsafaridev
  * Text Domain:     qmean
@@ -19,7 +19,7 @@
 // Crawler Detect
 
 if(!defined('QMean_PLUGIN_VERSION'))
-	define('QMean_PLUGIN_VERSION', '1.5.0');
+	define('QMean_PLUGIN_VERSION', '1.6.0');
 if(!defined('QMean_URL'))
 	define('QMean_URL', plugin_dir_url( __FILE__ ));
 if(!defined('QMean_PATH'))
@@ -52,6 +52,8 @@ function qmean_do_on_activation()
 			'search_mode' => 'phrase',
 			'sensitivity' => 3,
 			'merge_previous_searched' => 'yes',
+			'keyword_efficiency' => 'on',
+			'ignore_shortcodes' => 'no',
 			'search_area' => array('posts_title','posts_content','posts_excerpt','terms'),
 			'post_types' => array('post','page'),
 			'input_selector' => $input_selector,
@@ -61,7 +63,7 @@ function qmean_do_on_activation()
 			'suggestion_posy' => $posy,
 			'suggestion_width' => $width,
 			'suggestion_height' => $height,
-			'cut_phrase_limit' => 50,
+			'word_count' => 5,
 			'limit_results' => 10,
 			'wrapper_background' => '#f5f5f5',
 			'wrapper_border_radius' => '0px 0px 0px 0px',
@@ -131,3 +133,4 @@ add_action( 'wp_ajax_qmean_search', array( $qmean_ajax, 'search' ) );
 add_action( 'wp_ajax_nopriv_qmean_search', array( $qmean_ajax, 'search' ) );
 add_action( 'wp_ajax_qmean_save_from_recognizer', array( $qmean_ajax, 'save_from_recognizer' ) );
 add_action( 'wp_ajax_qmean_remove_keyword', array( $qmean_ajax, 'remove_keyword' ) );
+add_action( 'wp_ajax_qmean_get_modal', array( $qmean_ajax, 'get_modal' ) );

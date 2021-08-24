@@ -3,7 +3,7 @@ Contributors: arashsafari
 Tags: search,suggestion,optimization,better search
 Requires at least: 4.0
 Tested up to: 5.8
-Stable tag: 1.5.0
+Stable tag: 1.6
 Requires PHP: 7.0+
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -119,10 +119,18 @@ Both of them are useful, it depends on your need. Phrase mode can have solid res
 * Option: submit search after selection [UX]
 * Option: disable/enable merging previous searched queries
 
-= 1.5.1 =
-* Feature: remove button to remove keywords from report to clean the merged suggestions
+= 1.6 =
+* Feature: remove button to remove keywords from report to clean the merged suggestions database
+* Feature: User's Eye: see what keywords the user has seen on QMean's report
 * Fixed: Auto Recognizer class selector on single class name
 * Fixed: PHP MySQL errors, PHP notices and warnings
+* Fixed: Phrase mode keyword relevancy for more than one word
+* UX: Live search suggestion wrapper visibility delay reduced to 200 miliseconds from 500 miliseconds
+* Optimization: On creating patterns, finding phrases in a text
+* Option: Search efficiency option (on/off)
+* Option: Ignore shortcode texts in contents (yes/no)
+* Option: Number of words to trim the phrase and retrieve after main keyword (number)
+* Removed: Option of phrase length
 
 == Upgrade Notice ==
 
