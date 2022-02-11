@@ -2,7 +2,7 @@
 /**
  * Plugin Name:      QMean
  * Description:      Ajax smart keyword suggestions and fix typos for better results by showing "Did You Mean", Google style! Simple, Minimal and Fast. Plus an analytics dashboard for searched queries
- * Version:            1.6.0
+ * Version:            1.7.0
  * Author:             Arash Safari
  * Author URI:       https://github.com/arashsafaridev
  * Text Domain:     qmean
@@ -19,7 +19,7 @@
 // Crawler Detect
 
 if(!defined('QMean_PLUGIN_VERSION'))
-	define('QMean_PLUGIN_VERSION', '1.6.0');
+	define('QMean_PLUGIN_VERSION', '1.7.0');
 if(!defined('QMean_URL'))
 	define('QMean_URL', plugin_dir_url( __FILE__ ));
 if(!defined('QMean_PATH'))
@@ -123,6 +123,8 @@ add_action( 'get_search_form', array($qmean_obj,'qmean_typo_suggestion'));
 add_action( 'qmean_suggestion', array($qmean_obj,'qmean_typo_suggestion'));
 // adds qmean shortcode
 add_shortcode( 'qmean', array($qmean_obj,'qmean_shortcode'));
+// adds did you mean shortcode
+add_shortcode( 'qmean-dym', array($qmean_obj,'qmean_did_you_mean_shortcode'));
 // For analtics of queries on next version
 add_action('wp_footer',array($qmean_obj,'qmean_analytics'));
 

@@ -32,6 +32,9 @@ jQuery(document).ready(function ($) {
 			if (qmean.parent_position != "")
 				qmean_selector.parent().css("position", qmean.parent_position);
 			var queries = [];
+
+			$(qmean.selector).attr('autocomplete','off');
+
 			$(document).delegate(qmean.selector, "keyup", function (e) {
 
 				if(e.which === 40 || e.which === 38){
@@ -166,30 +169,32 @@ jQuery(document).ready(function ($) {
 			            next = qmean_li_selected.next();
 			            if(next.length > 0) {
 			                qmean_li_selected = next.addClass('selected');
-											$(qmean.selector).val(next.attr('data-query'));
+											$(qmean.selector).val(next.attr('data-query').trim());
 			            } else {
 			                qmean_li_selected = qmean_result_li.eq(0).addClass('selected');
-											$(qmean.selector).val(qmean_result_li.eq(0).attr('data-query'));
+											$(qmean.selector).val(qmean_result_li.eq(0).attr('data-query').trim());
 			            }
 			        } else {
 			            qmean_li_selected = qmean_result_li.eq(0).addClass('selected');
-									$(qmean.selector).val(qmean_result_li.eq(0).attr('data-query'));
+									$(qmean.selector).val(qmean_result_li.eq(0).attr('data-query').trim());
 			        }
+							$(qmean.selector).focus();
 			    } else if(e.which === 38) {
 			        if(qmean_li_selected) {
 			            qmean_li_selected.removeClass('selected');
 			            next = qmean_li_selected.prev();
 			            if(next.length > 0) {
 			                qmean_li_selected = next.addClass('selected');
-											$(qmean.selector).val(next.attr('data-query'));
+											$(qmean.selector).val(next.attr('data-query').trim());
 			            } else {
 			                qmean_li_selected = qmean_result_li.last().addClass('selected');
-											$(qmean.selector).val(qmean_result_li.last().attr('data-query'));
+											$(qmean.selector).val(qmean_result_li.last().attr('data-query').trim());
 			            }
 			        } else {
 			            qmean_li_selected = qmean_result_li.last().addClass('selected');
-									$(qmean.selector).val(qmean_result_li.last().attr('data-query'));
+									$(qmean.selector).val(qmean_result_li.last().attr('data-query').trim());
 			        }
+							$(qmean.selector).focus();
 			    }
 			});
 
@@ -198,12 +203,25 @@ jQuery(document).ready(function ($) {
 				"click",
 				function (e) {
 					var t = $(this);
-					$(qmean_selector).val(t.attr("data-query"));
+					$(qmean_selector).val(t.attr("data-query").trim());
 					if(qmean.submit_after_click == 'yes'){
 						$(qmean.selector).parents('form').submit();
 					}
 				}
 			);
+
+			$(qmean.selector).focus(function() {
+		    setTimeout((function(el) {
+	        var strLength = el.value.length;
+	        return function() {
+	            if(el.setSelectionRange !== undefined) {
+	                el.setSelectionRange(strLength, strLength);
+	            } else {
+	                $(el).val(el.value);
+	            }
+	    		}
+				}(this)), 0);
+			});
 		}
 	}
 });

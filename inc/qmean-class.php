@@ -84,6 +84,23 @@ class QMean
 	    return $out;
 	}
 
+	public function qmean_did_you_mean_shortcode( $atts ) {
+	    $atts = shortcode_atts( array(
+	        'wrapper_class' => ''
+	    ), $atts, 'qmean-dym' );
+
+
+			$wrapper_class = empty($atts['wrapper_class']) ? ' class="qmean-shortcode-did-you-mean"' : ' class="qmean-shortcode-did-you-mean '.$atts['wrapper_class'].'"';
+			$out .='<div'.$wrapper_class.'>';
+			$qmean_obj = new QMean();
+			ob_start();
+			$qmean_obj->qmean_typo_suggestion();
+			$out .= ob_get_clean();
+			$out .='</div>';
+
+	    return $out;
+	}
+
 	public function qmean_typo_suggestion()
 	{
 				$qmean_fn = new QMeanFN();
@@ -305,7 +322,10 @@ class QMean
    public function dashboard_layout()
    {
 		 $qmreport = new QMeanReport();
-		 $total = $qmreport->get_keywords_total();
+		 $total_hits = $qmreport->get_hits_total();
+		 $total_hits = empty($total_hits) ? 0 : $total_hits;
+		 $total_no_results = $qmreport->get_no_result_total();
+		 $total_keywords = $qmreport->get_keywords_total();
 		 $page = isset($_GET['qmp']) ? (int)$_GET['qmp'] : 1;
 		 $number = 25;
 		 $sort = isset($_GET['qmsort']) ? sanitize_text_field($_GET['qmsort']) : '';

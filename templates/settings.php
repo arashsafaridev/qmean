@@ -136,6 +136,15 @@
                       </div>
                     </td>
                   </tr>
+                  <tr valign="top">
+                    <th scope="row"><?php _e('Did You Mean Shortcode','qmean');?></th>
+                    <td>
+                      <code>
+                        [qmean-dym wrapper_class=""]
+                      </code>
+                      <p><?php _e('Use this shortcode in you search page if your theme does not support <code>get_search_form</code>. <code>wrapper_class</code> is optional','qmean');?></p>
+                    </td>
+                  </tr>
                 </table>
                 <hr/>
                 <h2><?php _e('Advance Setup','qmean');?></h2>

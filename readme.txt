@@ -3,7 +3,7 @@ Contributors: arashsafari
 Tags: search,suggestion,optimization,better search
 Requires at least: 4.0
 Tested up to: 5.8
-Stable tag: 1.6
+Stable tag: 1.7
 Requires PHP: 7.0+
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -131,6 +131,14 @@ Both of them are useful, it depends on your need. Phrase mode can have solid res
 * Option: Ignore shortcode texts in contents (yes/no)
 * Option: Number of words to trim the phrase and retrieve after main keyword (number)
 * Removed: Option of phrase length
+
+= 1.7 =
+* Feature: Total search hits and keyword diversity
+* Feature: Dashboard keyword search
+* Feature: [qmean-dym wrapper_class=""] shortcode added
+* Fixed: Related keywords on WBW
+* Fixed: White spaces before selected query
+* Fixed: Move up / down suggestion cursor point to the end
 
 == Upgrade Notice ==
 

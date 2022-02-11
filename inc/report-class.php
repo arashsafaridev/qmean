@@ -71,6 +71,12 @@ class QMeanReport
 		return $results;
 	}
 
+	public function remove_keyword($id){
+		global $wpdb;
+		$table = $wpdb->prefix . "qmean_keyword";
+		$result = $wpdb->delete($table,array('id' => $id));
+		return $result;
+	}
 	// gets total keywords recorded for dashboard and pagination
 	public function get_keywords_total(){
 		global $wpdb;
@@ -79,11 +85,18 @@ class QMeanReport
 		$total = $wpdb->get_var($sql);
 		return $total;
 	}
-
-	public function remove_keyword($id){
+	public function get_hits_total(){
 		global $wpdb;
 		$table = $wpdb->prefix . "qmean_keyword";
-		$result = $wpdb->delete($table,array('id' => $id));
-		return $result;
+		$sql = "SELECT SUM(hit) FROM $table";
+		$total = $wpdb->get_var($sql);
+		return $total;
+	}
+	public function get_no_result_total(){
+		global $wpdb;
+		$table = $wpdb->prefix . "qmean_keyword";
+		$sql = "SELECT COUNT(*) FROM $table WHERE found_posts = 0";
+		$total = $wpdb->get_var($sql);
+		return $total;
 	}
 }
