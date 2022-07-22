@@ -1,4 +1,4 @@
-# QMean - WordPress Did You Mean and Autocomplete Search Suggestion Like Google
+# QMean - WordPress Did You Mean and Autocomplete Search Suggestion
 #### Google style! Simple, Minimal and Fast.
 
 A WordPress plugin! QMean is a minimal ajax auto-complete query and 'did you mean' suggestion plugin which searches for relative keywords and fix typos in words. It's goal is to help users to create relevant queries before sending it to WP search engine.
@@ -20,9 +20,10 @@ A WordPress plugin! QMean is a minimal ajax auto-complete query and 'did you mea
 ## [Download QMean](https://wordpress.org/plugins/qmean/) from WordPress Plugins Directory
 ## Visit [QMean Wiki](https://github.com/arashsafaridev/qmean/wiki/getting-started) to get started!
 #### Want to participate?
+
 **GitHub** is the place you can; or take [QMean's 3 questions survey](https://forms.gle/mgESz8C5n2zvEyWt9) to help the development.
 You can **support** QMeans team by [writing a review](https://wordpress.org/support/plugin/qmean/reviews/)
----
+
 ## Features
 
 - **Like Google**
