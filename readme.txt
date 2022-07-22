@@ -8,6 +8,9 @@ Requires PHP: 7.0+
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
+Take this 3 question survey to help development:
+https://forms.gle/mgESz8C5n2zvEyWt9
+
 Ajax smart keyword suggestions and fix typos for better results by showing "Did You Mean", Google style! Simple, Minimal and Fast. Plus an analytics dashboard for searched queries
 
 == Description ==
