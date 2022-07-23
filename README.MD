@@ -37,7 +37,7 @@ You can **support** QMeans team by [writing a review](https://wordpress.org/supp
 - **2 Shortcodes**
 -- A search field shortcode and a did you mean search suggestion
 - **Just "CSS Selector" To Hook**
--- QMean just needs the selector of your search input which can hook itself to it and provides the suggestions. It has a special tool, QMean field recognizer, to find the selector too
+-- QMean just needs the selector of your search input which can hook itself to it and provides the suggestions. It has a special tool, QMean field recognizer, to find the selector on you theme
 - **Settings and Styling**
 -- You can position and style the box as you wish via settings
 - **Stop Words Removal**

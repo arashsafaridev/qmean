@@ -42,6 +42,10 @@ jQuery(document).ready(function ($) {
 				}
 				var t = $(this);
 
+				var custom_areas = t.attr('data-areas');
+				custom_areas = typeof custom_areas != 'undefined' ? custom_areas : '';
+				var custom_post_types = t.attr('data-post_types');
+				custom_post_types = typeof custom_post_types != 'undefined' ? custom_post_types : '';
 				// to position automatically
 				var x = t.offset().left;
 				var y = t.offset().top;
@@ -64,20 +68,21 @@ jQuery(document).ready(function ($) {
 				var query = $(this).val();
 				query = query.trim();
 
-				if (query.length >= 3) {
-					if (qmean.search_mode == "word_by_word") {
-						queries = query.split(" ");
-						q = queries[queries.length - 1];
-					} else {
-						q = query;
-					}
-
+				if (qmean.search_mode == "word_by_word") {
+					queries = query.split(" ");
+					q = queries[queries.length - 1];
+				} else {
+					q = query;
+				}
+				if (q.length >= 3) {
 					qmean_delay(function () {
 						qmean_ajax_xhr = $.ajax({
-							url: qmean.ajaxurl,
+							url: qmean.ajax_url,
 							type: "post",
 							data: {
 								action: "qmean_search",
+								areas: custom_areas,
+								post_types: custom_post_types,
 								query: q,
 								_wpnonce: qmean._nonce,
 							},
@@ -143,7 +148,7 @@ jQuery(document).ready(function ($) {
 										) {
 											suggestion_html +=
 												'<div class="qmean-suggestion-item" data-query="' +
-												v +
+												v.replace("&hellip;","") +
 												'">' +
 												v +
 												"</div>";
@@ -156,7 +161,7 @@ jQuery(document).ready(function ($) {
 								} else {
 									suggestion_elm.html('<div class="qmean-suggestion-notfound">'+qmean.labels.notFound+'</div>');
 								}
-							},
+							}
 						});
 					}, 200);
 				}

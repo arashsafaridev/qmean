@@ -1,12 +1,5 @@
 jQuery(document).ready(function ($) {
-	// var tooltipSpan = document.getElementById('tooltip-span');
-	//
-	// window.onmousemove = function (e) {
-	//     var x = e.clientX,
-	//         y = e.clientY;
-	//     tooltipSpan.style.top = (y + 20) + 'px';
-	//     tooltipSpan.style.left = (x + 20) + 'px';
-	// };
+
 	var qmean_tooltip = $('.qmean-field-recognizer-tooltip');
 	var qmean_recognized_selector = '';
 	$(document).on('mousemove',function(e){
@@ -64,7 +57,7 @@ jQuery(document).ready(function ($) {
 	$(document).delegate('#qmean-save-recognizer','click',function(e){
 		e.preventDefault();
 		$.ajax({
-			url: qmean.ajaxurl,
+			url: qmean.ajax_url,
 			type: "post",
 			data: {
 				action: "qmean_save_from_recognizer",
@@ -78,6 +71,7 @@ jQuery(document).ready(function ($) {
 				$('#qmean-finalize-recognized-selector').removeClass('loading');
 				alert(data.message);
 				$('#qmean-finalize-recognized-selector,.qmean-field-recognizer-tooltip .error,.qmean-field-recognizer-tooltip .success').remove();
+				document.location.href = data.url;
 			}
 		});
 	});

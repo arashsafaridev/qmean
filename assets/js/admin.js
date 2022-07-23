@@ -9,7 +9,7 @@ jQuery(document).ready(function ($) {
 		 var modal = $('.qmean-modal-inner');
 		 var close_btn = '<i class="qmean-close-modal">close</i>';
 		 $.ajax({
-				 url: qmean.ajaxurl,
+				 url: qmean.ajax_url,
 				 type: 'post',
 				 data: {
 					 action:'qmean_get_modal',
@@ -44,7 +44,7 @@ jQuery(document).ready(function ($) {
 				var p = t.parents('tr');
 				var id = t.attr('data-id');
 				$.ajax({
-					url: qmean.ajaxurl,
+					url: qmean.ajax_url,
 					type: "post",
 					data: {
 						action: "qmean_remove_keyword",

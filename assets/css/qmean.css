@@ -1,42 +1,260 @@
+#qmean-suggestion-results ::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  border-radius: 3px;
+  background: transparent;
+}
+#qmean-suggestion-results {
+  background: transparent;
+}
+#qmean-suggestion-results :hover::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+}
+#qmean-suggestion-results ::-webkit-scrollbar-button {
+  display: none;
+}
 
-#qmean-suggestion-results ::-webkit-scrollbar{width:6px;height:6px;border-radius:3px;background:transparent}
-#qmean-suggestion-results{background:transparent;}
-#qmean-suggestion-results :hover::-webkit-scrollbar-thumb{background:rgba(0,0,0,0.5);}
-#qmean-suggestion-results ::-webkit-scrollbar-button{display: none;}
+#qmean-suggestion-results {
+  position: absolute;
+  background: #f5f5f5;
+  max-height: 300px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+#qmean-suggestion-results.qmean-loading {
+  height: 100px;
+}
 
-#qmean-suggestion-results{position: absolute;background: #f5f5f5;max-height: 300px;overflow-y: auto;}
-#qmean-suggestion-results.qmean-loading{height: 100px;}
+.qmean-suggestion-item {
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 13px;
+}
+.qmean-suggestion-item.selected {
+  background: #ece5cf;
+  font-weight: bold;
+}
+.qmean-suggestion-item:hover {
+  background: #fff;
+}
+.qmean-suggestion-notfound {
+  padding: 5px 10px;
+  font-size: 13px;
+}
+.qmean-suggestion-loading {
+  animation: qmeanblink 1s infinite;
+  padding: 5px 10px;
+  font-size: 13px;
+}
+@keyframes qmeanblink {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+@-webkit-keyframes qmeanblink {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+@-moz-keyframes qmeanblink {
+  0% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.1;
+  }
+}
+.qmean-typo-suggestion-link {
+  text-transform: capitalize;
+}
 
-.qmean-suggestion-item{cursor: pointer;padding: 5px 10px;font-size: 13px;}
-.qmean-suggestion-item.selected{background: #ece5cf;font-weight: bold;}
-.qmean-suggestion-item:hover{background: #fff}
-.qmean-suggestion-notfound{padding: 5px 10px;font-size: 13px;}
-.qmean-suggestion-loading{animation: qmeanblink 1s infinite;padding: 5px 10px;font-size: 13px;}
-@keyframes qmeanblink {0%{opacity: .1}50%{opacity:1;}100%{opacity: .1}}
-@-webkit-keyframes qmeanblink {0%{opacity: .1}50%{opacity:1;}100%{opacity: .1}}
-@-moz-keyframes qmeanblink {0%{opacity: .1}50%{opacity:1;}100%{opacity: .1}}
-.qmean-typo-suggestion-link{text-transform: capitalize;}
+.qmean-loading {
+}
+.qmean-loading.freeze {
+  opacity: 0.4;
+  pointer-events: none;
+}
+.qmean-loading:after {
+  content: "";
+  border: 2px solid #b92326;
+  border-radius: 100%;
+  height: 2rem;
+  left: 5rem;
+  margin: -22px 0 0 -22px;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  width: 2rem;
+  animation: qmeanpulsate 1s ease-out;
+  animation-iteration-count: infinite;
+  -webkit-animation: qmeanpulsate 1s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  -moz-animation: qmeanpulsate 1s ease-out;
+  -moz-animation-iteration-count: infinite;
+  background: none;
+  z-index: 200;
+}
+.qmean-loading.block:before {
+  content: "";
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  background: rgba(255, 255, 255, 0.7);
+  z-index: 100;
+}
+@-webkit-keyframes qmeanpulsate {
+  0% {
+    -webkit-transform: scale(0.1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1.2);
+    opacity: 0;
+  }
+}
+@-moz-keyframes qmeanpulsate {
+  0% {
+    -moz-transform: scale(0.1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    -moz-transform: scale(1.2);
+    opacity: 0;
+  }
+}
+@keyframes qmeanpulsate {
+  0% {
+    transform: scale(0.1);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
 
-.qmean-loading{}
-.qmean-loading.freeze{opacity: .4;pointer-events: none}
-.qmean-loading:after {content:'';border: 2px solid #b92326;border-radius:100%;height: 2rem;left:5rem;margin: -22px 0 0 -22px;opacity:0;position:absolute;top:50%;width: 2rem;animation: qmeanpulsate 1s ease-out;animation-iteration-count:infinite;-webkit-animation: qmeanpulsate 1s ease-out;-webkit-animation-iteration-count:infinite;-moz-animation: qmeanpulsate 1s ease-out;-moz-animation-iteration-count:infinite;background: none;z-index: 200;}
-.qmean-loading.block:before {content:'';left:0;right:0;top:0;bottom:0;position:absolute;background: rgba(255,255,255,.7);z-index: 100}
-@-webkit-keyframes qmeanpulsate {0% {  -webkit-transform:scale(.1);  opacity: 0.0;}50% {  opacity:1;}100% {  -webkit-transform:scale(1.2);  opacity:0;}}
-@-moz-keyframes qmeanpulsate {0% {  -moz-transform:scale(.1);  opacity: 0.0;}50% {  opacity:1;}100% {  -moz-transform:scale(1.2);  opacity:0;}}
-@keyframes qmeanpulsate {0% {  transform:scale(.1);  opacity: 0.0;}50% {  opacity:1;}100% {  transform:scale(1.2);  opacity:0;}}
-
-.qmean-shortcode-search-form{position: relative;}
-.qmean-shortcode-submit-button{position: absolute;right: 0;top: 0;padding: 0;display: flex;align-items: center; justify-content: center;}
-.rtl .qmean-shortcode-submit-button{position: absolute;right: auto;top: 0;left:0}
+.qmean-shortcode-search-form {
+  position: relative;
+}
+.qmean-shortcode-submit-button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.rtl .qmean-shortcode-submit-button {
+  position: absolute;
+  right: auto;
+  top: 0;
+  left: 0;
+}
 /* RECOGNIZER */
-.qmean-field-recognizer-header-tooltip{position: fixed;padding: .5rem 1rem;background: #000;box-shadow: 0 0 20px -3px rgb(0 0 0 / 40%);color:#fff;left:0;top:0;width: 100%;z-index: 999999;text-align: center;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-size: 13px;}
-.qmean-field-recognizer-tooltip{position: absolute;padding: .5rem 1rem;border-radius: .25rem;background: #fff;box-shadow: 0 0 20px -3px rgb(0 0 0 / 40%);font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-size: 13px;}
-.qmean-field-recognizer-tooltip .error{display: flex;color:#fff;padding: .5rem 1rem;border-radius: .25rem;background: #cf2e2e;font-size: 13px}
-.qmean-field-recognizer-tooltip .error strong{margin-right: 1rem}
-.qmean-field-recognizer-tooltip .success{display: flex;color:#fff;padding: .5rem 1rem;border-radius: .25rem;background: #4c9800;font-size: 13px}
-#qmean-finalize-recognized-selector{position: fixed; bottom: 0; background: #ebeced;box-shadow: 0 0 20px -3px rgb(0 0 0 / 40%);left:0;width: 100%;padding: 1rem;display: flex;align-items: center;justify-content: space-between;transition: opacity 1s,background-color 1s;z-index: 9999;font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;font-size: 13px;}
-#qmean-finalize-recognized-selector.loading{opacity: .1;pointer-events: none;background: #000}
-#qmean-finalize-recognized-selector button{padding: 15px 30px; background: #4c9800 !important; color: #fff; border-radius: .5rem;font-size: 24px;border:0}
-#qmean-finalize-recognized-selector span{padding: 15px 30px;}
+.qmean-field-recognizer-header-tooltip {
+  position: fixed;
+  padding: 0.5rem 1rem;
+  background: #000;
+  box-shadow: 0 0 20px -3px rgb(0 0 0 / 40%);
+  color: #fff;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 999999;
+  text-align: center;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 13px;
+}
+.qmean-field-recognizer-tooltip {
+  position: absolute;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background: #fff;
+  box-shadow: 0 0 20px -3px rgb(0 0 0 / 40%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 13px;
+}
+.qmean-field-recognizer-tooltip .error {
+  display: flex;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background: #cf2e2e;
+  font-size: 13px;
+}
+.qmean-field-recognizer-tooltip .error strong {
+  margin-right: 1rem;
+}
+.qmean-field-recognizer-tooltip .success {
+  display: flex;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  background: #4c9800;
+  font-size: 13px;
+}
+#qmean-finalize-recognized-selector {
+  position: fixed;
+  bottom: 0;
+  background: #ebeced;
+  box-shadow: 0 0 20px -3px rgb(0 0 0 / 40%);
+  left: 0;
+  width: 100%;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: opacity 1s, background-color 1s;
+  z-index: 9999;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+  font-size: 13px;
+}
+#qmean-finalize-recognized-selector.loading {
+  opacity: 0.1;
+  pointer-events: none;
+  background: #000;
+}
+#qmean-finalize-recognized-selector button {
+  padding: 15px 30px;
+  background: #4c9800 !important;
+  color: #fff;
+  border-radius: 0.5rem;
+  font-size: 24px;
+  border: 0;
+}
+#qmean-finalize-recognized-selector span {
+  padding: 15px 30px;
+}
 
-@media only screen and (max-width: 768px) {}
+@media only screen and (max-width: 768px) {
+}

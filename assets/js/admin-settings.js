@@ -8,20 +8,53 @@ jQuery(document).ready(function($){
 
        // We make our call
        $.ajax( {
-           url: qmean.ajaxurl,
+           url: qmean.ajax_url,
            type: 'post',
            data: $(this).serialize(),
            beforeSend:function(){
-             $('.qmean-settings-notification').html('Saving ...').addClass('loading');
+            $('html, body').animate({scrollTop: 0}, 500);
+             $('.qmean-settings-notification')
+             .html('Saving ...')
+             .addClass('loading');
            },
            success: function (response) {
-              $('.qmean-settings-notification').html(response).removeClass('loading').addClass('show');
+              $('.qmean-settings-notification')
+              .html(response)
+              .removeClass('loading')
+              .addClass('show');
            }
        } );
 
    } );
-   $('.qmean-hint-toggler').click(function(e){
-     $(this).parent().find('.qmean-hint-toggle-wrapper').toggle(500);
+   $(document).delegate('.qmean-hint-toggler', 'click', function(e){
+     $(this)
+     .parent()
+     .find('.qmean-hint-toggle-wrapper')
+     .toggle(500);
+
      $(this).toggleClass('opened');
-   })
+   });
+
+   $('#qmean_wrapper_background').wpColorPicker();
+
+   $(document).delegate('.qmean-tooltip', 'click', function(){
+      var t = $(this);
+      var target = t.attr('data-target');
+      var content = $('#'+target+'_help').html();
+      $('#'+target+'').pointer({
+        content: content,
+        position: 'top'
+      }).pointer('open');
+    });
+
+   $(document).delegate('#qmean_search_mode', 'change', function(){
+      var t = $(this);
+      var value = t.val();
+
+      if(value == 'word_by_word') {
+        $('#qmean-word-count-wrapper').hide();
+      } else {
+        $('#qmean-word-count-wrapper').show();
+      }
+    });
 });
