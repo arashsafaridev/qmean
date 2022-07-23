@@ -18,7 +18,7 @@ A WordPress plugin! QMean is a minimal ajax auto-complete query and 'did you mea
 - RTL direction and UTF-8 support
 ---
 ## [Download QMean](https://wordpress.org/plugins/qmean/) from WordPress Plugins Directory
-## Visit [QMean Wiki](https://github.com/arashsafaridev/qmean/wiki/getting-started) to get started!
+## Visit [QMean Wiki](https://github.com/arashsafaridev/qmean/wiki/get-started) to get started!
 #### Want to participate?
 
 **GitHub** is the place you can; or take [QMean's 3 questions survey](https://forms.gle/mgESz8C5n2zvEyWt9) to help the development.
