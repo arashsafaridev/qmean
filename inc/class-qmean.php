@@ -201,16 +201,18 @@ class QMean
 	 * @return string 	the valid pattern 
 	 */
 	private function qmean_test_mysql_compatibility() {
-		global $wpdb;
-		$regext_pattern = '[[:<:]](h.*)';
-		$table = $wpdb->prefix . "posts";
-		$sql = "SELECT COUNT(*) FROM $table WHERE LOWER(post_title) REGEXP %s";
-		$results 	 = $wpdb->get_results(
-			$wpdb->prepare($sql,$regext_pattern)
-		);
-		if (!empty($wpdb->last_error) &&
-			strpos($wpdb->last_error, 'Illegal argument to a regular expression') !== false
-		) {
+		
+		if (!class_exists('WP_Debug_Data')) {
+		    require_once ABSPATH . 'wp-admin/includes/class-wp-debug-data.php';
+		}
+		if (!class_exists('WP_Site_Health')) {
+		    require_once ABSPATH . 'wp-admin/includes/class-wp-site-health.php';
+		}
+
+		$info = WP_Debug_Data::debug_data();
+
+		$mysql_version = isset($info['wp-database']['fields']['server_version']) ? $info['wp-database']['fields']['server_version']['value'] : '0.0.0';
+		if (version_compare($mysql_version, '8.0.4', '>=')) {
 			return '\\\\b(%s)\\\\b';
 		} else {
 			return '[[:<:]](%s)';
@@ -392,7 +394,7 @@ class QMean
 	 */
 	public function update_plugin()
 	{
-		$upgrade_version = get_option('_qmean_upgrade_version_1_8g', 'no');
+		$upgrade_version = get_option('_qmean_upgrade_version_1_8', 'no');
 
 		if ($upgrade_version != 'yes') {
 			$settings = $this->settings;
@@ -401,7 +403,7 @@ class QMean
 
 			$updated_options = array_merge($options, $settings);
 			update_option('qmean_options', $updated_options);
-			update_option('_qmean_upgrade_version_1_8g', 'yes');
+			update_option('_qmean_upgrade_version_1_8', 'yes');
 		}
 
 	}
