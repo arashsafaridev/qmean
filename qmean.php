@@ -4,7 +4,7 @@
  * Description:       Ajax smart keyword suggestions and fix typos for better results by showing "Did You Mean", Google style! Simple, Minimal, Smart and Fast. Plus an analytics dashboard for searched queries
  * Version:           1.8.0
  * Author:            Arash Safari
- * Author URI:        https://github.com/arashsafaridev
+ * Author URI:        https://github.com/arashsafaridev/qmean
  * Text Domain:       qmean
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
