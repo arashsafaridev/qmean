@@ -51,7 +51,6 @@ class QMean
 	{
 		// do on activation
 		register_activation_hook(QMEAN_FILE, [$this, 'qmean_do_on_activation']);
-		register_uninstall_hook( QMEAN_FILE, [$this, 'qmean_do_on_uninstallation']);
 
 		add_action('admin_menu',                [$this, 'add_admin_menu']);
 		add_action('admin_enqueue_scripts',     [$this, 'add_admin_scripts']);
@@ -174,23 +173,6 @@ class QMean
 		}
 	}
 
-	/**
-	 * Run on plugin uninstallation
-	 * 
-	 * remove plugin's internal settings
-	 * drop the keywords table
-	 * 
-	 */
-	public function qmean_do_on_uninstallation()
-	{
-		delete_option('_qmean_version');
-		delete_option('_qmean_keyword_table');
-		delete_option('qmean_options');
-		global $wpdb;
-		$keyword_table_name = $wpdb->prefix . "qmean_keyword";
-		$sql = "DROP TABLE  $keyword_table_name";
-		$wpdb->query($sql);
-	}
 
 	/**
 	 * Check the regex compatibily base on mysql version
@@ -201,11 +183,11 @@ class QMean
 	 * @return string 	the valid pattern 
 	 */
 	private function qmean_test_mysql_compatibility() {
-		
-		if (!class_exists('WP_Debug_Data')) {
+
+		if ( ! class_exists( 'WP_Debug_Data' ) ) {
 		    require_once ABSPATH . 'wp-admin/includes/class-wp-debug-data.php';
 		}
-		if (!class_exists('WP_Site_Health')) {
+		if ( ! class_exists( 'WP_Site_Health' ) ) {
 		    require_once ABSPATH . 'wp-admin/includes/class-wp-site-health.php';
 		}
 

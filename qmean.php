@@ -36,6 +36,27 @@ require_once(QMEAN_PATH.'/inc/class-filter.php');
 
 require_once( ABSPATH . '/wp-admin/includes/upgrade.php' );
 
+
+/**
+ * Run on plugin uninstallation
+ * 
+ * remove plugin's internal settings
+ * drop the keywords table
+ * 
+ */
+function qmean_do_on_uninstallation()
+{
+    delete_option('_qmean_version');
+    delete_option('_qmean_keyword_table');
+    delete_option('qmean_options');
+    global $wpdb;
+    $keyword_table_name = $wpdb->prefix . "qmean_keyword";
+    $sql = "DROP TABLE  $keyword_table_name";
+    $wpdb->query($sql);
+}
+
+register_uninstall_hook( __FILE__, 'qmean_do_on_uninstallation');
+
 /**
  * Start Qmean
  */

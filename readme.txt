@@ -168,6 +168,9 @@ Both of them are useful. It depends on your need. Phrase mode can have solid res
 * Improved: Settings page
 * Removed: Sensivity option, QMean now sets sensivity automatically
 
+= 1.9 =
+* Fixed: MySQL compatibilty approach for regex
+* Fixed: PHP notice for uninstallation callback 
 == Upgrade Notice ==
 
 = before 1.0.9 =
