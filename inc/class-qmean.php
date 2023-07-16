@@ -101,6 +101,7 @@ class QMean
 
 		$options = [
 			'sql_patterner' 		  => $sql_patterner,
+			'suggest_engine' 		  => 'google',
 			'search_mode' 			  => 'phrase',
 			'sensitivity' 			  => 3,
 			'merge_previous_searched' => 'yes',
@@ -454,6 +455,7 @@ class QMean
 		$word_count 			 = empty($settings['word_count']) ? 5 : $settings['word_count'];
 		$limit_results 			 = empty($settings['limit_results']) ? 10 : $settings['limit_results'];
 		$search_mode 			 = empty($settings['search_mode']) ? '' : $settings['search_mode'];
+		$suggest_engine 		 = empty($settings['suggest_engine']) ? 'QMean' : $settings['suggest_engine'];
 		$merge_previous_searched = empty($settings['merge_previous_searched']) ? 'yes' : $settings['merge_previous_searched'];
 		$keyword_efficiency 	 = empty($settings['keyword_efficiency']) ? 'on' : $settings['keyword_efficiency'];
 		$ignore_shortcodes  	 = empty($settings['ignore_shortcodes']) ? 'no' : $settings['ignore_shortcodes'];
@@ -478,6 +480,7 @@ class QMean
 			'limit_results' 			  => $limit_results,
 			'parent_position' 			  => $parent_position,
 			'search_mode' 				  => $search_mode,
+			'suggest_engine' 			  => $suggest_engine,
 			'merge_previous_searched' 	  => $merge_previous_searched,
 			'keyword_efficiency' 		  => $keyword_efficiency,
 			'ignore_shortcodes' 		  => $ignore_shortcodes,

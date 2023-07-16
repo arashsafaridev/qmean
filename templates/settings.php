@@ -17,8 +17,26 @@
               <h1><?php _e('Settings','qmean');?></h1>
               <hr/>
               <div class="qmean-settings-notification"></div>
+              
               <h2><?php _e('Essential Setup','qmean');?></h2>
                 <table class="form-table">
+                  <tr valign="top">
+                      <th scope="row"><?php _e('Suggest Engine','qmean');?>
+                          <i class="dashicons dashicons-editor-help qmean-tooltip" data-target="qmean_suggest_engine"></i>
+                      </th>
+                      <td>
+                      <select name="qmean_suggest_engine" id="qmean_suggest_engine">
+                        <option<?php echo ($settings['suggest_engine'] == 'google') ? ' selected="selected"' : '';?> value="google"><?php _e('Google','qmean');?></option>
+                        <option<?php echo ($settings['suggest_engine'] == 'qmean') ? ' selected="selected"' : '';?> value="qmean"><?php _e('QMean','qmean');?></option>
+                      </select>
+                        <div id="qmean_suggest_engine_help" class="qmean-settings-help">
+                          <h3><?php _e('Search Engine','qmean');?></h3>
+                          <p><?php _e('You can set your suggest engine. Google is super fast, but might have irrelevant suggestions. QMean might be slower with more relevant suggestions. You can use <b>search mode</b> option to get the most out of every engine.','qmean');?>
+                        </p>
+                        </div>
+                          
+                      </td>
+                    </tr>
                   <tr valign="top">
                     <th scope="row"><?php _e('Search Input Selector','qmean');?>
                         <i class="dashicons dashicons-editor-help qmean-tooltip" data-target="qmean_input_selector"></i>
