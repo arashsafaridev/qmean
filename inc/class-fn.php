@@ -430,8 +430,10 @@ class QMeanFN
 			return $google_suggestions;
 		}
 
+		$code = wp_remote_retrieve_response_code( $body );
+
 		// read xml
-		if ( isset( $body['body'] ) ) {
+		if ( isset( $body['body'] ) && 200 === $code ) {
 			$xml = simplexml_load_string( $body['body'] );
 			if ( $xml ) {
 				$suggestions = $xml->CompleteSuggestion;
