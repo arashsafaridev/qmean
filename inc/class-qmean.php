@@ -368,7 +368,10 @@ class QMean
 	 */
 	public function typo_suggestion()
 	{
-		$this->_typo_suggestion();
+		global $wp_query;
+		if ( $wp_query->found_posts <= 0) {
+			$this->_typo_suggestion();
+		}
 	}
 
 	/**

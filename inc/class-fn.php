@@ -415,6 +415,37 @@ class QMeanFN
 		return $limited_suggestions;
 	}
 
+	public function google_suggest($query) {
+		
+		$url = 'https://clients1.google.com/complete/search?output=toolbar&hl=en&q='.$query;
+
+		$google_suggestions = [];
+
+		$body = wp_remote_get($url, [
+			'headers' => ['User-Agent' => 'PostmanRuntime/7.29.3'],
+			'timeout' => 10
+		]);
+
+		if ( is_wp_error( $body ) ) {
+			return $google_suggestions;
+		}
+
+		// read xml
+		if ( isset( $body['body'] ) ) {
+			$xml = simplexml_load_string( $body['body'] );
+			if ( $xml ) {
+				$suggestions = $xml->CompleteSuggestion;
+				if ( $suggestions ) {
+					foreach ( $suggestions as $suggestion ) {
+						$google_suggestions[] = (string) $suggestion->suggestion['data'];
+					}
+				}
+				
+			}
+		}
+
+		return $google_suggestions;
+	}
 	/**
 	 * Public interface of query() method
 	 * ajax calls use it
@@ -466,7 +497,13 @@ class QMeanFN
 	 * @param string 	$query 		the query searched
 	 */
 	public function find_typos($query) {
-		$suggestions = $this->query($query,'word_by_word');
+		$settings = get_option( $this->option_name, [] );
+
+		if ( $settings['suggest_engine'] === 'google' ) {
+			$suggestions = $this->google_suggest($query);
+		} else {
+			$suggestions = $this->query($query,'word_by_word');
+		}
 
 		return $suggestions;
 	}
