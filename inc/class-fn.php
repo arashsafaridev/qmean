@@ -282,7 +282,9 @@ class QMeanFN
 
 							$matches = [];
 						}
-					} else if('posts_content' == $area && $regex_exceed != 1) {
+					} else if('posts_content' == $area && $char_count > 1) {
+						error_log('sssssssssssssssssss'.$char_count);
+
 						$table = $wpdb->prefix.'posts';
 						$sql = "SELECT post_content FROM $table WHERE post_status = 'publish' AND LOWER(post_content) REGEXP %s".$post_types_q;
 						$results = $wpdb->get_results(
