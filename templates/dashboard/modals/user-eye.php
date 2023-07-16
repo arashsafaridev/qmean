@@ -14,11 +14,13 @@
               <tr>
                 <td class="qmean-top-keyword"><strong><?php echo $suggestions['words'][$index];?></strong></td>
               </tr>
+              <?php if ( $suggestion_list ) { ?>
               <?php foreach ($suggestion_list as $key => $suggestion) { ?>
                 <tr>
                   <td><strong><?php echo implode(" ",array_slice($suggestions['words'],0,$index));?></strong> <?php echo $suggestion;?></td>
                 </tr>
               <?php } ?>
+            <?php } ?>
             <?php } ?>
           <?php } else if ($mode == 'phrase') { ?>
               <?php foreach ($suggestions as $key => $suggestion) { ?>
