@@ -282,7 +282,7 @@ class QMeanFN
 
 							$matches = [];
 						}
-					} else if('posts_content' == $area) {
+					} else if('posts_content' == $area && $regex_exceed != 1) {
 						$table = $wpdb->prefix.'posts';
 						$sql = "SELECT post_content FROM $table WHERE post_status = 'publish' AND LOWER(post_content) REGEXP %s".$post_types_q;
 						$results = $wpdb->get_results(
@@ -415,6 +415,12 @@ class QMeanFN
 		return $limited_suggestions;
 	}
 
+	/**
+	 * Find the phrase via Google suggest
+	 *
+	 * @param string $query The query to search for
+	 * @return array $suggestions The suggestions
+	 */
 	public function google_suggest($query) {
 		
 		$url = 'https://clients1.google.com/complete/search?output=toolbar&hl=en&q='.$query;
@@ -448,6 +454,7 @@ class QMeanFN
 
 		return $google_suggestions;
 	}
+
 	/**
 	 * Public interface of query() method
 	 * ajax calls use it
