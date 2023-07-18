@@ -1,197 +1,197 @@
 .qmean-d-flex {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 .qmean-d-flex.between {
-  justify-content: space-between;
+	justify-content: space-between;
 }
 .qmean-notice {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 .qmean-notice.between {
-  justify-content: space-between;
+	justify-content: space-between;
 }
 .qmean-notice a.button {
-  margin-left: 0.5rem !important;
+	margin-left: 0.5rem !important;
 }
 .qmean-dashboard h1 {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 .qmean-dashboard h2 {
-  margin: 0;
+	margin: 0;
 }
 .qmean-dashboard-report tr.loading {
-  opacity: 0.3;
-  background: #ff6060;
+	opacity: 0.3;
+	background: #ff6060;
 }
 .qmean-dashboard-report tr:hover {
-  background: #daeaea;
+	background: #daeaea;
 }
 .qmean-dashboard-report .page-numbers {
-  display: flex;
-  align-items: center;
-  justify-content: start;
+	display: flex;
+	align-items: center;
+	justify-content: start;
 }
 .qmean-dashboard-report .page-numbers li {
-  padding: 0.25rem;
+	padding: 0.25rem;
 }
 .qmean-dashboard-report .page-numbers span.page-numbers {
-  padding: 0.25rem 0.5rem;
+	padding: 0.25rem 0.5rem;
 }
 .qmean-dashboard-report .page-numbers a.page-numbers {
-  padding: 0.25rem 0.5rem;
-  background: #fff;
-  text-decoration: none;
-  border-radius: 0.25rem;
-  border: 1px solid #c3c4c7;
+	padding: 0.25rem 0.5rem;
+	background: #fff;
+	text-decoration: none;
+	border-radius: 0.25rem;
+	border: 1px solid #c3c4c7;
 }
 .qmean-dashboard-totals {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 .qmean-total-group {
-  width: calc(100% / 3);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 1em;
-  border-right: 1px solid #c3c4c7;
+	width: calc(100% / 3);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	padding: 1em;
+	border-right: 1px solid #c3c4c7;
 }
 .qmean-total-group:last-child {
-  border-right: 0;
+	border-right: 0;
 }
 .qmean-total-group strong {
-  font-size: 3em;
+	font-size: 3em;
 }
 .qmean-total-group small {
-  text-transform: uppercase;
-  padding-top: 1em;
+	text-transform: uppercase;
+	padding-top: 1em;
 }
 .qmean-dashboard-search {
-  padding: 1em;
+	padding: 1em;
 }
 .qmean-search-keywords-input {
-  padding: 1em;
-  border-radius: 10em;
-  border: 1px solid #c3c4c7;
-  width: 100%;
-  font-size: 1.5em;
+	padding: 1em;
+	border-radius: 10em;
+	border: 1px solid #c3c4c7;
+	width: 100%;
+	font-size: 1.5em;
 }
 td.dash-table-actions a.qmean-remove-keyword {
-  color: #d63638;
+	color: #d63638;
 }
 td.dash-table-actions a {
-  margin-right: 1em;
+	margin-right: 1em;
 }
 td.dash-table-actions a:last-child {
-  margin-right: 0;
+	margin-right: 0;
 }
 
 .qmean-modal {
-  position: fixed;
-  left: 0;
-  top: 0;
-  background: rgba(0, 0, 0, 0.3);
-  width: 100%;
-  height: 100%;
-  z-index: 9999;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: rgba(0, 0, 0, 0.3);
+	width: 100%;
+	height: 100%;
+	z-index: 9999;
 }
 .qmean-modal-inner {
-  position: fixed;
-  left: 20px;
-  top: 52px;
-  background: #fff;
-  width: calc(100% - 40px);
-  height: calc(100% - 72px);
-  z-index: 99999;
-  overflow-y: auto;
+	position: fixed;
+	left: 20px;
+	top: 52px;
+	background: #fff;
+	width: calc(100% - 40px);
+	height: calc(100% - 72px);
+	z-index: 99999;
+	overflow-y: auto;
 }
 .qmean-modal-inner.minimal {
-  left: 50%;
-  top: 50%;
-  width: 50%;
-  height: 50%;
-  transform: translate(-50%, -50%);
+	left: 50%;
+	top: 50%;
+	width: 50%;
+	height: 50%;
+	transform: translate(-50%, -50%);
 }
 .qmean-modal-inner.loading:before {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 50px;
-  height: 50px;
-  z-index: 99999;
-  border: 2px solid #ebeced;
-  border-right-color: #135e96;
-  border-bottom-color: #135e96;
-  border-radius: 50px;
-  animation: sessosloading 1s infinite linear;
-  transform: translate(-50%, -50%);
+	content: "";
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	width: 50px;
+	height: 50px;
+	z-index: 99999;
+	border: 2px solid #ebeced;
+	border-right-color: #135e96;
+	border-bottom-color: #135e96;
+	border-radius: 50px;
+	animation: sessosloading 1s infinite linear;
+	transform: translate(-50%, -50%);
 }
 .qmean-modal-wrapper {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  padding: 0 2em;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	height: 100%;
+	padding: 0 2em;
 }
 .qmean-modal-wrapper h2 strong {
-  color: #2271b1;
+	color: #2271b1;
 }
 .qmean-close-modal {
-  position: absolute;
-  right: 2em;
-  top: 1.3em;
-  z-index: 1000;
-  cursor: pointer;
-  color: #d63638;
-  transition: transform 0.5s, opacity 0.5s;
-  opacity: 0.8;
-  transform: scale(1);
+	position: absolute;
+	right: 2em;
+	top: 1.3em;
+	z-index: 1000;
+	cursor: pointer;
+	color: #d63638;
+	transition: transform 0.5s, opacity 0.5s;
+	opacity: 0.8;
+	transform: scale(1);
 }
 .qmean-close-modal:hover {
-  opacity: 1;
-  transform: scale(1.2);
+	opacity: 1;
+	transform: scale(1.2);
 }
 .qmean-keywords-footer {
-  display: flex;
-  justify-content: space-between;
-  padding: 1em;
-  border: 1px solid #ebeced;
-  margin-bottom: 2em;
+	display: flex;
+	justify-content: space-between;
+	padding: 1em;
+	border: 1px solid #ebeced;
+	margin-bottom: 2em;
 }
 .qmean-keywords-footer h3 {
-  padding-left: 2em;
+	padding-left: 2em;
 }
 .qmean-keywords-footer .qmean-analyze span {
-  margin-right: 0.5em;
+	margin-right: 0.5em;
 }
 .qmean-keywords-list {
-  margin-bottom: 2em;
+	margin-bottom: 2em;
 }
 .qmean-top-keyword strong {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 .qmean-top-keyword strong:before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  background: #555;
-  border-radius: 5px;
-  margin-right: 0.5em;
+	content: "";
+	width: 5px;
+	height: 5px;
+	background: #555;
+	border-radius: 5px;
+	margin-right: 0.5em;
 }
 
 @keyframes sessosloading {
-  0% {
-    transform: translate(-50%, -50%) rotate(0deg);
-  }
-  100% {
-    transform: translate(-50%, -50%) rotate(-360deg);
-  }
+	0% {
+		transform: translate(-50%, -50%) rotate(0deg);
+	}
+	100% {
+		transform: translate(-50%, -50%) rotate(-360deg);
+	}
 }

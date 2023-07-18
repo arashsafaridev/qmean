@@ -55,6 +55,8 @@ class QMean
 		add_action('admin_menu',                [$this, 'add_admin_menu']);
 		add_action('admin_enqueue_scripts',     [$this, 'add_admin_scripts']);
 		add_action('wp_enqueue_scripts',     	[$this, 'add_scripts']);
+		add_action( 'init', 					[$this, 'create_block'] );
+
 
 		$settings = $this->get_data();
 		$this->settings = $settings;
@@ -328,7 +330,7 @@ class QMean
 	 * private method which has a public interface
 	 * 
 	 */
-	private function _typo_suggestion()
+	private function _typo_suggestion( $echo = true )
 	{
 		$qmean_fn = new QMeanFN();
 		$query = sanitize_text_field(get_query_var('s'));
@@ -359,7 +361,14 @@ class QMean
 
 		// if the queries are not the same as correct one
 		if (!empty($query) && mb_strtolower($query) != mb_strtolower($qmean_keyword)) {
-			echo '<div class="qmean-typo-suggestion">'.__('Did you mean','qmean').': <a class="qmean-typo-suggestion-link" href="'.get_search_link($qmean_keyword).'">'.$qmean_keyword.'</a></div>';
+			
+			if ($echo) {
+				$out = '<div class="qmean-typo-suggestion">'.__('Did you mean','qmean').': <a class="qmean-typo-suggestion-link" href="'.get_search_link($qmean_keyword).'">'.$qmean_keyword.'</a></div>';
+				echo $out;
+			} else {
+				$out = '<a class="qmean-typo-suggestion-link" href="'.get_search_link($qmean_keyword).'">'.$qmean_keyword.'</a>';
+				return $out;
+			}
 		}
 	}
 
@@ -404,6 +413,28 @@ class QMean
 		return get_option($this->option_name, []);
 	}
 
+	/**
+	 * Registers the block using the metadata loaded from the `block.json` file.
+	 * Behind the scenes, it registers also all assets so they can be enqueued
+	 * through the block editor in the corresponding context.
+	 *
+	 * @see https://developer.wordpress.org/reference/functions/register_block_type/
+	 */
+	public function create_block() {
+		register_block_type( QMEAN_PATH . '/blocks/did-you-mean/build', array(
+			'render_callback' => [$this, 'render_block'],
+		) );
+	}
+	
+	public function render_block($attributes, $content)
+	{
+		$QMean = new QMean();
+		$out = $QMean->_typo_suggestion(false);
+
+		if ( ! empty( $out ) ) {
+			return preg_replace( '/<code>(.*?)<\/code>/s', $out, $content );
+		}
+	}
 
 	/**
 	 * Add Admin Scripts for the Ajax call
