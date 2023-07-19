@@ -37,10 +37,11 @@ jQuery(document).ready(function ($) {
 					return false;
 				}
 				var t = $(this);
+				var p = t.parents("form");
 
-				var custom_areas = t.attr("data-areas");
+				var custom_areas = p.attr("data-areas");
 				custom_areas = typeof custom_areas != "undefined" ? custom_areas : "";
-				var custom_post_types = t.attr("data-post_types");
+				var custom_post_types = p.attr("data-post_types");
 				custom_post_types =
 					typeof custom_post_types != "undefined" ? custom_post_types : "";
 				// to position automatically

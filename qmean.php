@@ -61,3 +61,25 @@ register_uninstall_hook( __FILE__, 'qmean_do_on_uninstallation');
  * Start Qmean
  */
 QMean::get_instance();
+
+function ta_extend_image_block($block_content, $block){
+	// If block is `core/image` we add new content related to the new attribute
+	if ( $block['blockName'] === 'core/search' && isset( $block['attrs']['isQmeanActive'] ) && $block['attrs']['isQmeanActive']) {
+
+        $attributes = $block['attrs'];
+        $post_types = isset( $attributes['postTypes'] ) ? implode( ",", array_column($attributes['postTypes'], 'id')) : '';
+        $areas = isset( $attributes['searchIn'] ) ? implode( ",", array_column($attributes['searchIn'], 'id')) : '';
+
+        if ( !empty( $post_types ) ) {
+            $block_content = str_replace( '<form', '<form data-post_types="'.$post_types.'"', $block_content );
+        }
+
+        if ( !empty( $areas ) ) {
+            $block_content = str_replace( '<form', '<form data-areas="'.$areas.'"', $block_content );
+        }
+    }
+
+	return $block_content;
+}
+
+add_filter( 'render_block', 'ta_extend_image_block', 10, 2);

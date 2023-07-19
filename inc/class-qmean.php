@@ -52,9 +52,9 @@ class QMean
 		// do on activation
 		register_activation_hook(QMEAN_FILE, [$this, 'qmean_do_on_activation']);
 
-		add_action('admin_menu',                [$this, 'add_admin_menu']);
-		add_action('admin_enqueue_scripts',     [$this, 'add_admin_scripts']);
-		add_action('wp_enqueue_scripts',     	[$this, 'add_scripts']);
+		add_action( 'admin_menu',                [$this, 'add_admin_menu'] );
+		add_action( 'admin_enqueue_scripts',     [$this, 'add_admin_scripts'] );
+		add_action( 'wp_enqueue_scripts',     	[$this, 'add_scripts'] );
 		add_action( 'init', 					[$this, 'create_block'] );
 
 
@@ -270,8 +270,8 @@ class QMean
 
 			$custom_areas = isset($atts['areas']) && !empty($atts['areas']) ? ' data-areas="'.$atts['areas'].'"' : '';
 			$custom_post_types = isset($atts['post_types']) && !empty($atts['post_types']) ? ' data-post_types="'.$atts['post_types'].'"' : '';
-			$out  = '<form'.$form_class.$form_style.' method="get" action="'.get_home_url().'">';
-			$out .='<input type="text" name="s" autocomplete="off" id="qmean-shortcode-search-field"'.$input_class.$input_style.' placeholder="'.$atts['placeholder'].'" value="'.get_search_query().'"'.$custom_areas.$custom_post_types.'>';
+			$out  = '<form'.$form_class.$form_style.' method="get" action="'.get_home_url().'"'.$custom_areas.$custom_post_types.'>';
+			$out .='<input type="text" name="s" autocomplete="off" id="qmean-shortcode-search-field"'.$input_class.$input_style.' placeholder="'.$atts['placeholder'].'" value="'.get_search_query().'">';
 			if ($atts['icon'] == 'yes') {
 				$out .='<button'.$button_style.$button_class.' type="submit"><svg width="25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="-255 347 100 100" style="enable-background:new -255 347 100 100;" xml:space="preserve"><path fill="#fff"  d="M-215.8,357c-17.5,0-31.8,14.3-31.8,31.8c0,17.5,14.3,31.8,31.8,31.8c8,0,15.3-3,20.9-7.8c2-1.8,3.8-3.8,5.3-6	c3.5-5.1,5.6-11.3,5.6-17.9C-184,371.3-198.3,357-215.8,357z M-215.8,412.6c-13.1,0-23.8-10.7-23.8-23.8c0-13.1,10.7-23.8,23.8-23.8	s23.8,10.7,23.8,23.8C-192,401.9-202.7,412.6-215.8,412.6z"/><path fill="#fff"  d="M-169.6,433.7L-169.6,433.7c-1.6,1.5-4.1,1.4-5.7-0.2l-19.7-20.8c2-1.8,3.8-3.8,5.3-6l20.2,21.3	C-167.9,429.7-168,432.2-169.6,433.7z"/><path fill="#fff"  d="M-189.6,406.7c-1.5,2.2-3.3,4.2-5.3,6L-189.6,406.7z"/></svg></button>';
 
@@ -422,7 +422,7 @@ class QMean
 	 */
 	public function create_block() {
 		register_block_type( QMEAN_PATH . '/blocks/did-you-mean/build', array(
-			'render_callback' => [$this, 'render_block'],
+			'render_callback' => array( $this, 'render_block' ),
 		) );
 	}
 	
