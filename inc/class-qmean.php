@@ -153,7 +153,8 @@ class QMean
 		
 		$options = $this->get_default_options();
 
-		update_option('qmean_options',$options);
+		$updated_options = wp_parse_args($this->settings, $options);
+		update_option('qmean_options',$updated_options);
 
 		// create report db
 		$keyword_table_status = get_option('_qmean_keyword_table','no');

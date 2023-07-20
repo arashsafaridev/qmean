@@ -30,10 +30,25 @@
 }
 #qmean-settings .form-table td p {
 	color: #555;
-	font-size: 13px;
 }
 .qmean-positioning input {
 	max-width: 100px;
+}
+.qmean-positioning-fields,
+.qmean-styling-fields {
+	display: flex;
+	flex-direction: column;
+}
+.qmean-positioning-fields > div,
+.qmean-styling-fields > div {
+	margin-bottom: 1em;
+	display: flex;
+	align-items: center;
+}
+.qmean-positioning-fields > div > label,
+.qmean-styling-fields > div > label {
+	width: 120px;
+	display: flex;
 }
 .qmean-settings-back {
 	margin-left: 0.5rem !important;
@@ -58,6 +73,12 @@
 	margin: 0 !important;
 	cursor: pointer;
 	position: relative;
+}
+h2.qmean-hint-toggler {
+	padding: 1em 0;
+}
+h2.qmean-hint-toggler:hover,h2.qmean-hint-toggler.opened {
+	color: #78a302;
 }
 .qmean-hint-toggler:after {
 	content: "";
@@ -114,4 +135,8 @@
 }
 .qmean-d-flex.between {
 	justify-content: space-between;
+}
+.qmean-button-review{
+	background-color: #78a302 !important;
+	border-color: #78a302 !important;
 }

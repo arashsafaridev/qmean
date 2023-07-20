@@ -195,3 +195,8 @@ td.dash-table-actions a:last-child {
 		transform: translate(-50%, -50%) rotate(-360deg);
 	}
 }
+
+.qmean-button-review{
+	background-color: #78a302 !important;
+	border-color: #78a302 !important;
+}

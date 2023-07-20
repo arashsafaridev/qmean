@@ -25,7 +25,7 @@ jQuery(document).ready(function ($) {
 		});
 	});
 	$(document).delegate(".qmean-hint-toggler", "click", function (e) {
-		$(this).parent().find(".qmean-hint-toggle-wrapper").toggle(500);
+		$(this).next().toggle();
 
 		$(this).toggleClass("opened");
 	});
@@ -36,7 +36,7 @@ jQuery(document).ready(function ($) {
 		var t = $(this);
 		var target = t.attr("data-target");
 		var content = $("#" + target + "_help").html();
-		$("#" + target + "")
+		$("#" + target)
 			.pointer({
 				content: content,
 				position: "top",

@@ -37,87 +37,42 @@
                           
                       </td>
                     </tr>
-                  <tr valign="top">
-                    <th scope="row"><?php _e('Search Input Selector','qmean');?>
-                        <i class="dashicons dashicons-editor-help qmean-tooltip" data-target="qmean_input_selector"></i>
+                    <tr valign="top">
+                    <th scope="row">
+                        <?php _e('Block Enabled','qmean');?>
+                        <i class="dashicons dashicons-editor-help qmean-tooltip" data-target="qmean_block_enabled"></i>
                     </th>
                     <td>
-                      <input type="text" name="qmean_input_selector" id="qmean_input_selector" value="<?php echo stripslashes(esc_attr( $settings['input_selector'] )); ?>" />
-                      or <a href="<?php echo get_home_url();?>?qmean_field_recognizer" class="button button-primary"><?php _e('Use QMean\'s auto recognizer on front-end','qmean');?></a>
-                      <div id="qmean_input_selector_help" class="qmean-settings-help">
-                        <h3><?php _e('Search Input Selector','qmean');?></h3>
-                        <p><?php _e('This is the field which will show the suggestions by typing 3 letters. Use CSS selector in full. e.g. <code>.selector-class</code> OR <code>#selector-id</code>. This is <strong>THE BEST & EASIEST WAY</strong> to hook QMean to any field you already have on your theme!','qmean');?>
-                      </p>
-                      <div class="qmean-info">
-                            <h4 class="qmean-hint-toggler"><?php _e('How to find the selector fast?','qmean');?></h4>
-                            <div class="qmean-hint-toggle-wrapper">
-                              <p><?php _e('To find the selector, on Chrome or Firefox, right click on your search input field, then click Inspect Element, then you will see the class or the id value for the field. If id exists choose it, if not you need to use CSS. ','qmean');?></p>
-                              <p><?php _e('The field might have multiple classes, sperated with spaces; One is enough then add a dot <code>.</code> at the beginning. It should be like <code>.oneOfThem</code> or you can concatenate them by dot to be sure that is unique like <code>.first.second.third.fourth</code>.','qmean');?></p>
-                              <p><?php _e('Sometimes the parent element has unique id or class like &lt;form&gt; or &lt;div&gt; then you can use it like <code>#formId input</code> or <code>#firmId .inputClass</code>.','qmean');?></p>
-                            </div>
-                          </div>
+                      <p id="qmean_block_enabled"><?php _e('Since version 1.9, QMean supports blocks. You can use WordPress core block, <b>search</b>, to enable suggestions. Additionally, we added <b>Did You Mean</b> block to use it as a placeholder anywhere.','qmean');?></p>
+                      <p id="qmean_block_enabled"><?php _e('You can still use any CSS selector and QMean auto recognizer. These options are now available in <b>Advance Setup</b> tab.','qmean');?></p>
+                      <div id="qmean_block_enabled_help" class="qmean-settings-help">
+                        <h3><?php _e('QMean Blocks','qmean');?></h3>
+                        <p>
+                          <?php _e('We added <b>Did You Mean</b> block and customized WP\'s search core block.','qmean');?>
+                        </p>
+                        <p><?php _e('Did You Mean block is a placeholder of the suggestions when no result found. You can add it anywhere like a normal block and style it as you want.','qmean');?>
+                        </p>
+                        <p>
+                          <?php _e('Since version 1.9, <b>WP search</b> block has <b>Qmean Settings</b> when adding search block. You can enable it and config it as you see fit.','qmean');?>
+                        </p>
                       </div>
-                      <p><?php printf(__('<strong>NOTE: </strong>Just add <code>?qmean_field_recognizer</code> at the end of any URL to activate recognizer and if the URL already has <code>?</code> then add <code>&qmean_field_recognizer</code> e.g. %s/filter?qmean_field_recognizer <strong>or</strong> %s/?s=something&qmean_field_recognizer ','qmean'), get_home_url(), get_home_url());?></p>
-                        
                     </td>
                   </tr>
                   <tr valign="top">
                     <th scope="row">
-                      <?php _e('Auto Set Parent Position','qmean');?>
-                        <i class="dashicons dashicons-editor-help qmean-tooltip" data-target="qmean_parent_position"></i>
+                      <?php _e('Search Mode','qmean');?>
+                        <i class="dashicons dashicons-editor-help qmean-tooltip" data-target="qmean_search_mode"></i>
                       </th>
                     <td>
-                      <select name="qmean_parent_position" id="qmean_parent_position">
-                        <option value=""><?php _e('Do Nothing!');?></option>
-                        <option<?php echo ($settings['parent_position'] == 'relative') ? ' selected="selected"' : '';?> value="relative"><?php _e('Relative','qmean');?></option>
-                        <option<?php echo ($settings['parent_position'] == 'absolute') ? ' selected="selected"' : '';?> value="absolute"><?php _e('Absolute','qmean');?></option>
-                        <option<?php echo ($settings['parent_position'] == 'fixed') ? ' selected="selected"' : '';?> value="fixed"><?php _e('Fixed','qmean');?></option>
+                      <select name="qmean_search_mode" id="qmean_search_mode">
+                        <option<?php echo ($settings['search_mode'] == 'word_by_word') ? ' selected="selected"' : '';?> value="word_by_word"><?php _e('Word By Word','qmean');?></option>
+                        <option<?php echo ($settings['search_mode'] == 'phrase') ? ' selected="selected"' : '';?> value="phrase"><?php _e('Phrase','qmean');?></option>
                       </select>
-                      <div id="qmean_parent_position_help" class="qmean-settings-help">
-                        <h3><?php _e('Auto Set Parent Position','qmean');?></h3>
-                      <p><?php _e('<strong>IMPORTANT!</strong> Input parent\'s postion needs to be set for suggestion wrapper to appear correctly. If the parent doesn\'t have any position this can automatically add it. Relative is common and won\'t harm','qmean');?></p>
-                    </div>
-                    </td>
-                  </tr>
-                  <tr valign="top">
-                    <th scope="row">
-                      <?php _e('Suggestions Positioning','qmean');?>
-                      <i class="dashicons dashicons-editor-help qmean-tooltip" data-target="qmean_positioning"></i>
-                    </th>
-                    <td class="qmean-positioning" id="qmean_positioning">
-                      <label for="qmean_suggestion_zindex"><?php _e('CSS z-index','qmean');?></label>
-                      <input type="text" id="qmean_suggestion_zindex" name="qmean_suggestion_zindex" value="<?php echo esc_attr( $settings['suggestion_zindex'] ); ?>"/>
-                      <label for="qmean_suggestion_posx"><?php _e('CSS left','qmean');?></label>
-                      <input type="text" id="qmean_suggestion_posx" name="qmean_suggestion_posx" value="<?php echo esc_attr( $settings['suggestion_posx'] ); ?>"/>
-                      <label for="qmean_suggestion_posy"><?php _e('CSS Top','qmean');?></label>
-                      <input type="text" id="qmean_suggestion_posy" name="qmean_suggestion_posy" value="<?php echo esc_attr( $settings['suggestion_posy'] ); ?>"/>
-                      <label for="qmean_suggestion_width"><?php _e('Width','qmean');?></label>
-                      <input type="text" id="qmean_suggestion_width" name="qmean_suggestion_width" value="<?php echo esc_attr( $settings['suggestion_width'] ); ?>"/>
-                      <label for="qmean_suggestion_height"><?php _e('Height','qmean');?></label>
-                      <input type="text" id="qmean_suggestion_height" name="qmean_suggestion_height" value="<?php echo esc_attr( $settings['suggestion_height'] ); ?>"/>
-                      <div id="qmean_positioning_help" class="qmean-settings-help">
-                        <h3><?php _e('Suggestion Result Positioning','qmean');?></h3>
-                        <p><?php _e('Use units too like 50px, 5%, 5rem or any CSS standard unit; Please make sure that the parent of the input has a position of relative or absolute. Use - (dash) to automate each value','qmean');?></p>
-                        <p class="qmean-info"><?php _e('You can also use <code>#qmean-suggestion-results</code> selector for suggestion wrapper and <code>.qmean-suggestion-item</code> for suggestion item in your CSS file for better styling. Use <code>.qmean-typo-suggestion</code> for DidYouMean box after the search.','qmean');?></p>
+                      <div id="qmean_search_mode_help" class="qmean-settings-help">
+                        <h3><?php _e('Search Mode','qmean');?></h3>
+                        <p><?php _e('Word by word will compelete the search query on every word, individually, but phrase mode will get the phrase containing the word. Word by word may produce keyword combinations that won\'t match to any result but can help the SEO by reproducing them','qmean');?></p>
                       </div>
-                    </td>
-                  </tr>
-                  <tr valign="top">
-                    <th scope="row">
-                      <?php _e('Suggestions Styling','qmean');?>
-                        <i class="dashicons dashicons-editor-help qmean-tooltip" data-target="qmean_styling"></i>
-                      </th>
-                    <td class="qmean-styling" id="qmean_styling">
-                      <label for="qmean_wrapper_background"><?php _e('Background Color','qmean');?></label>
-                      <input type="text" id="qmean_wrapper_background" name="qmean_wrapper_background" value="<?php echo esc_attr( $settings['wrapper_background'] ); ?>"/>
-                      <label for="qmean_wrapper_border_radius"><?php _e('Border Radius','qmean');?></label>
-                      <input type="text" id="qmean_wrapper_border_radius" name="qmean_wrapper_border_radius" value="<?php echo esc_attr( $settings['wrapper_border_radius'] ); ?>"/>
-                      <label for="qmean_wrapper_padding"><?php _e('Padding','qmean');?></label>
-                      <input type="text" id="qmean_wrapper_padding" name="qmean_wrapper_padding" value="<?php echo esc_attr( $settings['wrapper_padding'] ); ?>"/>
-                      <div id="qmean_styling_help" class="qmean-settings-help">
-                        <h3><?php _e('Suggestion Wrapper Styling','qmean');?></h3>
-                        <p><?php _e('Enter standard CSS values like color #ffffff, border radius 0px 0px 0px 0px, padding 0px 0px 0px 0px. Any standard CSS unit is allowed like em, rem, % and  ... . order of values is: top right bottom left','qmean');?></p>
-                      </div>
+                      
                     </td>
                   </tr>
                   <tr valign="top">
@@ -155,8 +110,95 @@
                   </tr>
                 </table>
                 <hr/>
-                <h2><?php _e('Shortcode','qmean');?></h2>
-                <table class="form-table">
+                <h2 class="qmean-hint-toggler"><?php _e('Suggestion Box Styles','qmean');?></h2>
+                <table class="form-table qmean-hint-toggle-wrapper">
+                  
+                <tr valign="top">
+                    <th scope="row">
+                      <?php _e('Auto Set Parent Position','qmean');?>
+                        <i class="dashicons dashicons-editor-help qmean-tooltip" data-target="qmean_parent_position"></i>
+                      </th>
+                    <td>
+                      <select name="qmean_parent_position" id="qmean_parent_position">
+                        <option value=""><?php _e('Do Nothing!');?></option>
+                        <option<?php echo ($settings['parent_position'] == 'relative') ? ' selected="selected"' : '';?> value="relative"><?php _e('Relative','qmean');?></option>
+                        <option<?php echo ($settings['parent_position'] == 'absolute') ? ' selected="selected"' : '';?> value="absolute"><?php _e('Absolute','qmean');?></option>
+                        <option<?php echo ($settings['parent_position'] == 'fixed') ? ' selected="selected"' : '';?> value="fixed"><?php _e('Fixed','qmean');?></option>
+                      </select>
+                      <div id="qmean_parent_position_help" class="qmean-settings-help">
+                        <h3><?php _e('Auto Set Parent Position','qmean');?></h3>
+                      <p><?php _e('<strong>IMPORTANT!</strong> Input parent\'s postion needs to be set for suggestion wrapper to appear correctly. If the parent doesn\'t have any position this can automatically add it. Relative is common and won\'t harm','qmean');?></p>
+                    </div>
+                    </td>
+                  </tr>
+                  <tr valign="top">
+                    <th scope="row">
+                      <?php _e('Suggestions Positioning','qmean');?>
+                      <i id="qmean_positioning" class="dashicons dashicons-editor-help qmean-tooltip" data-target="qmean_positioning"></i>
+                    </th>
+                    <td class="qmean-positioning">
+                      <div class="qmean-positioning-fields">
+                        <div>
+                          <label for="qmean_suggestion_zindex"><?php _e('CSS z-index','qmean');?></label>
+                          <input type="text" id="qmean_suggestion_zindex" name="qmean_suggestion_zindex" value="<?php echo esc_attr( $settings['suggestion_zindex'] ); ?>"/>
+                        </div>
+                        <div>
+                          <label for="qmean_suggestion_posx"><?php _e('CSS left','qmean');?></label>
+                          <input type="text" id="qmean_suggestion_posx" name="qmean_suggestion_posx" value="<?php echo esc_attr( $settings['suggestion_posx'] ); ?>"/>
+                        </div>
+                        <div>
+                          <label for="qmean_suggestion_posy"><?php _e('CSS Top','qmean');?></label>
+                          <input type="text" id="qmean_suggestion_posy" name="qmean_suggestion_posy" value="<?php echo esc_attr( $settings['suggestion_posy'] ); ?>"/>
+                        </div>
+                      </div>
+                      <div class="qmean-positioning-fields">
+                        <div>
+                          <label for="qmean_suggestion_width"><?php _e('Width','qmean');?></label>
+                          <input type="text" id="qmean_suggestion_width" name="qmean_suggestion_width" value="<?php echo esc_attr( $settings['suggestion_width'] ); ?>"/>
+                        </div>
+                        <div>
+                          <label for="qmean_suggestion_height"><?php _e('Height','qmean');?></label>
+                          <input type="text" id="qmean_suggestion_height" name="qmean_suggestion_height" value="<?php echo esc_attr( $settings['suggestion_height'] ); ?>"/>
+                        </div>
+                      </div>
+                      <div id="qmean_positioning_help" class="qmean-settings-help">
+                        <h3><?php _e('Suggestion Result Positioning','qmean');?></h3>
+                        <p><?php _e('Use units too like 50px, 5%, 5rem or any CSS standard unit; Please make sure that the parent of the input has a position of relative or absolute. Use - (dash) to automate each value','qmean');?></p>
+                        <p><?php _e('If RTL support is enabled, the <b>left</b> value will act as <b>right</b> attribute.','qmean');?></p>
+                        <p class="qmean-info"><?php _e('You can also use <code>#qmean-suggestion-results</code> selector for suggestion wrapper and <code>.qmean-suggestion-item</code> for suggestion item in your CSS file for better styling. Use <code>.qmean-typo-suggestion</code> for DidYouMean box after the search.','qmean');?></p>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr valign="top">
+                    <th scope="row">
+                      <?php _e('Suggestions Styles','qmean');?>
+                        <i class="dashicons dashicons-editor-help qmean-tooltip" data-target="qmean_styling"></i>
+                      </th>
+                    <td class="qmean-styling" id="qmean_styling">
+                    <div class="qmean-styling-fields">
+                      <div>
+                        <label for="qmean_wrapper_background"><?php _e('Background Color','qmean');?></label>
+                        <input type="text" id="qmean_wrapper_background" name="qmean_wrapper_background" value="<?php echo esc_attr( $settings['wrapper_background'] ); ?>"/>
+                      </div>
+                      <div>
+                        <label for="qmean_wrapper_border_radius"><?php _e('Border Radius','qmean');?></label>
+                        <input type="text" id="qmean_wrapper_border_radius" name="qmean_wrapper_border_radius" value="<?php echo esc_attr( $settings['wrapper_border_radius'] ); ?>"/>
+                      </div>
+                      <div>
+                        <label for="qmean_wrapper_padding"><?php _e('Padding','qmean');?></label>
+                        <input type="text" id="qmean_wrapper_padding" name="qmean_wrapper_padding" value="<?php echo esc_attr( $settings['wrapper_padding'] ); ?>"/>
+                      </div>
+                    </div>
+                      <div id="qmean_styling_help" class="qmean-settings-help">
+                        <h3><?php _e('Suggestion Wrapper Styling','qmean');?></h3>
+                        <p><?php _e('Enter standard CSS values like color #ffffff, border radius 0px 0px 0px 0px, padding 0px 0px 0px 0px. Any standard CSS unit is allowed like em, rem, % and  ... . order of values is: top right bottom left. Seperate with space.','qmean');?></p>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+                <hr/>
+                <h2 class="qmean-hint-toggler"><?php _e('Shortcode','qmean');?></h2>
+                <table class="form-table qmean-hint-toggle-wrapper">
                   <tr valign="top">
                     <th scope="row"><?php _e('QMean Shortcode','qmean');?></th>
                     <td>
@@ -208,23 +250,31 @@
                   </tr>
                 </table>
                 <hr/>
-                <h2><?php _e('Advance Setup','qmean');?></h2>
-                <table class="form-table">
-                  <tr valign="top">
-                    <th scope="row">
-                      <?php _e('Search Mode','qmean');?>
-                        <i class="dashicons dashicons-editor-help qmean-tooltip" data-target="qmean_search_mode"></i>
-                      </th>
+                <h2 class="qmean-hint-toggler"><?php _e('Advance Setup','qmean');?></h2>
+                <table class="form-table qmean-hint-toggle-wrapper">
+                <tr valign="top">
+                    <th scope="row"><?php _e('Search Input Selector','qmean');?>
+                        <i class="dashicons dashicons-editor-help qmean-tooltip" data-target="qmean_input_selector"></i>
+                    </th>
                     <td>
-                      <select name="qmean_search_mode" id="qmean_search_mode">
-                        <option<?php echo ($settings['search_mode'] == 'word_by_word') ? ' selected="selected"' : '';?> value="word_by_word"><?php _e('Word By Word','qmean');?></option>
-                        <option<?php echo ($settings['search_mode'] == 'phrase') ? ' selected="selected"' : '';?> value="phrase"><?php _e('Phrase','qmean');?></option>
-                      </select>
-                      <div id="qmean_search_mode_help" class="qmean-settings-help">
-                        <h3><?php _e('Search Mode','qmean');?></h3>
-                        <p><?php _e('Word by word will compelete the search query on every word, individually, but phrase mode will get the phrase containing the word. Word by word may produce keyword combinations that won\'t match to any result but can help the SEO by reproducing them','qmean');?></p>
+                      <input type="text" name="qmean_input_selector" id="qmean_input_selector" value="<?php echo stripslashes(esc_attr( $settings['input_selector'] )); ?>" />
+                      or <a href="<?php echo get_home_url();?>?qmean_field_recognizer" class="button button-primary"><?php _e('Use QMean\'s auto recognizer on front-end','qmean');?></a>
+                      <div id="qmean_input_selector_help" class="qmean-settings-help">
+                        <h3><?php _e('Search Input Selector','qmean');?></h3>
+                        <p>
+                          <?php _e('This is the field which will show the suggestions by typing 3 letters. Use CSS selector in full. e.g. <code>.selector-class</code> OR <code>#selector-id</code>. This is <strong>THE BEST & EASIEST WAY</strong> to hook QMean to any field you already have on your theme!','qmean');?>
+                        </p>
+                        <div class="qmean-info">
+                            <h4 class="qmean-hint-toggler"><?php _e('How to find the selector fast?','qmean');?></h4>
+                            <div class="qmean-hint-toggle-wrapper">
+                              <p><?php _e('To find the selector, on Chrome or Firefox, right click on your search input field, then click Inspect Element, then you will see the class or the id value for the field. If id exists choose it, if not you need to use CSS. ','qmean');?></p>
+                              <p><?php _e('The field might have multiple classes, sperated with spaces; One is enough then add a dot <code>.</code> at the beginning. It should be like <code>.oneOfThem</code> or you can concatenate them by dot to be sure that is unique like <code>.first.second.third.fourth</code>.','qmean');?></p>
+                              <p><?php _e('Sometimes the parent element has unique id or class like &lt;form&gt; or &lt;div&gt; then you can use it like <code>#formId input</code> or <code>#firmId .inputClass</code>.','qmean');?></p>
+                            </div>
+                          </div>
                       </div>
-                      
+                      <p><?php printf(__('<strong>NOTE: </strong>Just add <code>?qmean_field_recognizer</code> at the end of any URL to activate recognizer and if the URL already has <code>?</code> then add <code>&qmean_field_recognizer</code> e.g. %s/filter?qmean_field_recognizer <strong>or</strong> %s/?s=something&qmean_field_recognizer ','qmean'), get_home_url(), get_home_url());?></p>
+                        
                     </td>
                   </tr>
                   <tr valign="top">
@@ -430,9 +480,9 @@
        <a href="https://github.com/arashsafaridev/qmean/" target="_blank"><?php _e('GitHub','qmean');?></a>
       </div>
       <div class="qmean-d-flex between">
-       <span><?php _e('Liked the plugin?','qmean');?></span>
-       <a href="https://wordpress.org/plugins/qmean/#reviews" class="button button-primary" target="_blank"><?php _e('Write a review','qmean');?></a>
-       <a href="https://forms.gle/mgESz8C5n2zvEyWt9" class="button button-primary" target="_blank"><?php _e('Take the survey ','qmean');?></a>
+       <span><?php _e('Make QMean better','qmean');?></span>
+       <a href="https://wordpress.org/plugins/qmean/#reviews" class="button button-primary qmean-button-review" target="_blank"><?php _e('Write a review','qmean');?></a>
+       <a href="https://forms.gle/mgESz8C5n2zvEyWt9" class="button button-secondary" target="_blank"><?php _e('Take the survey ','qmean');?></a>
       </div>
     </div>
 </div>
