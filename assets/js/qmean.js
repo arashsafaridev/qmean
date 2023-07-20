@@ -24,7 +24,9 @@ jQuery(document).ready(function ($) {
 	var qmean_li_selected;
 
 	if (qmean.selector != "" && typeof qmean.selector !== "undefined") {
+		console.log("qmean.selector: " + qmean.selector);
 		qmean_selector = $(qmean.selector);
+		console.log("qmean_selector: " + qmean_selector);
 		if (typeof qmean_selector !== "undefined" && qmean_selector.length > 0) {
 			if (qmean.parent_position != "")
 				qmean_selector.parent().css("position", qmean.parent_position);

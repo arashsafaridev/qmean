@@ -83,7 +83,11 @@
 	text-transform: capitalize;
 }
 
-.qmean-loading {
+.qmean-position-relative {
+	position: relative;
+}
+.qmean-position-absolute {
+	position: absolute;
 }
 .qmean-loading.freeze {
 	opacity: 0.4;

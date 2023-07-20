@@ -479,7 +479,7 @@ class QMean
 		wp_enqueue_style('qmean-style', QMEAN_URL. 'assets/css/qmean.css', false, QMEAN_PLUGIN_VERSION);
 		wp_enqueue_script('qmean-script', QMEAN_URL. 'assets/js/qmean.js', ['jquery'], QMEAN_PLUGIN_VERSION);
 		$settings 				 = $this->settings;
-		$input_selector 		 = !isset($settings['input_selector']) || empty($settings['input_selector']) ? '.qmean-shortcode-search-field, input[name="s"]' : '.qmean-shortcode-search-field, '.stripslashes($settings['input_selector']);
+		$input_selector 		 = !isset($settings['input_selector']) || empty($settings['input_selector']) ? '.qmean-block-search-form input[type=search],.qmean-shortcode-search-field, input[name="s"]' : '.qmean-block-search-form input[type=search], .qmean-shortcode-search-field, '.stripslashes($settings['input_selector']);
 		$zindex 				 = !isset($settings['suggestion_zindex']) ? '0' : $settings['suggestion_zindex'];
 		$posx 					 = !isset($settings['suggestion_posx']) ? '-' : $settings['suggestion_posx'];
 		$posy 					 = !isset($settings['suggestion_posy']) ? '-' : $settings['suggestion_posy'];

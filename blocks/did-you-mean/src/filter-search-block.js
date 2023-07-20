@@ -14,6 +14,7 @@ import {
 	FormToggle,
 	SVG,
 	Path,
+	RadioControl,
 } from "@wordpress/components";
 
 function addAttributes(settings, name) {
@@ -49,6 +50,7 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 
 		const { attributes, setAttributes } = props;
 		const [postTypesSuggestions, setPostTypesSuggestions] = useState([]);
+		const [parentPosition, setParentPosition] = useState('nothing');
 
 		if (wpPostTypes && postTypesSuggestions.length === 0) {
 			setPostTypesSuggestions(
@@ -137,12 +139,12 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 										setAttributes({
 											className:
 												(attributes.className ? attributes.className : "") +
-												" qmean-shortcode-search-form",
+												" qmean-block-search-form",
 										});
 									} else {
 										setAttributes({
 											className: attributes.className.replace(
-												" qmean-shortcode-search-form",
+												" qmean-block-search-form",
 												""
 											),
 										});
@@ -153,6 +155,44 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 						</div>
 						{attributes.isQmeanActive && (
 							<div style={{ marginTop: "1em" }}>
+								<RadioControl
+									label={__("Auto Set Parent Position", "qmean")}
+									onChange={(value) => {
+										setParentPosition(value);
+										if (value !== 'nothing') {
+											setAttributes({
+												className:
+													(attributes.className ? attributes.className.replace(
+														/ qmean-position-relative| qmean-position-absolute/,
+														""
+													) : "") +
+													" qmean-position-" + value,
+											});
+										} else {
+											setAttributes({
+												className: attributes.className.replace(
+													/ qmean-position-relative| qmean-position-absolute/,
+													""
+												),
+											});
+										}
+									}}
+									options={[
+										{
+											label: __("Do nothing!", "qmean"),
+											value: "nothing",
+										},
+										{
+											label: __("Set to relative", "qmean"),
+											value: "relative",
+										},
+										{
+											label: __("Set to absolute", "qmean"),
+											value: "absolute",
+										},
+									]}
+									selected={parentPosition}
+								/>
 								<FormTokenField
 									label={__("Post types", "qmean")}
 									__experimentalExpandOnFocus={true}
@@ -171,6 +211,9 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 									)}
 									value={attributes.searchIn}
 								/>
+								<a href="/wp-admin/admin.php?page=qmean-settings" target="_blank">
+									{__("Customize suggestion box styles", "qmean")}
+								</a>
 							</div>
 						)}
 					</PanelBody>

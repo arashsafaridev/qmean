@@ -283,13 +283,25 @@ class QMeanFN
 							$matches = [];
 						}
 					} else if('posts_content' == $area && $char_count > 1) {
-
+						
 						$table = $wpdb->prefix.'posts';
 						$sql = "SELECT post_content FROM $table WHERE post_status = 'publish' AND LOWER(post_content) REGEXP %s".$post_types_q;
+						
+						// get current error reporting level.
+						$error_level = error_reporting();
+						// diable warnings for huge content.
+						// to avoid warning: Timeout exceeded in regulur expression.
+						error_reporting(E_ALL ^ E_WARNING);
+						// don't log WPDB errors. just for this query
+						$wpdb->suppress_errors(true);
 						$results = $wpdb->get_results(
 							$wpdb->prepare($sql,$patterns['sql'])
 						);
-
+						// restore WPDB error logging.
+						$wpdb->suppress_errors(false);
+						// restore error reporting level.
+						error_reporting($error_level);
+						
 						if ($results) {
 							foreach ($results as $k => $result) {
 								$content = strip_tags($result->post_content);
@@ -333,12 +345,12 @@ class QMeanFN
 							$matches = [];
 						}
 					}
+
+					$suggestions = array_unique($suggestions,SORT_REGULAR);
+
+					if(count($suggestions) >= $limit_results) break;
 				}
 			}
-
-			$suggestions = array_unique($suggestions,SORT_REGULAR);
-
-			if(count($suggestions) >= $limit_results) break;
 		}
 
 		$suggestion_rated = [];
