@@ -10,7 +10,6 @@
       <input type="hidden" name="action" id="qmean-action" value="qmean_store_admin_data" />
       <input type="hidden" name="_wpnonce" id="qmean-security" value="" />
       <input type="hidden" name="qmean_saved_by_user" id="qmean_saved_by_user" value="1" />
-      <input type="hidden" name="qmean_sql_patterner" value="<?php echo stripslashes($settings['sql_patterner']);?>" />
         <div class="inside qmean-settings">
             <div class="postbox">
               <img class="qmean-settings-logo" width="200" src="<?php echo QMEAN_URL;?>assets/images/qmean-logo.svg"/>

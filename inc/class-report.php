@@ -3,9 +3,6 @@
 class QMeanReport
 {
 
-	// The option name
-	private $option_name = 'qmean_options';
-
 	// QMean constructor - The main plugin actions registered for WordPress
 	public function __construct()
 	{
@@ -86,6 +83,7 @@ class QMeanReport
 			$sql = $wpdb->prepare("SELECT * FROM $table ORDER BY $sort $orderby LIMIT %d,%d",[$from, $number]);
 		}
 		$results = $wpdb->get_results($sql);
+		
 		return $results;
 	}
 

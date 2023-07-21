@@ -71,7 +71,8 @@ class QMean
 		}
 
 		// check update compatibility
-		add_action('plugins_loaded',   [$this, 'update_plugin']);
+		add_action('upgrader_process_complete',   [$this, 'update_plugin'], 10, 2);
+		
 		// Inject a Div before the search form in search page
 		add_action('get_search_form',  [$this, 'typo_suggestion']);
 		// this will hook did you mean box. You just need to use do_action('qmean_suggestion') anywhere you want in your theme
@@ -153,13 +154,13 @@ class QMean
 	 */
 	public function qmean_do_on_activation()
 	{
-		update_option('_qmean_version',QMEAN_PLUGIN_VERSION);
+		update_option( '_qmean_version',QMEAN_PLUGIN_VERSION, 'no' );
 		// set defaults
 		
 		$options = $this->get_default_options();
 
 		$updated_options = wp_parse_args($this->settings, $options);
-		update_option('qmean_options',$updated_options);
+		update_option( 'qmean_options', $updated_options, 'no' );
 
 		// create report db
 		$keyword_table_status = get_option('_qmean_keyword_table','no');
@@ -412,18 +413,26 @@ class QMean
 	 * Run on plugin updates 
 	 * check update process with wp options
 	 */
-	public function update_plugin()
+	public function update_plugin( $upgrader, $extra )
 	{
-		$upgrade_version = get_option('_qmean_upgrade_version_1_8', 'no');
+		if( $extra['action'] === 'update' && $extra['type'] === 'plugin' && isset( $extra['plugins'] ) ) {
+			foreach( $extra['plugins'] as $plugin ) {
+				if( $plugin === QMEAN_BASENAME) {
+					// $current_version = get_option('_qmean_upgrade_version', '19');
 
-		if ($upgrade_version != 'yes') {
-			$settings = $this->settings;
+					// if (version_compare($current_version, QMEAN_PLUGIN_VERSION, '<')) {
+						
+					// }
 
-			$options = $this->get_default_options();
+					update_option( '_qmean_version', QMEAN_PLUGIN_VERSION. 'no' );
 
-			$updated_options = array_merge($options, $settings);
-			update_option('qmean_options', $updated_options);
-			update_option('_qmean_upgrade_version_1_8', 'yes');
+					$options = $this->get_default_options();
+
+					$updated_options = wp_parse_args($this->settings, $options);
+					update_option('qmean_options',$updated_options, 'no');
+					set_transient( 'qmean_updated', 1 );
+				}
+			}
 		}
 
 	}

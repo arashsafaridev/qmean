@@ -25,6 +25,8 @@ if(!defined('QMEAN_PATH'))
 	define('QMEAN_PATH', plugin_dir_path( __FILE__ ));
 if(!defined('QMEAN_FILE'))
 	define('QMEAN_FILE', __FILE__);
+if(!defined('QMEAN_BASENAME'))
+    define('QMEAN_BASENAME', plugin_basename( __FILE__ ));
 
 
 require_once(QMEAN_PATH.'/inc/class-qmean.php');
