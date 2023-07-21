@@ -197,7 +197,7 @@
                   </tr>
                 </table>
                 <hr/>
-                <h2 class="qmean-hint-toggler"><?php _e('Shortcode','qmean');?></h2>
+                <h2 class="qmean-hint-toggler"><?php _e('Shortcodes','qmean');?></h2>
                 <table class="form-table qmean-hint-toggle-wrapper">
                   <tr valign="top">
                     <th scope="row"><?php _e('QMean Shortcode','qmean');?></th>

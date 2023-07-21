@@ -55,7 +55,12 @@ class QMean
 		add_action( 'admin_menu',                [$this, 'add_admin_menu'] );
 		add_action( 'admin_enqueue_scripts',     [$this, 'add_admin_scripts'] );
 		add_action( 'wp_enqueue_scripts',     	[$this, 'add_scripts'] );
+
+		// Add Did You Mean block
 		add_action( 'init', 					[$this, 'create_block'] );
+		
+		// customize core search block
+		add_filter( 'render_block', array( $this, 'customize_search_block' ), 10, 2 );
 
 
 		$settings = $this->get_data();
@@ -103,8 +108,8 @@ class QMean
 
 		$options = [
 			'sql_patterner' 		  => $sql_patterner,
-			'suggest_engine' 		  => 'google',
-			'search_mode' 			  => 'phrase',
+			'suggest_engine' 		  => 'qmean',
+			'search_mode' 			  => 'word_by_word',
 			'sensitivity' 			  => 3,
 			'merge_previous_searched' => 'yes',
 			'keyword_efficiency'      => 'on',
@@ -186,22 +191,41 @@ class QMean
 	 * 
 	 * @return string 	the valid pattern 
 	 */
-	private function qmean_test_mysql_compatibility() {
+	public function qmean_test_mysql_compatibility()
+	{
+		global $wpdb;
 
-		if ( ! class_exists( 'WP_Debug_Data' ) ) {
-		    require_once ABSPATH . 'wp-admin/includes/class-wp-debug-data.php';
-		}
-		if ( ! class_exists( 'WP_Site_Health' ) ) {
-		    require_once ABSPATH . 'wp-admin/includes/class-wp-site-health.php';
-		}
+		// get current error reporting level.
+		$error_level = error_reporting();
+		// diable warnings for huge content.
+		// to avoid warning: Timeout exceeded in regulur expression.
+		error_reporting(E_ALL ^ E_WARNING);
+		// don't log WPDB errors. just for this query
+		$wpdb->suppress_errors(true);
 
-		$info = WP_Debug_Data::debug_data();
+		$table = $wpdb->prefix.'options';
+		$sql = "SELECT option_name FROM $table WHERE LOWER(option_name) REGEXP %s";
+		$results = $wpdb->get_results(
+			$wpdb->prepare($sql, array("\\b(site.*)\\b"))
+		);
 
-		$mysql_version = isset($info['wp-database']['fields']['server_version']) ? $info['wp-database']['fields']['server_version']['value'] : '0.0.0';
-		if (version_compare($mysql_version, '8.0.4', '>=')) {
+		// restore WPDB error logging.
+		$wpdb->suppress_errors(false);
+		// restore error reporting level.
+		error_reporting($error_level);
+		
+		if (count($results) > 0) {
 			return '\\\\b(%s)\\\\b';
 		} else {
-			return '[[:<:]](%s)';
+			$results = $wpdb->get_results(
+				$wpdb->prepare($sql, array("[[:<:]](site.*)"))
+			);
+
+			if ( count($results) ) {
+				return '[[:<:]](%s)';
+			} else {
+				return '/[[:<:]](%s)/';
+			}
 		}
 	}
 
@@ -435,6 +459,33 @@ class QMean
 		if ( ! empty( $out ) ) {
 			return preg_replace( '/<code>(.*?)<\/code>/s', $out, $content );
 		}
+	}
+
+	/**
+	 * Customize Search Block
+	 * 
+	 * @since  1.9.0
+	 * @param  string $block_content 	the block content
+	 * @param  array  $block 			the block attributes
+	 * @return string $block_content 	the updated block content
+	 */
+	public function customize_search_block( $block_content, $block ){
+		// If block is `core/image` we add new content related to the new attribute
+		if ( $block['blockName'] === 'core/search' && isset( $block['attrs']['isQmeanActive'] ) && $block['attrs']['isQmeanActive']) {
+			$attributes = $block['attrs'];
+			$post_types = isset( $attributes['postTypes'] ) ? implode( ",", array_column($attributes['postTypes'], 'id')) : '';
+			$areas      = isset( $attributes['searchIn'] ) ? implode( ",", array_column($attributes['searchIn'], 'id')) : '';
+
+			if ( !empty( $post_types ) ) {
+				$block_content = str_replace( '<form', '<form data-post_types="'.$post_types.'"', $block_content );
+			}
+
+			if ( !empty( $areas ) ) {
+				$block_content = str_replace( '<form', '<form data-areas="'.$areas.'"', $block_content );
+			}
+		}
+
+		return $block_content;
 	}
 
 	/**

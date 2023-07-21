@@ -2,8 +2,8 @@
 Contributors: arashsafari
 Tags: search,suggestion,optimization,better search
 Requires at least: 5.0
-Tested up to: 6.0
-Stable tag: 1.8
+Tested up to: 6.2.2
+Stable tag: 1.9
 Requires PHP: 7.0+
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -11,50 +11,63 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 Ajax smart keyword suggestions by fixing typos for better results. Plus "Did You Mean" feature, Google style! Simple, Minimal, Fast and Smart. Plus an analytics dashboard for searched queries
 
 == Description ==
-QMean is a minimal, ajax, auto-complete query and 'did you mean' suggestion plugin. It searches for relative keywords and fix typos in words. Its goal is to help users to create relevant queries before sending it to WP search engine.
+QMean is a powerful, yet minimal, AJAX-driven auto-complete query and 'did you mean' suggestion plugin designed to enhance your WordPress search experience. With QMean, users can create relevant queries effortlessly, even if they contain typos or misspelled words, just like Google's smart suggestions.
 
-= Like Google =
-QMean can detect similar words even if they contain typos! This feature will work both on AJAX suggestions and after searching the query. By showing "Did You Mean: Right Keywords"
+== Auto-Complete Search Suggestions ==
+QMean provides real-time suggestions while users type, making it easy for them to find the right keywords.
 
-= Offer Query Suggestions =
-QMean will search through the database. It collects keywords and phrases related to the given input. You are the one who decides where to look. Titles, Excerpts, Contents, Taxonomy Terms or PostMetas and, on which post types.
+== Did You Mean ==
+After the search, QMean shows a "Did You Mean" feature, suggesting the correct keywords based on similar words and typos.
 
-= Modes: Phrase or Word By Word =
-QMean can interact by any word user enters,  and complete the query or offer them phrases base on the whole input. Each one has its own advantages so you can set the one suits you.
+== Two Engines ==
+Choose between Google's suggestion engine and QMean to suit your specific needs.
 
-= Keywords Analytics =
-QMean will record searched queries and the result for better SEO!
+== Block Enabled ==
+Seamlessly integrate QMean into your WordPress Search block, and also add a "Did You Mean" block wherever you like.
 
-= Only "CSS Selector" To Hook =
-QMean only needs the selector of your search input. Then it can add itself to it and provides the suggestions. It has a special tool, QMean field recognizer, to find the selector on you theme
+== Offer Query Suggestions ==
+QMean searches through your database, gathering relevant keywords and phrases related to the user's input, giving you control over where to look, including Titles, Excerpts, Contents, Taxonomy Terms, and PostMetas.
+
+== Modes: Phrase or Word By Word ==
+Customize QMean to interact with individual words or offer phrases based on the entire input, each with its own advantages.
+
+== Keywords Analytics ==
+QMean records searched queries and their results for better SEO optimization.
+
+== CSS Selector ==
+Aside being block base, utilize a CSS selector for your search input, allowing QMean to integrate and provide suggestions with ease using its QMean field recognizer tool.
 
 == Simple Shortcode ==
-If you don't want to add QMean to any field using CSS selectors, you can use the shortcode instead. It will create your search field anywhere you want! There is another shortcode to position `Did you mean` suggestions too.
+If CSS selectors aren't your preference, you can use shortcodes to create search fields and position "Did you mean" suggestions anywhere you desire.
 
 == Settings and Styling ==
-You can position and style the box as you wish via settings and change the search engine from there too.
+Tailor the appearance and placement of the suggestion box to match your site's design, and switch between search engines with ease
 
-== Custom and defined action  ==
+== Custom and Defined Action ==
 QMean's did you mean has an action so you can use it. It can also hook itself to any action you set in the settings and show up there.
 
-= How This Works!? =
-QMean doesn't care if you typed "hodei wth", "hdie wih" or "hode whi"! It is smart enough to determine that you are looking for "Hoodie with". In most cases even the wrong order of words can't fail the suggestion. Depending on your selected mode. It can help users to complete the phrase, word by word or show them complete phrased suggestions at the beginning!
+== Advanced Settings ==
+Fine-tune the plugin by adjusting keyword sensitivity, removing stop words, ignoring shortcodes in content, merging top searched keywords, limiting results, and more.
+
+== How This Works!? ==
+QMean intelligently interprets user input, even if it contains misspelled words, offering relevant suggestions based on context. The plugin supports both word-by-word and phrase-based suggestions, ensuring users find the content they seek effortlessly.
 
 == Key Features: ==
 * Auto complete search suggestion
 * Smart prediction
-* Word by word suggestions
+* Two different suggestion engines: Google and QMean
+* Word-by-word suggestions
 * Phrase mode suggestions
-* Support Post types, Taxonomies
-* Support post title, excerpt, content and meta
-* Minimal configuration
+* Support for Post types and Taxonomy terms
+* Support for post title, excerpt, content, and meta
 * Optimized performance
-* Individual search areas for each form e.g. posts, products and ...
-* Minimal configuration
-* Optimized performance
-* Searched keywords analytics and report
-* Minimal implementation
+* Individual search areas for each form (e.g., posts, products, etc.)
+* Minimal configuration required
+* Searched keywords analytics and reports
 * RTL direction and UTF-8 support
+
+Upgrade your WordPress search experience with QMean and provide your users with intelligent and intuitive search suggestions!
+
 
 == Installation ==
 = Automatic installation =
@@ -70,16 +83,14 @@ PLEASE make sure to configure QMean first (Navigation: WP Dashboard / QMean / Se
 By default live suggestions won't work if it doesn't know the selector of the input
 
 == Frequently Asked Questions ==
+= Is Google's Engine Free? =
+Absolutely! QMean leverages Google's browser API URL to fetch suggestions, making it a completely free-to-use plugin.
+
+= What are the differences between QMean and Google's suggestion engine? =
+In general, QMean collects relevant keywords from your website's content and database, and then offers suggestions based on this data. On the other hand, Google's suggestion engine relies on the most relevant keywords determined by its ranking algorithms. The key distinctions between the two lie in speed and relevancy. Google suggests fast and QMean suggests relevant.
 
 = What is the shortcode? =
-[qmean icon="yes" placeholder="Type to search" button_bg="#1a1a1a" button_height="40px" button_width="40px" form_class="" input_class="form-control" button_class=""  form_style="padding:0 0 15px 0" input_style="" button_style=""]
-Best practices are
-1- Use specific named attribute if you don't know how to use CSS like button_height, button_bg and ...
-2- Use in set! Either use style attributes for all of them or use class attribute for all of them like form_class, input_class, button_class OR form_style, input_style and ...
-* You can use all of them but it won't make sense in general and it is confusing :)
-
-[qmean-dym wrapper_class=""]
-If you want to show did you mean on search page. wrapper_class is optional
+There are two shortcodes. One for search form and the other to show suggestions. You can read more in [QMean's wiki](https://github.com/arashsafaridev/qmean/wiki/get-started)
 
 = What is the difference of Phrase mode or Word by Word mode? =
 Word by word mode will look for the most related keyword for each word. For example, if you are looking for "Hoodie With Logo",  it will search for suggestion based on active word. First for hoodie, then for with, and finally for logo.
@@ -169,8 +180,16 @@ Both of them are useful. It depends on your need. Phrase mode can have solid res
 * Removed: Sensivity option, QMean now sets sensivity automatically
 
 = 1.9 =
-* Fixed: MySQL compatibilty approach for regex
-* Fixed: PHP notice for uninstallation callback 
+* Feature:   Add Did You Mean Block
+* Feature:   Customize search block
+* Refatored: Settings page
+* Fixed:     MySQL compatibilty approach for regex
+* Fixed:     PHP notice for uninstallation callback 
+* Fixed:     PHP warning: Timeout exceeded in regular expression match
+* Optimized: Early return when enough suggestions found
+* Updated:   Readme file
+
+
 == Upgrade Notice ==
 
 = before 1.0.9 =

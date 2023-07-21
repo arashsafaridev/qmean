@@ -28,6 +28,7 @@ function addAttributes(settings, name) {
 				isQmeanActive: { type: "boolean", default: false },
 			},
 		};
+		
 	}
 	return settings;
 }
