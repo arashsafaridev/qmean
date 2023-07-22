@@ -157,7 +157,7 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 							<div style={{ marginTop: "1em" }}>
 								<RadioControl
 									label={__("Auto Set Parent Position", "qmean")}
-									help={__("This will help positioning suggestion", "qmean")}
+									help={__("This will help positioning suggestion box.", "qmean")}
 									onChange={(value) => {
 										setParentPosition(value);
 										if (value !== "nothing") {
