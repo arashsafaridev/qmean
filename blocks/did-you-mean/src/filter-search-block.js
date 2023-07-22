@@ -28,7 +28,6 @@ function addAttributes(settings, name) {
 				isQmeanActive: { type: "boolean", default: false },
 			},
 		};
-		
 	}
 	return settings;
 }
@@ -51,7 +50,7 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 
 		const { attributes, setAttributes } = props;
 		const [postTypesSuggestions, setPostTypesSuggestions] = useState([]);
-		const [parentPosition, setParentPosition] = useState('nothing');
+		const [parentPosition, setParentPosition] = useState("nothing");
 
 		if (wpPostTypes && postTypesSuggestions.length === 0) {
 			setPostTypesSuggestions(
@@ -62,7 +61,7 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 		}
 
 		const setPostTypeValues = (values) => {
-			let newValue = attributes.postTypes;
+			let newValue = [...attributes.postTypes];
 
 			if (values.length < attributes.postTypes.length) {
 				setAttributes({ postTypes: values });
@@ -84,7 +83,7 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 		};
 
 		const setPostSearchInValues = (values) => {
-			let newValue = attributes.searchIn;
+			let newValue = [...attributes.searchIn];
 
 			if (values.length < attributes.searchIn.length) {
 				setAttributes({ searchIn: values });
@@ -158,16 +157,20 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 							<div style={{ marginTop: "1em" }}>
 								<RadioControl
 									label={__("Auto Set Parent Position", "qmean")}
+									help={__("This will help positioning suggestion", "qmean")}
 									onChange={(value) => {
 										setParentPosition(value);
-										if (value !== 'nothing') {
+										if (value !== "nothing") {
 											setAttributes({
 												className:
-													(attributes.className ? attributes.className.replace(
-														/ qmean-position-relative| qmean-position-absolute/,
-														""
-													) : "") +
-													" qmean-position-" + value,
+													(attributes.className
+														? attributes.className.replace(
+																/ qmean-position-relative| qmean-position-absolute/,
+																""
+														  )
+														: "") +
+													" qmean-position-" +
+													value,
 											});
 										} else {
 											setAttributes({
@@ -212,7 +215,10 @@ const withAdvancedControls = createHigherOrderComponent((BlockEdit) => {
 									)}
 									value={attributes.searchIn}
 								/>
-								<a href="/wp-admin/admin.php?page=qmean-settings" target="_blank">
+								<a
+									href="/wp-admin/admin.php?page=qmean-settings"
+									target="_blank"
+								>
 									{__("Customize suggestion box styles", "qmean")}
 								</a>
 							</div>
