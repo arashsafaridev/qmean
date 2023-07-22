@@ -95,7 +95,7 @@ class QMeanAjax
 
 		}
 		$data['sql_patterner'] = $sql_patterner;
-		update_option($this->option_name, $data);
+		update_option($this->option_name, $data, 'no');
 
 		echo esc_html(__('Settings saved successfully!', 'qmean'));
 		die();

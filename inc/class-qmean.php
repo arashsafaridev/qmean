@@ -424,13 +424,13 @@ class QMean
 						
 					// }
 
-					update_option( '_qmean_version', QMEAN_PLUGIN_VERSION. 'no' );
+					update_option( '_qmean_version', QMEAN_PLUGIN_VERSION, 'no' );
 
 					$options = $this->get_default_options();
 
 					$updated_options = wp_parse_args($this->settings, $options);
 					update_option('qmean_options',$updated_options, 'no');
-					set_transient( 'qmean_updated', 1 );
+					set_transient( 'qmean_updated', 1, 604800 );
 				}
 			}
 		}

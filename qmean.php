@@ -17,16 +17,25 @@
  * Plugin constants
  */
 
-if(!defined('QMEAN_PLUGIN_VERSION'))
-	define('QMEAN_PLUGIN_VERSION', '1.9.0');
-if(!defined('QMEAN_URL'))
-	define('QMEAN_URL', plugin_dir_url( __FILE__ ));
-if(!defined('QMEAN_PATH'))
-	define('QMEAN_PATH', plugin_dir_path( __FILE__ ));
-if(!defined('QMEAN_FILE'))
-	define('QMEAN_FILE', __FILE__);
-if(!defined('QMEAN_BASENAME'))
+if(!defined('QMEAN_PLUGIN_VERSION')) {
+    define('QMEAN_PLUGIN_VERSION', '1.9.0');
+}
+
+if(!defined('QMEAN_URL')) {
+    define('QMEAN_URL', plugin_dir_url( __FILE__ ));
+}
+
+if(!defined('QMEAN_PATH')) {
+    define('QMEAN_PATH', plugin_dir_path( __FILE__ ));
+}
+
+if(!defined('QMEAN_FILE')) {
+    define('QMEAN_FILE', __FILE__);
+}
+
+if(!defined('QMEAN_BASENAME')) {
     define('QMEAN_BASENAME', plugin_basename( __FILE__ ));
+}
 
 
 require_once(QMEAN_PATH.'/inc/class-qmean.php');
@@ -48,10 +57,12 @@ require_once( ABSPATH . '/wp-admin/includes/upgrade.php' );
  */
 function qmean_do_on_uninstallation()
 {
+    global $wpdb;
+
     delete_option('_qmean_version');
     delete_option('_qmean_keyword_table');
     delete_option('qmean_options');
-    global $wpdb;
+
     $keyword_table_name = $wpdb->prefix . "qmean_keyword";
     $sql = "DROP TABLE  $keyword_table_name";
     $wpdb->query($sql);

@@ -1,7 +1,7 @@
 === QMean - WordPress Did You Mean and Search Suggestion Like Google ===
 Contributors: arashsafari
 Tags: search,suggestion,optimization,better search
-Requires at least: 5.0
+Requires at least: 6.0
 Tested up to: 6.2.2
 Stable tag: 1.9
 Requires PHP: 7.0+
@@ -102,14 +102,19 @@ Both of them are useful. It depends on your need. Phrase mode can have solid res
 
 == Screenshots ==
 
-1. Phrase Mode Suggestions
-2. Word By Word Suggestions
-3. Did You Mean
-4. Essential Settings
-5. Advance Settings
-6. Dashboard Analytics
-7. User Eye - QMean Dashboard Analytics
-8. QMean Field Recognizer
+1. Word By Word Suggestions
+2. Phrase Mode Suggestions
+3. Search Block Settings
+4. Did You Mean
+5. Did You Mean Block
+6. Did You Mean Block Settings
+7. Plugin Settings: Essential Setup
+8. Plugin Settings: Suggestion Box Styles
+9. Plugin Settings: Shortcodes
+10. Plugin Settings: Advance Settings
+11. Dashboard Analytics
+12. User Eye - QMean Dashboard Analytics
+13. QMean Field Recognizer
 
 == Changelog ==
 
@@ -187,7 +192,7 @@ Both of them are useful. It depends on your need. Phrase mode can have solid res
 * Fixed:     PHP notice for uninstallation callback 
 * Fixed:     PHP warning: Timeout exceeded in regular expression match
 * Optimized: Early return when enough suggestions found
-* Updated:   Readme file
+* Updated:   Readme file and plugin assets
 
 
 == Upgrade Notice ==
