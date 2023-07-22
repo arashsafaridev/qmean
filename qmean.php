@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       QMean
  * Description:       Ajax smart keyword suggestions and fix typos for better results by showing "Did You Mean", Google style! Simple, Minimal, Smart and Fast. Plus an analytics dashboard for searched queries
- * Version:           1.9.0
+ * Version:           2.0
  * Author:            Arash Safari
  * Author URI:        https://github.com/arashsafaridev/qmean
  * Text Domain:       qmean
@@ -18,7 +18,7 @@
  */
 
 if(!defined('QMEAN_PLUGIN_VERSION')) {
-    define('QMEAN_PLUGIN_VERSION', '1.9.0');
+    define('QMEAN_PLUGIN_VERSION', '2.0.0');
 }
 
 if(!defined('QMEAN_URL')) {

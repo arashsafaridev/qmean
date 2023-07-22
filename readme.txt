@@ -3,7 +3,7 @@ Contributors: arashsafari
 Tags: search,suggestion,optimization,better search
 Requires at least: 6.0
 Tested up to: 6.2.2
-Stable tag: 1.9
+Stable tag: 2.0
 Requires PHP: 7.0+
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -194,6 +194,8 @@ Both of them are useful. It depends on your need. Phrase mode can have solid res
 * Optimized: Early return when enough suggestions found
 * Updated:   Readme file and plugin assets
 
+= 1.9.1 =
+* Add did you mean asset files 
 
 == Upgrade Notice ==
 
