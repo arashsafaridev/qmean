@@ -83,9 +83,9 @@
        <a href="https://github.com/arashsafaridev/qmean/" target="_blank"><?php _e('GitHub','qmean');?></a>
       </div>
       <div class="qmean-d-flex between">
-       <span><?php _e('Liked the plugin?','qmean');?></span>
-       <a href="https://wordpress.org/plugins/qmean/#reviews" class="button button-primary" target="_blank"><?php _e('Write a review','qmean');?></a>
-       <a href="https://forms.gle/mgESz8C5n2zvEyWt9" class="button button-primary" target="_blank"><?php _e('Take the survey ','qmean');?></a>
+       <span><?php _e('Make QMean better','qmean');?></span>
+       <a href="https://wordpress.org/plugins/qmean/#reviews" class="button button-primary qmean-button-review" target="_blank"><?php _e('Write a review','qmean');?></a>
+       <a href="https://forms.gle/mgESz8C5n2zvEyWt9" class="button button-secondary" target="_blank"><?php _e('Take the survey ','qmean');?></a>
       </div>
     </div>
 </div>

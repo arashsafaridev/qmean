@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: QMean\n"
 "Report-Msgid-Bugs-To: https://wedevs.com/account/tickets/\n"
-"POT-Creation-Date: 2022-07-23 21:38+0430\n"
-"PO-Revision-Date: 2022-07-23 21:38+0430\n"
+"POT-Creation-Date: 2023-07-22 11:49+0300\n"
+"PO-Revision-Date: 2023-07-22 11:49+0300\n"
 "Last-Translator: \n"
 "Language-Team: <arashsafari.dev@gmail.com>\n"
 "Language: en_US\n"
@@ -17,218 +17,567 @@ msgstr ""
 "X-Poedit-KeywordsList: __;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;"
 "_nx_noop:1,2,3c;esc_attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;"
 "esc_html_x:1,2c\n"
-"X-Poedit-Basepath: .\n"
+"X-Poedit-Basepath: ..\n"
 "X-Textdomain-Support: yes\n"
 "X-Generator: Poedit 3.0.1\n"
-"X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPath-1: ..\n"
+"X-Poedit-SearchPath-0: languages\n"
+"X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: blocks/did-you-mean/build\n"
+"X-Poedit-SearchPathExcluded-1: blocks/did-you-mean/node_modules\n"
 
-#: ../inc/class-ajax.php:98
+#: blocks/did-you-mean/src/edit.js:40 blocks/did-you-mean/src/edit.js:41
+msgid "Did you mean?"
+msgstr ""
+
+#: blocks/did-you-mean/src/edit.js:47 blocks/did-you-mean/src/save.js:29
+msgid "<Suggested"
+msgstr ""
+
+#: blocks/did-you-mean/src/edit.js:47 blocks/did-you-mean/src/save.js:29
+msgid "words"
+msgstr ""
+
+#: blocks/did-you-mean/src/edit.js:48 blocks/did-you-mean/src/save.js:29
+msgid "will go here>"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:44
+msgid "Post title"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:45
+msgid "Post excerpt"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:46
+msgid "Post content"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:47
+msgid "Terms"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:48
+msgid "Post meta"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:110 inc/class-qmean.php:606
+#: inc/class-qmean.php:607 templates/settings.php:29
+msgid "QMean"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:134
+msgid "Activate QMean"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:159
+#: templates/settings.php:117 templates/settings.php:128
+msgid "Auto Set Parent Position"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:160
+msgid "This will help positioning suggestion box."
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:186
+msgid "Do nothing!"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:190
+msgid "Set to relative"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:194
+msgid "Set to absolute"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:201
+msgid "Post types"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:210
+#: templates/settings.php:378
+msgid "Search in"
+msgstr ""
+
+#: blocks/did-you-mean/src/filter-search-block.js:222
+msgid "Customize suggestion box styles"
+msgstr ""
+
+#: inc/class-ajax.php:100
 msgid "Settings saved successfully!"
 msgstr ""
 
-#: ../inc/class-ajax.php:188 ../inc/class-ajax.php:221
+#: inc/class-ajax.php:190 inc/class-ajax.php:223
 msgid "Please select an element"
 msgstr ""
 
-#: ../inc/class-ajax.php:200
+#: inc/class-ajax.php:202
 msgid ""
 "Saved successfully! Please refresh the page to check the selector by typing "
 "three characters which you know it will lead to results"
 msgstr ""
 
-#: ../inc/class-ajax.php:231
+#: inc/class-ajax.php:233
 msgid "Something went wrong!"
 msgstr ""
 
-#: ../inc/class-qmean.php:235
+#: inc/class-qmean.php:248
 #, php-format
 msgid "Saving query %s failed"
 msgstr ""
 
-#: ../inc/class-qmean.php:240
+#: inc/class-qmean.php:253
 msgid "Please move your mouse and click on your search input field"
 msgstr ""
 
-#: ../inc/class-qmean.php:241
+#: inc/class-qmean.php:254
 msgid "Please click on your field"
 msgstr ""
 
-#: ../inc/class-qmean.php:262
+#: inc/class-qmean.php:275
 msgid "Type to search"
 msgstr ""
 
-#: ../inc/class-qmean.php:270
+#: inc/class-qmean.php:283
 msgid "Search"
 msgstr ""
 
-#: ../inc/class-qmean.php:335 ../inc/class-qmean.php:535
-#: ../inc/class-qmean.php:536 ../templates/settings.php:17
+#: inc/class-qmean.php:348 inc/class-qmean.php:617 inc/class-qmean.php:618
+#: templates/settings.php:16
 msgid "Settings"
 msgstr ""
 
-#: ../inc/class-qmean.php:377
+#: inc/class-qmean.php:392
 msgid "Did you mean"
 msgstr ""
 
-#: ../inc/class-qmean.php:505
+#: inc/class-qmean.php:587
 msgid "Loading ..."
 msgstr ""
 
-#: ../inc/class-qmean.php:506
+#: inc/class-qmean.php:588
 msgid "Back"
 msgstr ""
 
-#: ../inc/class-qmean.php:507
+#: inc/class-qmean.php:589
 msgid "Nothing to suggest! Click to see all the results."
 msgstr ""
 
-#: ../inc/class-qmean.php:508
+#: inc/class-qmean.php:590
 msgid "Please choose a field which is an input like input or textarea"
 msgstr ""
 
-#: ../inc/class-qmean.php:509
+#: inc/class-qmean.php:591
 msgid "is not valid!"
 msgstr ""
 
-#: ../inc/class-qmean.php:510
+#: inc/class-qmean.php:592
 msgid "Save Selector"
 msgstr ""
 
-#: ../inc/class-qmean.php:511
+#: inc/class-qmean.php:593
 msgid "Your selector is"
 msgstr ""
 
-#: ../inc/class-qmean.php:524 ../inc/class-qmean.php:525
-msgid "QMean"
-msgstr ""
-
-#: ../templates/dashboard/dashboard.php:7
+#: templates/dashboard/dashboard.php:7
 msgid "QMean Dashboard"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:9
+#: templates/dashboard/dashboard.php:9
 msgid ""
 "You can see all user's searched queries here. <strong>Found posts</strong> "
 "is more helpful if you are using <strong>word by word</strong> mode."
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:12
+#: templates/dashboard/dashboard.php:12
 msgid ""
 "You need to define your search field selector first, so for better search "
 "suggestion please visit settings page"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:13
+#: templates/dashboard/dashboard.php:13
 msgid "Go to Settings page"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:20
+#: templates/dashboard/dashboard.php:20
 msgid "Total Hits"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:24
+#: templates/dashboard/dashboard.php:24
 msgid "Keywords"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:28
+#: templates/dashboard/dashboard.php:28
 msgid "No Results"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:33
+#: templates/dashboard/dashboard.php:33
 msgid "Search ..."
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:38
-#: ../templates/dashboard/modals/user-eye.php:9
+#: templates/dashboard/dashboard.php:38
+#: templates/dashboard/modals/user-eye.php:9
 msgid "Keyword"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:39
+#: templates/dashboard/dashboard.php:39
 msgid "Hit"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:40
+#: templates/dashboard/dashboard.php:40
 msgid "Found Posts"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:41
+#: templates/dashboard/dashboard.php:41
 msgid "Last seached"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:42
+#: templates/dashboard/dashboard.php:42
 msgid "Actions"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:51
+#: templates/dashboard/dashboard.php:51
 msgid "ago"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:53
+#: templates/dashboard/dashboard.php:53
 msgid "User Eye"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:54
+#: templates/dashboard/dashboard.php:54
 msgid "Remove"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:60
+#: templates/dashboard/dashboard.php:60
 msgid "Nothing is recorded yet!"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:71
+#: templates/dashboard/dashboard.php:71
 msgid "«"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:72
+#: templates/dashboard/dashboard.php:72
 msgid "»"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:80 ../templates/settings.php:409
+#: templates/dashboard/dashboard.php:80 templates/settings.php:476
 msgid "Need more support? please visit:"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:81 ../templates/settings.php:410
+#: templates/dashboard/dashboard.php:81 templates/settings.php:477
 msgid "WordPress Support"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:83 ../templates/settings.php:412
+#: templates/dashboard/dashboard.php:83 templates/settings.php:479
 msgid "GitHub"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:86 ../templates/settings.php:415
-msgid "Liked the plugin?"
+#: templates/dashboard/dashboard.php:86 templates/settings.php:482
+msgid "Make QMean better"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:87 ../templates/settings.php:416
+#: templates/dashboard/dashboard.php:87 templates/settings.php:483
 msgid "Write a review"
 msgstr ""
 
-#: ../templates/dashboard/dashboard.php:88 ../templates/settings.php:417
+#: templates/dashboard/dashboard.php:88 templates/settings.php:484
 msgid "Take the survey "
 msgstr ""
 
-#: ../templates/dashboard/modals/user-eye.php:3
+#: templates/dashboard/modals/user-eye.php:3
 msgid "User is seeing these suggestions for"
 msgstr ""
 
-#: ../templates/dashboard/modals/user-eye.php:32
+#: templates/dashboard/modals/user-eye.php:34
 msgid "No keywords found!"
 msgstr ""
 
-#: ../templates/settings.php:20
+#: templates/settings.php:20
 msgid "Essential Setup"
 msgstr ""
 
-#: ../templates/settings.php:23 ../templates/settings.php:30
+#: templates/settings.php:23
+msgid "Suggest Engine"
+msgstr ""
+
+#: templates/settings.php:28
+msgid "Google"
+msgstr ""
+
+#: templates/settings.php:32
+msgid "Search Engine"
+msgstr ""
+
+#: templates/settings.php:33
+msgid ""
+"You can set your suggest engine. Google is super fast, but might have "
+"irrelevant suggestions. QMean might be slower with more relevant "
+"suggestions. You can use <b>search mode</b> option to get the most out of "
+"every engine."
+msgstr ""
+
+#: templates/settings.php:41
+msgid "Block Enabled"
+msgstr ""
+
+#: templates/settings.php:45
+msgid ""
+"Since version 1.9, QMean supports blocks. You can use WordPress core block, "
+"<b>search</b>, to enable suggestions. Additionally, we added <b>Did You "
+"Mean</b> block to use it as a placeholder anywhere."
+msgstr ""
+
+#: templates/settings.php:46
+msgid ""
+"You can still use any CSS selector and QMean auto recognizer. These options "
+"are now available in <b>Advance Setup</b> tab."
+msgstr ""
+
+#: templates/settings.php:48
+msgid "QMean Blocks"
+msgstr ""
+
+#: templates/settings.php:50
+msgid ""
+"We added <b>Did You Mean</b> block and customized WP's search core block."
+msgstr ""
+
+#: templates/settings.php:52
+msgid ""
+"Did You Mean block is a placeholder of the suggestions when no result found. "
+"You can add it anywhere like a normal block and style it as you want."
+msgstr ""
+
+#: templates/settings.php:55
+msgid ""
+"Since version 1.9, <b>WP search</b> block has <b>Qmean Settings</b> when "
+"adding search block. You can enable it and config it as you see fit."
+msgstr ""
+
+#: templates/settings.php:62 templates/settings.php:71
+msgid "Search Mode"
+msgstr ""
+
+#: templates/settings.php:67
+msgid "Word By Word"
+msgstr ""
+
+#: templates/settings.php:68
+msgid "Phrase"
+msgstr ""
+
+#: templates/settings.php:72
+msgid ""
+"Word by word will compelete the search query on every word, individually, "
+"but phrase mode will get the phrase containing the word. Word by word may "
+"produce keyword combinations that won't match to any result but can help the "
+"SEO by reproducing them"
+msgstr ""
+
+#: templates/settings.php:79 templates/settings.php:88
+#: templates/settings.php:104
+msgid "RTL Support"
+msgstr ""
+
+#: templates/settings.php:84 templates/settings.php:100
+#: templates/settings.php:288 templates/settings.php:305
+#: templates/settings.php:340
+msgid "No"
+msgstr ""
+
+#: templates/settings.php:85 templates/settings.php:101
+#: templates/settings.php:304 templates/settings.php:341
+msgid "Yes"
+msgstr ""
+
+#: templates/settings.php:89
+msgid "Instead of using left for positioning it will use right instead"
+msgstr ""
+
+#: templates/settings.php:95
+msgid "Submit After Click"
+msgstr ""
+
+#: templates/settings.php:105
+msgid "Submit the form after clicking on suggestion item"
+msgstr ""
+
+#: templates/settings.php:112
+msgid "Suggestion Box Styles"
+msgstr ""
+
+#: templates/settings.php:122
+msgid "Do Nothing!"
+msgstr ""
+
+#: templates/settings.php:123
+msgid "Relative"
+msgstr ""
+
+#: templates/settings.php:124
+msgid "Absolute"
+msgstr ""
+
+#: templates/settings.php:125
+msgid "Fixed"
+msgstr ""
+
+#: templates/settings.php:129
+msgid ""
+"<strong>IMPORTANT!</strong> Input parent's postion needs to be set for "
+"suggestion wrapper to appear correctly. If the parent doesn't have any "
+"position this can automatically add it. Relative is common and won't harm"
+msgstr ""
+
+#: templates/settings.php:135
+msgid "Suggestions Positioning"
+msgstr ""
+
+#: templates/settings.php:141
+msgid "CSS z-index"
+msgstr ""
+
+#: templates/settings.php:145
+msgid "CSS left"
+msgstr ""
+
+#: templates/settings.php:149
+msgid "CSS Top"
+msgstr ""
+
+#: templates/settings.php:155
+msgid "Width"
+msgstr ""
+
+#: templates/settings.php:159
+msgid "Height"
+msgstr ""
+
+#: templates/settings.php:164
+msgid "Suggestion Result Positioning"
+msgstr ""
+
+#: templates/settings.php:165
+msgid ""
+"Use units too like 50px, 5%, 5rem or any CSS standard unit; Please make sure "
+"that the parent of the input has a position of relative or absolute. Use - "
+"(dash) to automate each value"
+msgstr ""
+
+#: templates/settings.php:166
+msgid ""
+"If RTL support is enabled, the <b>left</b> value will act as <b>right</b> "
+"attribute."
+msgstr ""
+
+#: templates/settings.php:167
+msgid ""
+"You can also use <code>#qmean-suggestion-results</code> selector for "
+"suggestion wrapper and <code>.qmean-suggestion-item</code> for suggestion "
+"item in your CSS file for better styling. Use <code>.qmean-typo-suggestion</"
+"code> for DidYouMean box after the search."
+msgstr ""
+
+#: templates/settings.php:173
+msgid "Suggestions Styles"
+msgstr ""
+
+#: templates/settings.php:179
+msgid "Background Color"
+msgstr ""
+
+#: templates/settings.php:183
+msgid "Border Radius"
+msgstr ""
+
+#: templates/settings.php:187
+msgid "Padding"
+msgstr ""
+
+#: templates/settings.php:192
+msgid "Suggestion Wrapper Styling"
+msgstr ""
+
+#: templates/settings.php:193
+msgid ""
+"Enter standard CSS values like color #ffffff, border radius 0px 0px 0px 0px, "
+"padding 0px 0px 0px 0px. Any standard CSS unit is allowed like em, rem, % "
+"and  ... . order of values is: top right bottom left. Seperate with space."
+msgstr ""
+
+#: templates/settings.php:199
+msgid "Shortcodes"
+msgstr ""
+
+#: templates/settings.php:202
+msgid "QMean Shortcode"
+msgstr ""
+
+#: templates/settings.php:207
+msgid "Instead of selector (above solution) you can use the shortcode."
+msgstr ""
+
+#: templates/settings.php:209
+msgid "How to use, what are the options? and best practices"
+msgstr ""
+
+#: templates/settings.php:212
+msgid ""
+"Use just <code>[qmean]</code> anywhere you want; Post/Page contents, Widgets "
+"and ..."
+msgstr ""
+
+#: templates/settings.php:213
+msgid "You can use these options to customize:"
+msgstr ""
+
+#: templates/settings.php:232
+msgid "Best practices:"
+msgstr ""
+
+#: templates/settings.php:233
+msgid ""
+"Use specific named attribute if you don't know how to use CSS; like "
+"button_height, button_bg and ..."
+msgstr ""
+
+#: templates/settings.php:234
+msgid ""
+"Use in set! Either use style attributes for all of them or use class "
+"attribute for all of them; like form_class, input_class, button_class OR "
+"form_style, input_style and button_style!"
+msgstr ""
+
+#: templates/settings.php:235
+msgid ""
+"* You can use all of them but it won't make sense in general and it might "
+"get confusing :)"
+msgstr ""
+
+#: templates/settings.php:242
+msgid "Did You Mean Shortcode"
+msgstr ""
+
+#: templates/settings.php:247
+msgid ""
+"Use this shortcode in the search page if your theme does not support "
+"<code>get_search_form</code>. <code>wrapper_class</code> is optional"
+msgstr ""
+
+#: templates/settings.php:252
+msgid "Advance Setup"
+msgstr ""
+
+#: templates/settings.php:255 templates/settings.php:262
 msgid "Search Input Selector"
 msgstr ""
 
-#: ../templates/settings.php:28
+#: templates/settings.php:260
 msgid "Use QMean's auto recognizer on front-end"
 msgstr ""
 
-#: ../templates/settings.php:31
+#: templates/settings.php:264
 msgid ""
 "This is the field which will show the suggestions by typing 3 letters. Use "
 "CSS selector in full. e.g. <code>.selector-class</code> OR <code>#selector-"
@@ -236,18 +585,18 @@ msgid ""
 "any field you already have on your theme!"
 msgstr ""
 
-#: ../templates/settings.php:34
+#: templates/settings.php:267
 msgid "How to find the selector fast?"
 msgstr ""
 
-#: ../templates/settings.php:36
+#: templates/settings.php:269
 msgid ""
 "To find the selector, on Chrome or Firefox, right click on your search input "
 "field, then click Inspect Element, then you will see the class or the id "
 "value for the field. If id exists choose it, if not you need to use CSS. "
 msgstr ""
 
-#: ../templates/settings.php:37
+#: templates/settings.php:270
 msgid ""
 "The field might have multiple classes, sperated with spaces; One is enough "
 "then add a dot <code>.</code> at the beginning. It should be like <code>."
@@ -255,14 +604,14 @@ msgid ""
 "unique like <code>.first.second.third.fourth</code>."
 msgstr ""
 
-#: ../templates/settings.php:38
+#: templates/settings.php:271
 msgid ""
 "Sometimes the parent element has unique id or class like &lt;form&gt; or &lt;"
 "div&gt; then you can use it like <code>#formId input</code> or "
 "<code>#firmId .inputClass</code>."
 msgstr ""
 
-#: ../templates/settings.php:42
+#: templates/settings.php:275
 #, php-format
 msgid ""
 "<strong>NOTE: </strong>Just add <code>?qmean_field_recognizer</code> at the "
@@ -272,334 +621,122 @@ msgid ""
 "s=something&qmean_field_recognizer "
 msgstr ""
 
-#: ../templates/settings.php:48 ../templates/settings.php:59
-msgid "Auto Set Parent Position"
-msgstr ""
-
-#: ../templates/settings.php:53
-msgid "Do Nothing!"
-msgstr ""
-
-#: ../templates/settings.php:54
-msgid "Relative"
-msgstr ""
-
-#: ../templates/settings.php:55
-msgid "Absolute"
-msgstr ""
-
-#: ../templates/settings.php:56
-msgid "Fixed"
-msgstr ""
-
-#: ../templates/settings.php:60
-msgid ""
-"<strong>IMPORTANT!</strong> Input parent's postion needs to be set for "
-"suggestion wrapper to appear correctly. If the parent doesn't have any "
-"position this can automatically add it. Relative is common and won't harm"
-msgstr ""
-
-#: ../templates/settings.php:66
-msgid "Suggestions Positioning"
-msgstr ""
-
-#: ../templates/settings.php:70
-msgid "CSS z-index"
-msgstr ""
-
-#: ../templates/settings.php:72
-msgid "CSS left"
-msgstr ""
-
-#: ../templates/settings.php:74
-msgid "CSS Top"
-msgstr ""
-
-#: ../templates/settings.php:76
-msgid "Width"
-msgstr ""
-
-#: ../templates/settings.php:78
-msgid "Height"
-msgstr ""
-
-#: ../templates/settings.php:81
-msgid "Suggestion Result Positioning"
-msgstr ""
-
-#: ../templates/settings.php:82
-msgid ""
-"Use units too like 50px, 5%, 5rem or any CSS standard unit; Please make sure "
-"that the parent of the input has a position of relative or absolute. Use - "
-"(dash) to automate each value"
-msgstr ""
-
-#: ../templates/settings.php:83
-msgid ""
-"You can also use <code>#qmean-suggestion-results</code> selector for "
-"suggestion wrapper and <code>.qmean-suggestion-item</code> for suggestion "
-"item in your CSS file for better styling. Use <code>.qmean-typo-suggestion</"
-"code> for DidYouMean box after the search."
-msgstr ""
-
-#: ../templates/settings.php:89
-msgid "Suggestions Styling"
-msgstr ""
-
-#: ../templates/settings.php:93
-msgid "Background Color"
-msgstr ""
-
-#: ../templates/settings.php:95
-msgid "Border Radius"
-msgstr ""
-
-#: ../templates/settings.php:97
-msgid "Padding"
-msgstr ""
-
-#: ../templates/settings.php:100
-msgid "Suggestion Wrapper Styling"
-msgstr ""
-
-#: ../templates/settings.php:101
-msgid ""
-"Enter standard CSS values like color #ffffff, border radius 0px 0px 0px 0px, "
-"padding 0px 0px 0px 0px. Any standard CSS unit is allowed like em, rem, % "
-"and  ... . order of values is: top right bottom left"
-msgstr ""
-
-#: ../templates/settings.php:107 ../templates/settings.php:116
-#: ../templates/settings.php:132
-msgid "RTL Support"
-msgstr ""
-
-#: ../templates/settings.php:112 ../templates/settings.php:128
-#: ../templates/settings.php:221 ../templates/settings.php:238
-#: ../templates/settings.php:273
-msgid "No"
-msgstr ""
-
-#: ../templates/settings.php:113 ../templates/settings.php:129
-#: ../templates/settings.php:237 ../templates/settings.php:274
-msgid "Yes"
-msgstr ""
-
-#: ../templates/settings.php:117
-msgid "Instead of using left for positioning it will use right instead"
-msgstr ""
-
-#: ../templates/settings.php:123
-msgid "Submit After Click"
-msgstr ""
-
-#: ../templates/settings.php:133
-msgid "Submit the form after clicking on suggestion item"
-msgstr ""
-
-#: ../templates/settings.php:140
-msgid "Shortcode"
-msgstr ""
-
-#: ../templates/settings.php:143
-msgid "QMean Shortcode"
-msgstr ""
-
-#: ../templates/settings.php:148
-msgid "Instead of selector (above solution) you can use the shortcode."
-msgstr ""
-
-#: ../templates/settings.php:150
-msgid "How to use, what are the options? and best practices"
-msgstr ""
-
-#: ../templates/settings.php:153
-msgid ""
-"Use just <code>[qmean]</code> anywhere you want; Post/Page contents, Widgets "
-"and ..."
-msgstr ""
-
-#: ../templates/settings.php:154
-msgid "You can use these options to customize:"
-msgstr ""
-
-#: ../templates/settings.php:173
-msgid "Best practices:"
-msgstr ""
-
-#: ../templates/settings.php:174
-msgid ""
-"Use specific named attribute if you don't know how to use CSS; like "
-"button_height, button_bg and ..."
-msgstr ""
-
-#: ../templates/settings.php:175
-msgid ""
-"Use in set! Either use style attributes for all of them or use class "
-"attribute for all of them; like form_class, input_class, button_class OR "
-"form_style, input_style and button_style!"
-msgstr ""
-
-#: ../templates/settings.php:176
-msgid ""
-"* You can use all of them but it won't make sense in general and it might "
-"get confusing :)"
-msgstr ""
-
-#: ../templates/settings.php:183
-msgid "Did You Mean Shortcode"
-msgstr ""
-
-#: ../templates/settings.php:188
-msgid ""
-"Use this shortcode in the search page if your theme does not support "
-"<code>get_search_form</code>. <code>wrapper_class</code> is optional"
-msgstr ""
-
-#: ../templates/settings.php:193
-msgid "Advance Setup"
-msgstr ""
-
-#: ../templates/settings.php:197 ../templates/settings.php:206
-msgid "Search Mode"
-msgstr ""
-
-#: ../templates/settings.php:202
-msgid "Word By Word"
-msgstr ""
-
-#: ../templates/settings.php:203
-msgid "Phrase"
-msgstr ""
-
-#: ../templates/settings.php:207
-msgid ""
-"Word by word will compelete the search query on every word, individually, "
-"but phrase mode will get the phrase containing the word. Word by word may "
-"produce keyword combinations that won't match to any result but can help the "
-"SEO by reproducing them"
-msgstr ""
-
-#: ../templates/settings.php:214 ../templates/settings.php:224
+#: templates/settings.php:281 templates/settings.php:291
 msgid "Remove stop words"
 msgstr ""
 
-#: ../templates/settings.php:219
+#: templates/settings.php:286
 msgid "Basic"
 msgstr ""
 
-#: ../templates/settings.php:220
+#: templates/settings.php:287
 msgid "Strict"
 msgstr ""
 
-#: ../templates/settings.php:226
+#: templates/settings.php:293
 msgid ""
 "The words which are generally filtered out before processing a natural "
 "language. e.g. a, the, and, or ..."
 msgstr ""
 
-#: ../templates/settings.php:232 ../templates/settings.php:241
+#: templates/settings.php:299 templates/settings.php:308
 msgid "Merge Searched Queries"
 msgstr ""
 
-#: ../templates/settings.php:243
+#: templates/settings.php:310
 msgid ""
 "If set to yes, previous queries searched by other users which have more than "
 "0 results will rank higher based on hit and found_posts"
 msgstr ""
 
-#: ../templates/settings.php:250 ../templates/settings.php:259
+#: templates/settings.php:317 templates/settings.php:326
 msgid "Keyword Efficiency"
 msgstr ""
 
-#: ../templates/settings.php:255
+#: templates/settings.php:322
 msgid "On"
 msgstr ""
 
-#: ../templates/settings.php:256
+#: templates/settings.php:323
 msgid "Off"
 msgstr ""
 
-#: ../templates/settings.php:261
+#: templates/settings.php:328
 msgid ""
 "If on it will count ration of matched characters and total phrase length. "
 "Turn it off if your content is optimized with keywords in a row."
 msgstr ""
 
-#: ../templates/settings.php:268 ../templates/settings.php:277
+#: templates/settings.php:335 templates/settings.php:344
 msgid "Ignore Shortcodes"
 msgstr ""
 
-#: ../templates/settings.php:278
+#: templates/settings.php:345
 msgid "If yes, shorcodes and their content will be ignored"
 msgstr ""
 
-#: ../templates/settings.php:285 ../templates/settings.php:291
+#: templates/settings.php:352 templates/settings.php:358
 msgid "Limit Results"
 msgstr ""
 
-#: ../templates/settings.php:292
+#: templates/settings.php:359
 msgid ""
 "Number of results to show. Your search may have a lot of matched keywords. "
 "This number will limit them."
 msgstr ""
 
-#: ../templates/settings.php:298 ../templates/settings.php:304
+#: templates/settings.php:365 templates/settings.php:371
 msgid "Found phrase word count"
 msgstr ""
 
-#: ../templates/settings.php:305
+#: templates/settings.php:372
 msgid "Trim the phrase to by words to this number"
 msgstr ""
 
-#: ../templates/settings.php:311
-msgid "Search in"
-msgstr ""
-
-#: ../templates/settings.php:318
+#: templates/settings.php:385
 msgid "Posts titles"
 msgstr ""
 
-#: ../templates/settings.php:322
+#: templates/settings.php:389
 msgid "Posts excerpt"
 msgstr ""
 
-#: ../templates/settings.php:326
+#: templates/settings.php:393
 msgid "Posts content"
 msgstr ""
 
-#: ../templates/settings.php:330
+#: templates/settings.php:397
 msgid "Term Taxonomies"
 msgstr ""
 
-#: ../templates/settings.php:334
+#: templates/settings.php:401
 msgid "Posts Metas"
 msgstr ""
 
-#: ../templates/settings.php:338
+#: templates/settings.php:405
 msgid "Search Areas"
 msgstr ""
 
-#: ../templates/settings.php:339
+#: templates/settings.php:406
 msgid ""
 "Hidden keys (internal values like order metas and such) which start with "
 "underscore are not included. On large databases PostMetas may slow down the "
 "suggestions. Be sure or check your load time first."
 msgstr ""
 
-#: ../templates/settings.php:346 ../templates/settings.php:365
+#: templates/settings.php:413 templates/settings.php:432
 msgid "Include Post Types"
 msgstr ""
 
-#: ../templates/settings.php:366
+#: templates/settings.php:433
 msgid "Uncheck uneccessary post types for better performance"
 msgstr ""
 
-#: ../templates/settings.php:377 ../templates/settings.php:383
+#: templates/settings.php:444 templates/settings.php:450
 msgid "Custom Action Hook"
 msgstr ""
 
-#: ../templates/settings.php:384
+#: templates/settings.php:451
 msgid ""
 "If you need to use different action hook instead of <code>get_search_form</"
 "code>, enter the action name here. It will be usefull if you are using a "
@@ -607,11 +744,11 @@ msgid ""
 "shown"
 msgstr ""
 
-#: ../templates/settings.php:397
+#: templates/settings.php:464
 msgid "Save Settings"
 msgstr ""
 
-#: ../templates/settings.php:398
+#: templates/settings.php:465
 msgid "Back to Dashboard"
 msgstr ""
 

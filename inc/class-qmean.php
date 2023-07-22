@@ -51,11 +51,17 @@ class QMean
 	{
 		// do on activation
 		register_activation_hook(QMEAN_FILE, [$this, 'qmean_do_on_activation']);
-		register_uninstall_hook( QMEAN_FILE, [$this, 'qmean_do_on_uninstallation']);
 
-		add_action('admin_menu',                [$this, 'add_admin_menu']);
-		add_action('admin_enqueue_scripts',     [$this, 'add_admin_scripts']);
-		add_action('wp_enqueue_scripts',     	[$this, 'add_scripts']);
+		add_action( 'admin_menu',                [$this, 'add_admin_menu'] );
+		add_action( 'admin_enqueue_scripts',     [$this, 'add_admin_scripts'] );
+		add_action( 'wp_enqueue_scripts',     	[$this, 'add_scripts'] );
+
+		// Add Did You Mean block
+		add_action( 'init', 					[$this, 'create_block'] );
+		
+		// customize core search block
+		add_filter( 'render_block', array( $this, 'customize_search_block' ), 10, 2 );
+
 
 		$settings = $this->get_data();
 		$this->settings = $settings;
@@ -65,7 +71,8 @@ class QMean
 		}
 
 		// check update compatibility
-		add_action('plugins_loaded',   [$this, 'update_plugin']);
+		add_action('upgrader_process_complete',   [$this, 'update_plugin'], 10, 2);
+		
 		// Inject a Div before the search form in search page
 		add_action('get_search_form',  [$this, 'typo_suggestion']);
 		// this will hook did you mean box. You just need to use do_action('qmean_suggestion') anywhere you want in your theme
@@ -102,7 +109,8 @@ class QMean
 
 		$options = [
 			'sql_patterner' 		  => $sql_patterner,
-			'search_mode' 			  => 'phrase',
+			'suggest_engine' 		  => 'qmean',
+			'search_mode' 			  => 'word_by_word',
 			'sensitivity' 			  => 3,
 			'merge_previous_searched' => 'yes',
 			'keyword_efficiency'      => 'on',
@@ -146,12 +154,13 @@ class QMean
 	 */
 	public function qmean_do_on_activation()
 	{
-		update_option('_qmean_version',QMEAN_PLUGIN_VERSION);
+		update_option( '_qmean_version',QMEAN_PLUGIN_VERSION, 'no' );
 		// set defaults
 		
 		$options = $this->get_default_options();
 
-		update_option('qmean_options',$options);
+		$updated_options = wp_parse_args($this->settings, $options);
+		update_option( 'qmean_options', $updated_options, 'no' );
 
 		// create report db
 		$keyword_table_status = get_option('_qmean_keyword_table','no');
@@ -174,23 +183,6 @@ class QMean
 		}
 	}
 
-	/**
-	 * Run on plugin uninstallation
-	 * 
-	 * remove plugin's internal settings
-	 * drop the keywords table
-	 * 
-	 */
-	public function qmean_do_on_uninstallation()
-	{
-		delete_option('_qmean_version');
-		delete_option('_qmean_keyword_table');
-		delete_option('qmean_options');
-		global $wpdb;
-		$keyword_table_name = $wpdb->prefix . "qmean_keyword";
-		$sql = "DROP TABLE  $keyword_table_name";
-		$wpdb->query($sql);
-	}
 
 	/**
 	 * Check the regex compatibily base on mysql version
@@ -200,20 +192,41 @@ class QMean
 	 * 
 	 * @return string 	the valid pattern 
 	 */
-	private function qmean_test_mysql_compatibility() {
+	public function qmean_test_mysql_compatibility()
+	{
 		global $wpdb;
-		$regext_pattern = '[[:<:]](h.*)';
-		$table = $wpdb->prefix . "posts";
-		$sql = "SELECT COUNT(*) FROM $table WHERE LOWER(post_title) REGEXP %s";
-		$results 	 = $wpdb->get_results(
-			$wpdb->prepare($sql,$regext_pattern)
+
+		// get current error reporting level.
+		$error_level = error_reporting();
+		// diable warnings for huge content.
+		// to avoid warning: Timeout exceeded in regulur expression.
+		error_reporting(E_ALL ^ E_WARNING);
+		// don't log WPDB errors. just for this query
+		$wpdb->suppress_errors(true);
+
+		$table = $wpdb->prefix.'options';
+		$sql = "SELECT option_name FROM $table WHERE LOWER(option_name) REGEXP %s";
+		$results = $wpdb->get_results(
+			$wpdb->prepare($sql, array("\\b(site.*)\\b"))
 		);
-		if (!empty($wpdb->last_error) &&
-			strpos($wpdb->last_error, 'Illegal argument to a regular expression') !== false
-		) {
+
+		// restore WPDB error logging.
+		$wpdb->suppress_errors(false);
+		// restore error reporting level.
+		error_reporting($error_level);
+		
+		if (count($results) > 0) {
 			return '\\\\b(%s)\\\\b';
 		} else {
-			return '[[:<:]](%s)';
+			$results = $wpdb->get_results(
+				$wpdb->prepare($sql, array("[[:<:]](site.*)"))
+			);
+
+			if ( count($results) ) {
+				return '[[:<:]](%s)';
+			} else {
+				return '/[[:<:]](%s)/';
+			}
 		}
 	}
 
@@ -283,8 +296,8 @@ class QMean
 
 			$custom_areas = isset($atts['areas']) && !empty($atts['areas']) ? ' data-areas="'.$atts['areas'].'"' : '';
 			$custom_post_types = isset($atts['post_types']) && !empty($atts['post_types']) ? ' data-post_types="'.$atts['post_types'].'"' : '';
-			$out  = '<form'.$form_class.$form_style.' method="get" action="'.get_home_url().'">';
-			$out .='<input type="text" name="s" autocomplete="off" id="qmean-shortcode-search-field"'.$input_class.$input_style.' placeholder="'.$atts['placeholder'].'" value="'.get_search_query().'"'.$custom_areas.$custom_post_types.'>';
+			$out  = '<form'.$form_class.$form_style.' method="get" action="'.get_home_url().'"'.$custom_areas.$custom_post_types.'>';
+			$out .='<input type="text" name="s" autocomplete="off" id="qmean-shortcode-search-field"'.$input_class.$input_style.' placeholder="'.$atts['placeholder'].'" value="'.get_search_query().'">';
 			if ($atts['icon'] == 'yes') {
 				$out .='<button'.$button_style.$button_class.' type="submit"><svg width="25" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"	 viewBox="-255 347 100 100" style="enable-background:new -255 347 100 100;" xml:space="preserve"><path fill="#fff"  d="M-215.8,357c-17.5,0-31.8,14.3-31.8,31.8c0,17.5,14.3,31.8,31.8,31.8c8,0,15.3-3,20.9-7.8c2-1.8,3.8-3.8,5.3-6	c3.5-5.1,5.6-11.3,5.6-17.9C-184,371.3-198.3,357-215.8,357z M-215.8,412.6c-13.1,0-23.8-10.7-23.8-23.8c0-13.1,10.7-23.8,23.8-23.8	s23.8,10.7,23.8,23.8C-192,401.9-202.7,412.6-215.8,412.6z"/><path fill="#fff"  d="M-169.6,433.7L-169.6,433.7c-1.6,1.5-4.1,1.4-5.7-0.2l-19.7-20.8c2-1.8,3.8-3.8,5.3-6l20.2,21.3	C-167.9,429.7-168,432.2-169.6,433.7z"/><path fill="#fff"  d="M-189.6,406.7c-1.5,2.2-3.3,4.2-5.3,6L-189.6,406.7z"/></svg></button>';
 
@@ -343,7 +356,7 @@ class QMean
 	 * private method which has a public interface
 	 * 
 	 */
-	private function _typo_suggestion()
+	private function _typo_suggestion( $echo = true )
 	{
 		$qmean_fn = new QMeanFN();
 		$query = sanitize_text_field(get_query_var('s'));
@@ -374,7 +387,14 @@ class QMean
 
 		// if the queries are not the same as correct one
 		if (!empty($query) && mb_strtolower($query) != mb_strtolower($qmean_keyword)) {
-			echo '<div class="qmean-typo-suggestion">'.__('Did you mean','qmean').': <a class="qmean-typo-suggestion-link" href="'.get_search_link($qmean_keyword).'">'.$qmean_keyword.'</a></div>';
+			
+			if ($echo) {
+				$out = '<div class="qmean-typo-suggestion">'.__('Did you mean','qmean').': <a class="qmean-typo-suggestion-link" href="'.get_search_link($qmean_keyword).'">'.$qmean_keyword.'</a></div>';
+				echo $out;
+			} else {
+				$out = '<a class="qmean-typo-suggestion-link" href="'.get_search_link($qmean_keyword).'">'.$qmean_keyword.'</a>';
+				return $out;
+			}
 		}
 	}
 
@@ -383,25 +403,36 @@ class QMean
 	 */
 	public function typo_suggestion()
 	{
-		$this->_typo_suggestion();
+		global $wp_query;
+		if ( $wp_query->found_posts <= 0) {
+			$this->_typo_suggestion();
+		}
 	}
 
 	/**
 	 * Run on plugin updates 
 	 * check update process with wp options
 	 */
-	public function update_plugin()
+	public function update_plugin( $upgrader, $extra )
 	{
-		$upgrade_version = get_option('_qmean_upgrade_version_1_8g', 'no');
+		if( $extra['action'] === 'update' && $extra['type'] === 'plugin' && isset( $extra['plugins'] ) ) {
+			foreach( $extra['plugins'] as $plugin ) {
+				if( $plugin === QMEAN_BASENAME) {
+					// $current_version = get_option('_qmean_upgrade_version', '19');
 
-		if ($upgrade_version != 'yes') {
-			$settings = $this->settings;
+					// if (version_compare($current_version, QMEAN_PLUGIN_VERSION, '<')) {
+						
+					// }
 
-			$options = $this->get_default_options();
+					update_option( '_qmean_version', QMEAN_PLUGIN_VERSION, 'no' );
 
-			$updated_options = array_merge($options, $settings);
-			update_option('qmean_options', $updated_options);
-			update_option('_qmean_upgrade_version_1_8g', 'yes');
+					$options = $this->get_default_options();
+
+					$updated_options = wp_parse_args($this->settings, $options);
+					update_option('qmean_options',$updated_options, 'no');
+					set_transient( 'qmean_updated', 1, 604800 );
+				}
+			}
 		}
 
 	}
@@ -416,6 +447,55 @@ class QMean
 		return get_option($this->option_name, []);
 	}
 
+	/**
+	 * Registers the block using the metadata loaded from the `block.json` file.
+	 * Behind the scenes, it registers also all assets so they can be enqueued
+	 * through the block editor in the corresponding context.
+	 *
+	 * @see https://developer.wordpress.org/reference/functions/register_block_type/
+	 */
+	public function create_block() {
+		register_block_type( QMEAN_PATH . '/blocks/did-you-mean/build', array(
+			'render_callback' => array( $this, 'render_block' ),
+		) );
+	}
+	
+	public function render_block($attributes, $content)
+	{
+		$QMean = new QMean();
+		$out = $QMean->_typo_suggestion(false);
+
+		if ( ! empty( $out ) ) {
+			return preg_replace( '/<code>(.*?)<\/code>/s', $out, $content );
+		}
+	}
+
+	/**
+	 * Customize Search Block
+	 * 
+	 * @since  1.9.0
+	 * @param  string $block_content 	the block content
+	 * @param  array  $block 			the block attributes
+	 * @return string $block_content 	the updated block content
+	 */
+	public function customize_search_block( $block_content, $block ){
+		// If block is `core/image` we add new content related to the new attribute
+		if ( $block['blockName'] === 'core/search' && isset( $block['attrs']['isQmeanActive'] ) && $block['attrs']['isQmeanActive']) {
+			$attributes = $block['attrs'];
+			$post_types = isset( $attributes['postTypes'] ) ? implode( ",", array_column($attributes['postTypes'], 'id')) : '';
+			$areas      = isset( $attributes['searchIn'] ) ? implode( ",", array_column($attributes['searchIn'], 'id')) : '';
+
+			if ( !empty( $post_types ) ) {
+				$block_content = str_replace( '<form', '<form data-post_types="'.$post_types.'"', $block_content );
+			}
+
+			if ( !empty( $areas ) ) {
+				$block_content = str_replace( '<form', '<form data-areas="'.$areas.'"', $block_content );
+			}
+		}
+
+		return $block_content;
+	}
 
 	/**
 	 * Add Admin Scripts for the Ajax call
@@ -460,7 +540,7 @@ class QMean
 		wp_enqueue_style('qmean-style', QMEAN_URL. 'assets/css/qmean.css', false, QMEAN_PLUGIN_VERSION);
 		wp_enqueue_script('qmean-script', QMEAN_URL. 'assets/js/qmean.js', ['jquery'], QMEAN_PLUGIN_VERSION);
 		$settings 				 = $this->settings;
-		$input_selector 		 = !isset($settings['input_selector']) || empty($settings['input_selector']) ? '.qmean-shortcode-search-field, input[name="s"]' : '.qmean-shortcode-search-field, '.stripslashes($settings['input_selector']);
+		$input_selector 		 = !isset($settings['input_selector']) || empty($settings['input_selector']) ? '.qmean-block-search-form input[type=search],.qmean-shortcode-search-field, input[name="s"]' : '.qmean-block-search-form input[type=search], .qmean-shortcode-search-field, '.stripslashes($settings['input_selector']);
 		$zindex 				 = !isset($settings['suggestion_zindex']) ? '0' : $settings['suggestion_zindex'];
 		$posx 					 = !isset($settings['suggestion_posx']) ? '-' : $settings['suggestion_posx'];
 		$posy 					 = !isset($settings['suggestion_posy']) ? '-' : $settings['suggestion_posy'];
@@ -470,6 +550,7 @@ class QMean
 		$word_count 			 = empty($settings['word_count']) ? 5 : $settings['word_count'];
 		$limit_results 			 = empty($settings['limit_results']) ? 10 : $settings['limit_results'];
 		$search_mode 			 = empty($settings['search_mode']) ? '' : $settings['search_mode'];
+		$suggest_engine 		 = empty($settings['suggest_engine']) ? 'QMean' : $settings['suggest_engine'];
 		$merge_previous_searched = empty($settings['merge_previous_searched']) ? 'yes' : $settings['merge_previous_searched'];
 		$keyword_efficiency 	 = empty($settings['keyword_efficiency']) ? 'on' : $settings['keyword_efficiency'];
 		$ignore_shortcodes  	 = empty($settings['ignore_shortcodes']) ? 'no' : $settings['ignore_shortcodes'];
@@ -494,6 +575,7 @@ class QMean
 			'limit_results' 			  => $limit_results,
 			'parent_position' 			  => $parent_position,
 			'search_mode' 				  => $search_mode,
+			'suggest_engine' 			  => $suggest_engine,
 			'merge_previous_searched' 	  => $merge_previous_searched,
 			'keyword_efficiency' 		  => $keyword_efficiency,
 			'ignore_shortcodes' 		  => $ignore_shortcodes,

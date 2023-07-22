@@ -282,13 +282,26 @@ class QMeanFN
 
 							$matches = [];
 						}
-					} else if('posts_content' == $area) {
+					} else if('posts_content' == $area && $char_count > 1) {
+						
 						$table = $wpdb->prefix.'posts';
 						$sql = "SELECT post_content FROM $table WHERE post_status = 'publish' AND LOWER(post_content) REGEXP %s".$post_types_q;
+						
+						// get current error reporting level.
+						$error_level = error_reporting();
+						// diable warnings for huge content.
+						// to avoid warning: Timeout exceeded in regulur expression.
+						error_reporting(E_ALL ^ E_WARNING);
+						// don't log WPDB errors. just for this query
+						$wpdb->suppress_errors(true);
 						$results = $wpdb->get_results(
 							$wpdb->prepare($sql,$patterns['sql'])
 						);
-
+						// restore WPDB error logging.
+						$wpdb->suppress_errors(false);
+						// restore error reporting level.
+						error_reporting($error_level);
+						
 						if ($results) {
 							foreach ($results as $k => $result) {
 								$content = strip_tags($result->post_content);
@@ -332,12 +345,12 @@ class QMeanFN
 							$matches = [];
 						}
 					}
+
+					$suggestions = array_unique($suggestions,SORT_REGULAR);
+
+					if(count($suggestions) >= $limit_results) break;
 				}
 			}
-
-			$suggestions = array_unique($suggestions,SORT_REGULAR);
-
-			if(count($suggestions) >= $limit_results) break;
 		}
 
 		$suggestion_rated = [];
@@ -416,6 +429,46 @@ class QMeanFN
 	}
 
 	/**
+	 * Find the phrase via Google suggest
+	 *
+	 * @param string $query The query to search for
+	 * @return array $suggestions The suggestions
+	 */
+	public function google_suggest($query) {
+		
+		$url = 'https://clients1.google.com/complete/search?output=toolbar&hl=en&q='.$query;
+
+		$google_suggestions = [];
+
+		$body = wp_remote_get($url, [
+			'headers' => ['User-Agent' => 'PostmanRuntime/7.29.3'],
+			'timeout' => 10
+		]);
+
+		if ( is_wp_error( $body ) ) {
+			return $google_suggestions;
+		}
+
+		$code = wp_remote_retrieve_response_code( $body );
+
+		// read xml
+		if ( isset( $body['body'] ) && 200 === $code ) {
+			$xml = simplexml_load_string( $body['body'] );
+			if ( $xml ) {
+				$suggestions = $xml->CompleteSuggestion;
+				if ( $suggestions ) {
+					foreach ( $suggestions as $suggestion ) {
+						$google_suggestions[] = (string) $suggestion->suggestion['data'];
+					}
+				}
+				
+			}
+		}
+
+		return $google_suggestions;
+	}
+
+	/**
 	 * Public interface of query() method
 	 * ajax calls use it
 	 */
@@ -466,7 +519,13 @@ class QMeanFN
 	 * @param string 	$query 		the query searched
 	 */
 	public function find_typos($query) {
-		$suggestions = $this->query($query,'word_by_word');
+		$settings = get_option( $this->option_name, [] );
+
+		if ( $settings['suggest_engine'] === 'google' ) {
+			$suggestions = $this->google_suggest($query);
+		} else {
+			$suggestions = $this->query($query,'word_by_word');
+		}
 
 		return $suggestions;
 	}

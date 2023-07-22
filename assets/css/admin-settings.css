@@ -1,117 +1,142 @@
 /* Settings */
 .qmean-settings-logo {
-  position: absolute;
-  right: 1rem;
-  top: 0.7rem;
+	position: absolute;
+	right: 1rem;
+	top: 0.7rem;
 }
 .qmean-settings-notification {
-  display: none;
-  padding: 1em;
-  background: #e6eca1;
-  border: 1px solid #cddc39;
-  margin-bottom: 1em;
-  border-radius: 2px;
+	display: none;
+	padding: 1em;
+	background: #e6eca1;
+	border: 1px solid #cddc39;
+	margin-bottom: 1em;
+	border-radius: 2px;
 }
 .qmean-settings-notification.show {
-  display: block;
+	display: block;
 }
 .qmean-settings-notification.loading {
-  display: block;
-  background: #f9f9f9;
-  border: 1px solid #eee;
+	display: block;
+	background: #f9f9f9;
+	border: 1px solid #eee;
 }
 #qmean-settings .block label {
-  display: inline-block;
-  margin-bottom: 3px;
-  width: 30%;
+	display: inline-block;
+	margin-bottom: 3px;
+	width: 30%;
 }
 #qmean-settings .postbox {
-  padding: 1em 2em;
+	padding: 1em 2em;
 }
 #qmean-settings .form-table td p {
-  color: #555;
-  font-size: 13px;
+	color: #555;
 }
 .qmean-positioning input {
-  max-width: 100px;
+	max-width: 100px;
+}
+.qmean-positioning-fields,
+.qmean-styling-fields {
+	display: flex;
+	flex-direction: column;
+}
+.qmean-positioning-fields > div,
+.qmean-styling-fields > div {
+	margin-bottom: 1em;
+	display: flex;
+	align-items: center;
+}
+.qmean-positioning-fields > div > label,
+.qmean-styling-fields > div > label {
+	width: 120px;
+	display: flex;
 }
 .qmean-settings-back {
-  margin-left: 0.5rem !important;
+	margin-left: 0.5rem !important;
 }
 .qmean-settings-back,
 .qmean-settings-save {
-  margin-top: 0.5rem !important;
+	margin-top: 0.5rem !important;
 }
 .qmean-info {
-  background: #deeaf3;
-  border-radius: 0.25rem;
-  padding: 1rem !important;
-  margin-top: 15px;
+	background: #deeaf3;
+	border-radius: 0.25rem;
+	padding: 1rem !important;
+	margin-top: 15px;
 }
 .wp-pointer-content .qmean-info {
-  border-radius: 0;
+	border-radius: 0;
 }
 .qmean-hint-toggle-wrapper {
-  display: none;
+	display: none;
 }
 .qmean-hint-toggler {
-  margin: 0 !important;
-  cursor: pointer;
-  position: relative;
+	margin: 0 !important;
+	cursor: pointer;
+	position: relative;
+}
+h2.qmean-hint-toggler {
+	padding: 1em 0;
+}
+h2.qmean-hint-toggler:hover,h2.qmean-hint-toggler.opened {
+	color: #78a302;
 }
 .qmean-hint-toggler:after {
-  content: "";
-  position: absolute;
-  right: 1em;
-  top: 50%;
-  height: 7px;
-  width: 7px;
-  border-right: 2px solid #000;
-  border-bottom: 2px solid #000;
-  transform: translate(0, -70%) rotate(45deg);
-  transition: transform 1s;
+	content: "";
+	position: absolute;
+	right: 1em;
+	top: 50%;
+	height: 7px;
+	width: 7px;
+	border-right: 2px solid #000;
+	border-bottom: 2px solid #000;
+	transform: translate(0, -70%) rotate(45deg);
+	transition: transform 1s;
 }
 .qmean-hint-toggler.opened:after {
-  transform: translate(0, -70%) rotate(-135deg);
-  border-color: #3582c4;
+	transform: translate(0, -70%) rotate(-135deg);
+	border-color: #3582c4;
 }
 
 .qmean-settings-help {
-  display: none;
+	display: none;
 }
 
 .qmean-tooltip {
-  cursor: pointer;
+	cursor: pointer;
 }
 .qmean-tooltip:hover {
-  color: #78A302;
+	color: #78a302;
 }
 
 .qmean-styling {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
-.qmean-styling button{
-  margin: 0 !important;
+.qmean-styling button {
+	margin: 0 !important;
 }
 
 .qmean-notice {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 .qmean-notice.between {
-  justify-content: space-between;
+	justify-content: space-between;
 }
 .qmean-notice a.button {
-  margin-left: 0.5rem !important;
+	margin-left: 0.5rem !important;
 }
 
 .qmean-d-flex {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 .qmean-d-flex.between {
-  justify-content: space-between;
+	justify-content: space-between;
+}
+.qmean-button-review{
+	background-color: #78a302 !important;
+	border-color: #78a302 !important;
 }

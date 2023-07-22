@@ -1,0 +1,13 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 2,
+	"name": "qmean/did-you-mean",
+	"version": "0.1.0",
+	"title": "Qmean Did You Mean",
+	"category": "widgets",
+	"description": "Did you mean wrapper. Using this block will let you show did you mean onn search page",
+	"textdomain": "qmean",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css",
+	"style": "file:./style-index.css"
+}

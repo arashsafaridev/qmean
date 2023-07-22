@@ -70,8 +70,9 @@ class QMeanAjax
 	{
 		$this->check_nonce();
 
-		global $wpdb;
 		$data = get_option($this->option_name, []);
+
+		$sql_patterner = $data['sql_patterner'];
 
 		foreach ($_POST as $field => $value) {
 			if (substr($field, 0, 6) !== "qmean_")
@@ -93,7 +94,8 @@ class QMeanAjax
 				}
 
 		}
-		update_option($this->option_name, $data);
+		$data['sql_patterner'] = $sql_patterner;
+		update_option($this->option_name, $data, 'no');
 
 		echo esc_html(__('Settings saved successfully!', 'qmean'));
 		die();
@@ -193,7 +195,7 @@ class QMeanAjax
 
 		$settings['input_selector'] = $selector;
 
-		update_option('qmean_options',$settings);
+		update_option('qmean_options',$settings, 'no');
 
 		wp_send_json([
 			'status'  => 'success',
