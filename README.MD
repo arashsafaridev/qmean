@@ -1,3 +1,5 @@
+<a href="https://plugintests.com/plugins/wporg/qmean/latest"><img src="https://plugintests.com/plugins/wporg/qmean/wp-badge.svg" alt="badge"></a>
+<a href="https://plugintests.com/plugins/wporg/qmean/latest"><img src="https://plugintests.com/plugins/wporg/qmean/php-badge.svg" alt="badge"></a>
 # QMean - WordPress Did You Mean and Autocomplete Search Suggestion
 #### Google style! Simple, Minimal and Fast.
 
